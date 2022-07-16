@@ -16,18 +16,19 @@ public class UserList
     [Column("targetStore")]
     public string TargetStore { get; set; }
 
-    [OneToMany("item")]
+    [OneToMany]
     public List<Item> Items { get; set; }
 
 
     public UserList()
     {
-
+        Items = new(); 
     }
 
     public UserList(string name, string targetStore)
     {
         Name = name;
         TargetStore = targetStore;
+        Items = new(); 
     }
 }

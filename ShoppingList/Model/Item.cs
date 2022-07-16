@@ -7,6 +7,7 @@ public class Item
 {
     [PrimaryKey, AutoIncrement]
     [Column("id")]
+    [ForeignKey(typeof(UserList))]
     public int Id { get; set; }
 
     [Column("name")]

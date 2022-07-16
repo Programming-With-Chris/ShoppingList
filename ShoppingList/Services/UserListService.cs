@@ -1,49 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShoppingList.Services
+﻿namespace ShoppingList.Services;
+public class UserListService
 {
-    public class UserListService
+    DatabaseHandler _db; 
+    
+    public UserListService()
     {
-        DatabaseHandler _db; 
-        
-        public UserListService()
-        {
-            _db = new DatabaseHandler();
-        }
+        _db = new DatabaseHandler();
+    }
 
-        public List<UserList> GetUserLists()
-        {
-            var returnLists = _db.GetAllQuery<UserList>(); 
-            return returnLists; 
-        }
+    public UserListService(DatabaseHandler db)
+    {
+        _db = db;
+    }
 
-        public List<UserList> GetUserListByName(string name)
-        {
+    public List<UserList> GetUserLists()
+    {
+        var returnLists = _db.GetAllQuery<UserList>(); 
+        return returnLists; 
+    }
 
-            var returnLists = _db.GetQueryByName<UserList>(name);
-            return returnLists; 
-        }
+    public List<UserList> GetUserListByName(string name)
+    {
 
-        public UserList GetUserListById(UserList ul)
-        {
-            var returnLists = _db.GetQueryById<UserList>(ul.Id);
-            return returnLists; 
-        }
-        public List<Item> GetUserListItems(UserList ul)
-        {
-            var returnLists = _db.GetQueryById<UserList>(ul.Id);
-            return returnLists.Items; 
-        }
+        var returnLists = _db.GetQueryByName<UserList>(name);
+        return returnLists; 
+    }
 
-        public void CreateUserList(UserList newlist)
-        {
-            _db.Insert(newlist); 
-        }
+    public UserList GetUserListById(UserList ul)
+    {
+        var returnLists = _db.GetQueryById<UserList>(ul.Id);
+        return returnLists; 
+    }
+    public List<Item> GetUserListItems(UserList ul)
+    {
+        var returnLists = _db.GetQueryById<UserList>(ul.Id);
+        return returnLists.Items; 
+    }
+
+    public void CreateUserList(UserList newlist)
+    {
+        _db.Insert(newlist); 
 
     }
+
+    public void DeleteUserList(UserList newlist)
+    {
+        _db.Delete(newlist);
+    }
 }
+
 

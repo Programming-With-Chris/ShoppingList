@@ -5,6 +5,15 @@ public class DatabaseHandler
 {
     private SQLiteConnection _db;
     private string _pathToDb;
+    
+    
+    /// <summary>
+    /// Constructor does the following:<br/>
+    /// 1. Creates new SQLiteConnection private to DBH class<br/>
+    /// 2. Connects<br/>
+    /// 3. Creates Item table if non found<br/>
+    /// 4. Creates UserList table if non found<br/>
+    /// </summary>
     public DatabaseHandler()
     {
         _pathToDb = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "shoppinglist_sqlite.db");
@@ -13,6 +22,13 @@ public class DatabaseHandler
         _db.CreateTable<UserList>();
     }
 
+    /// <summary>
+    /// Constructor does the following:<br/>
+    /// 1. Creates new SQLiteConnection private to DBH class at <paramref name="newDBName"/><br/>
+    /// 2. Connects<br/>
+    /// 3. Creates Item table if non found<br/>
+    /// 4. Creates UserList table if non found<br/>
+    /// </summary>
     public DatabaseHandler(string newDBName)
     {
         _pathToDb = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), newDBName);
@@ -43,9 +59,20 @@ public class DatabaseHandler
 
         throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with ID = " + id); 
     }
-
     public void Insert<T>(T newData) where T : new()
     {
-        _db.Insert(newData);
+        var numOfRowsInserted = _db.Insert(newData);
+
+        if (numOfRowsInserted == 0)
+            throw new Exception("Unknown error occured while trying to Insert on Table " + typeof(T).Name + "."); 
+
+    }
+
+    public void Delete<T>(T deleteTarget) where T : new()
+    {
+        var numOfRowsFound = _db.Delete(deleteTarget);
+
+        if (numOfRowsFound == 0)
+            throw new Exception("No Rows Found To Delete in Table " + typeof(T).Name + "s."); 
     }
 }

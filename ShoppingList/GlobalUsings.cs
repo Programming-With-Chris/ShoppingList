@@ -10,5 +10,6 @@ global using SQLitePCL;
 global using SQLite;
 global using ShoppingList.Model;
 global using ShoppingList.Services;
+global using SQLiteNetExtensions.Attributes;
 
 
