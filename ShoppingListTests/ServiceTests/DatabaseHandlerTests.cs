@@ -6,7 +6,7 @@
         [SetUp]
         public void Setup()
         {
-            _db = new DatabaseHandler("test.db");
+            _db = new DatabaseHandler("test1.db"); 
         }
 
         [Test]
@@ -16,20 +16,40 @@
             Assert.Pass("DB Not Null", _db is not null);
         }
 
-
-        // Probably shouldn't have a test that adds a row to a table every time....?
         [Test]
-        public void DBUserListTest()
+        public void GetAllQueryTest()
         {
-            _db.CreateUserList("list-test", "kroger");
-
-            List<UserList> uls = _db.GetUserLists();
-
-            foreach (UserList ul in uls)
-            {
-                Assert.Pass("ul had data", ul?.Name == "list-test" && ul?.TargetStore == "kroger"); 
-            }
-            
+            List<UserList> ulList = _db.GetAllQuery<UserList>(); 
+            Assert.IsNotNull(ulList);
+            Assert.IsTrue(ulList[0].Name == "list-test"); 
+            Assert.IsTrue(ulList[0].TargetStore == "kroger"); 
         }
+
+        [Test]
+        public void GetQueryByNameTest()
+        {
+            List<UserList> ul = _db.GetQueryByName<UserList>("list-test"); 
+
+            Assert.IsNotNull(ul);
+            Assert.IsTrue(ul[0].Name == "list-test"); 
+            Assert.IsTrue(ul[0].TargetStore == "kroger"); 
+
+        }
+
+
+        [Test]
+        public void GetQueryByIdTest()
+        {
+            UserList ul = _db.GetQueryById<UserList>(1); 
+
+            Assert.IsNotNull(ul);
+            Assert.IsTrue(ul.Name == "list-test"); 
+            Assert.IsTrue(ul.TargetStore == "kroger"); 
+
+        }
+
+
+
+
     }
 }

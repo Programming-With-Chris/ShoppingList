@@ -1,4 +1,6 @@
-﻿namespace ShoppingList.Model;
+﻿using SQLiteNetExtensions.Attributes;
+
+namespace ShoppingList.Model;
 
 
 [Table("UserLists")]
@@ -13,6 +15,10 @@ public class UserList
 
     [Column("targetStore")]
     public string TargetStore { get; set; }
+
+    [OneToMany("item")]
+    public List<Item> Items { get; set; }
+
 
     public UserList()
     {
