@@ -37,9 +37,9 @@ public class UserListService
         return returnLists.Items; 
     }
 
-    public void CreateUserList(UserList newlist)
+    public UserList CreateUserList(UserList newlist)
     {
-        _db.Insert(newlist); 
+        return _db.Insert(newlist); 
 
     }
 

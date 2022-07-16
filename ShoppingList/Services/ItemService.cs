@@ -38,9 +38,9 @@ public class ItemService
         return returnLists.Items; 
     }
 
-    public void CreateItem(Item newItem)
+    public Item CreateItem(Item newItem)
     {
-        _db.Insert(newItem); 
+        return _db.Insert(newItem); 
 
     }
 

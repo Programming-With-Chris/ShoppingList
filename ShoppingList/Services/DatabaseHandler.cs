@@ -59,12 +59,14 @@ public class DatabaseHandler
 
         throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with ID = " + id); 
     }
-    public void Insert<T>(T newData) where T : new()
+    public T Insert<T>(T newData) where T : new()
     {
         var numOfRowsInserted = _db.Insert(newData);
 
         if (numOfRowsInserted == 0)
-            throw new Exception("Unknown error occured while trying to Insert on Table " + typeof(T).Name + "."); 
+            throw new Exception("Unknown error occured while trying to Insert on Table " + typeof(T).Name + ".");
+
+        return newData;
 
     }
 
