@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ShoppingList.Model"
+             xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             x:DataType="viewmodel:ItemInputViewModel"
+             x:Class="ShoppingList.ItemInput"
+             Shell.PresentationMode="ModalAnimated"
+             >
+
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto">
+
+        <StackLayout Margin="20,35,20,20"
+                     Grid.ColumnSpan="2">
+
+            <Entry Text="{Binding ItemName}"
+                   MaxLength="100"
+                   Style="{StaticResource CommonEntryStyle}"
+                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   Placeholder="Item Name"/>
+
+            <Entry Text="{Binding ItemDescription}"
+                   MaxLength="150"
+                   Style="{StaticResource CommonEntryStyle}"
+                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   Placeholder="Item Description"/>
+            
+            <Entry Text="{Binding ItemCategory}"
+                   MaxLength="99"
+                   Style="{StaticResource CommonEntryStyle}"
+                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   Placeholder="Item Category"/>
+            
+            <Entry Text="{Binding ItemAisle}"
+                   MaxLength="8"
+                   Style="{StaticResource CommonEntryStyle}"
+                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   Placeholder="Known Aisle? (if you don't that's okay)"/>
+           
+            <Entry Text="{Binding ItemEstimatedPrice}"
+                   MaxLength="20"
+                   Style="{StaticResource CommonEntryStyle}"
+                   Placeholder="Known price? (if you don't that's okay)"
+                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"/>
+
+
+        </StackLayout>
+
+        <Button Text="Create New Item"
+                    IsEnabled="True"
+                    Command="{Binding OnItemEntryCompletedCommand}"
+                    CommandParameter="{Binding UserList}"
+                    Margin="8"
+                Grid.Row="1"/>
+    </Grid>
+
+
+</ContentPage>

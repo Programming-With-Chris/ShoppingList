@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 namespace ShoppingList.ViewModels;
 
+[QueryProperty("CreateFlag", "createflag")]
 [QueryProperty("NewListId","id")]
 public partial class UserListViewModel : BaseViewModel
 {
@@ -11,7 +12,10 @@ public partial class UserListViewModel : BaseViewModel
     private ItemService _itemService;
     private int _newListId; 
 
+
     public ObservableCollection<UserList> UserLists { get; } = new();
+
+    public bool CreateFlag { get; set; } = false; 
 
     //TODO there is probably a better way to do this? idk
     public int NewListId
@@ -19,13 +23,17 @@ public partial class UserListViewModel : BaseViewModel
         get { return _newListId; }
         set
         {
-            _newListId = value;
-            UserList ul = new UserList()
+            if (CreateFlag)
             {
-                Id = value
-            };
-            ul = _uls.GetUserListById(ul); 
-            UserLists.Add(ul);
+                _newListId = value;
+                UserList ul = new()
+                {
+                    Id = value
+                };
+                ul = _uls.GetUserListById(ul);
+                UserLists.Add(ul);
+                CreateFlag = false; 
+            }
         }
     }  
 
@@ -79,28 +87,6 @@ public partial class UserListViewModel : BaseViewModel
                 {"UserLists", UserLists}
             }); 
         
-       /* try
-        {
-            IsBusy = true;
-            UserList ul = new();
-            ul.Name = "another test";
-            ul.TargetStore = "chris's house"; 
-
-            var userList = _uls.CreateUserList(ul);
-
-            UserLists.Add(userList);
-
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine(e);
-            Shell.Current.DisplayAlert("Error!",
-                $"Unable to get UserLists: {e.Message}", "Ok");
-        }
-        finally
-        {
-            IsBusy = false;
-        }*/
     }
 
     [ICommand]
@@ -114,7 +100,6 @@ public partial class UserListViewModel : BaseViewModel
         }
         catch (Exception e)
         {
-            await Shell.Current.DisplayAlert("Info","No Items Yet. Create Some!", "Ok");
             ul.Items.Clear(); 
         }
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?id={ul.Id}", true,

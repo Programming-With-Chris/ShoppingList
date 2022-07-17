@@ -37,7 +37,7 @@ public partial class UserListDataInputViewModel : BaseViewModel
 
         userList = _userListService.CreateUserList(userList);
 
-        await Shell.Current.GoToAsync("..?id=" + userList.Id); 
+        await Shell.Current.GoToAsync("..?id=" + userList.Id + "&createflag=true"); 
         //await Shell.Current.DisplayAlert("Test alert", "Information recieved :" + UlName + ", " + UlTargetStore, "Ok");
 
     }

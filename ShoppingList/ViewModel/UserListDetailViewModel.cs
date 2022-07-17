@@ -4,9 +4,12 @@ using System.Diagnostics;
 namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
+//[QueryProperty("CreateFlag", "createflag")]
+//[QueryProperty("NewItemId", "id")]
 public partial class UserListDetailViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
+    int _newItemId; 
 
     public UserListDetailViewModel()
     {
@@ -18,47 +21,57 @@ public partial class UserListDetailViewModel : BaseViewModel
 
     [ObservableProperty]
     List<Item> items; 
+
+
+    //public bool CreateFlag { get; set; } = false; 
+
+    //TODO there is probably a better way to do this? idk
+   /* public int NewItemId
+    {
+        get { return _newItemId; }
+        set
+        {
+            if (CreateFlag)
+            {
+                _newItemId = value;
+                Item newItem = new()
+                {
+                    Id = value
+                };
+                newItem = _itemService.GetItemById(newItem);
+                UserList.Items.Add(newItem);
+                CreateFlag = false; 
+            }
+        }
+    }*/  
     
     
     [ICommand]
-    public void CreateItem(UserList ul)
+    public async void CreateItem(UserList ul)
     {
         if (IsBusy)
             return;
 
-        try
-        {
-            IsBusy = true;
-
-            Item newItem = new()
+        await Shell.Current.GoToAsync($"{nameof(ItemInput)}", true,
+            new Dictionary<string, object>
             {
-                Name = "testitem1",
-                Category = "bbq",
-                Aisle = "B4",
-                Description = "a new test item! So cool!",
-                EstimatedPrice = 10.00m, 
-                ParentId = ul.Id
-            }; 
-
-            var item = _itemService.CreateItem(newItem);
-
-            userList.Items.Add(item);
-
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine(e);
-            Shell.Current.DisplayAlert("Error!",
-                $"Unable to add new Item!: {e.Message}", "Ok");
-        }
-        finally
-        {
-            IsBusy = false;
-        }
+                {"UserList", UserList}
+            }); 
     }
 
+    [ICommand]
+    public void GoBackToListScreen()
+    {
+        Shell.Current.GoToAsync("..?createflag=false"); 
+    }
 
+    public void RefreshUserListDetailScreen()
+    {
 
+        UserList.Items.Clear();
+
+        UserList.Items = _itemService.GetUserListItems(UserList); 
+    }
     
 
 }

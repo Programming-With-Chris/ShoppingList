@@ -6,6 +6,10 @@
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails">
 
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
+            />
+    </Shell.BackButtonBehavior>
     <Grid ColumnDefinitions="*,Auto"
           ColumnSpacing="5"
           RowDefinitions="*,Auto">
