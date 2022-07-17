@@ -12,37 +12,46 @@
     </Shell.BackButtonBehavior>
     <Grid ColumnDefinitions="*,Auto"
           ColumnSpacing="5"
-          RowDefinitions="*,Auto">
+          RowDefinitions="Auto,*,Auto">
 
-        <Label Text="{Binding UserList.Name}" TextColor="White"/>
-        <CollectionView BackgroundColor="Blue"
-                        Grid.ColumnSpan="2"
+        <Label Text="{Binding UserList.Name}"
+               Grid.Row="0"/>
+        <CollectionView Grid.ColumnSpan="2"
                         ItemsSource="{Binding UserList.Items}"
-                        SelectionMode="None">
+                        SelectionMode="None"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate >
                 <DataTemplate x:DataType="model:Item">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125"
-                               BackgroundColor="White">
-                            <Label Text="{Binding Name}" TextColor="Black"/>
+                        <Frame HeightRequest="125">
+                            <Label Text="{Binding Name}" />
                         </Frame>
                         <VerticalStackLayout HorizontalOptions="End">
-                            <Label Text="{Binding Category}" TextColor="Black"/>
-                            <Label Text="{Binding Description}" TextColor="Black"/>
-                            <Label Text="{Binding Aisle}" TextColor="Black"/>
+                            <Label Text="{Binding Category}" />
+                            <Label Text="{Binding Description}" />
+                            <Label Text="{Binding Aisle}" />
                         </VerticalStackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        
+        <HorizontalStackLayout Grid.Row="2">
+            
         <Button Text="Create New Item"
                 Command="{Binding CreateItemCommand}"
                 CommandParameter="{Binding UserList}"
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="1"
                 Margin="8"/>
+            
+        <Button Text="Back to My Lists"
+                Command="{Binding GoBackToListScreenCommand}"
+                CommandParameter="{Binding UserList}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Margin="8"/>
+        </HorizontalStackLayout> 
     </Grid>
 
 </ContentPage>

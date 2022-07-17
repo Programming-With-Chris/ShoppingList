@@ -75,4 +75,15 @@ public partial class ItemInputViewModel : BaseViewModel
         //await Shell.Current.DisplayAlert("Test alert", "Information recieved :" + UlName + ", " + UlTargetStore, "Ok");
 
     }
+
+    [ICommand]
+    public async void OnCancelButtonPressed()
+    {
+
+        await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?", true,
+            new Dictionary<string, object>
+            {
+                {"UserList", userList}
+            }); 
+    }
 }

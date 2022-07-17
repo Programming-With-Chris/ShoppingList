@@ -9,8 +9,8 @@ public partial class App : Application
 		MainPage = new AppShell();
 	}
 
-#if NET6_TARGET
-public static void Main(string[] args) {}
+//#if NET6_TARGET
+//public static void Main(string[] args) {}
 
-#endif
+//#endif
 }

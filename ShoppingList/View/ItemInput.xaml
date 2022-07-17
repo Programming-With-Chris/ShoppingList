@@ -8,12 +8,13 @@
              Shell.PresentationMode="ModalAnimated"
              >
 
-    <Grid ColumnDefinitions="*,*"
+    <Grid ColumnDefinitions="*,*,*,*,Auto,Auto"
           ColumnSpacing="5"
-          RowDefinitions="*,Auto">
+          RowDefinitions="*,Auto"
+          >
 
         <StackLayout Margin="20,35,20,20"
-                     Grid.ColumnSpan="2">
+                     Grid.ColumnSpan="6">
 
             <Entry Text="{Binding ItemName}"
                    MaxLength="100"
@@ -48,12 +49,27 @@
 
         </StackLayout>
 
+        <HorizontalStackLayout Grid.Row="1">
+            
         <Button Text="Create New Item"
                     IsEnabled="True"
                     Command="{Binding OnItemEntryCompletedCommand}"
                     CommandParameter="{Binding UserList}"
                     Margin="8"
-                Grid.Row="1"/>
+                Grid.Row="1"
+                Grid.Column="5"
+                WidthRequest="150"/>
+
+        <Button Text="Cancel"
+                    IsEnabled="True"
+                    Command="{Binding OnCancelButtonPressedCommand}"
+                    CommandParameter="{Binding UserList}"
+                    Margin="8"
+                Grid.Row="1"
+                Grid.Column="6"
+                WidthRequest="150"/>
+            
+        </HorizontalStackLayout>
     </Grid>
 
 

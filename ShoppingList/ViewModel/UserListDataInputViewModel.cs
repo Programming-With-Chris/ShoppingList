@@ -42,4 +42,12 @@ public partial class UserListDataInputViewModel : BaseViewModel
 
     }
 
+
+    [ICommand]
+    public async void OnCancel()
+    {
+
+        await Shell.Current.GoToAsync("..?createflag=false"); 
+
+    }
 }

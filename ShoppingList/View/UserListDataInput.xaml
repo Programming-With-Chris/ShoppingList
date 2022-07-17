@@ -10,7 +10,7 @@
 
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
-          RowDefinitions="*,Auto">
+          RowDefinitions="*,Auto,Auto">
 
         <StackLayout Margin="20,35,20,20">
 
@@ -34,6 +34,13 @@
                     Command="{Binding OnUserListCompletedCommand}"
                     Margin="8"
                 Grid.Row="1"/>
+
+        <Button Text="Cancel"
+                    IsEnabled="True"
+                    Command="{Binding OnCancelCommand}"
+                    Margin="8"
+                Grid.Row="1"
+                Grid.Column="2"/>
     </Grid>
 
 

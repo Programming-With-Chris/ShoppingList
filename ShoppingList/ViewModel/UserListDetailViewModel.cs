@@ -60,9 +60,15 @@ public partial class UserListDetailViewModel : BaseViewModel
     }
 
     [ICommand]
-    public void GoBackToListScreen()
+    public async void GoBackToListScreen()
     {
-        Shell.Current.GoToAsync("..?createflag=false"); 
+        //Shell.Current.GoToAsync("..?createflag=false"); 
+        /*await Shell.Current.GoToAsync("..?createflag=false", true,
+            new Dictionary<string, object>
+            {
+                {"UserList", userList}
+            });*/
+        await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
     }
 
     public void RefreshUserListDetailScreen()
