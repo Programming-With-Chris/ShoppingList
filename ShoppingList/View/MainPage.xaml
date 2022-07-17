@@ -15,11 +15,16 @@
                         Grid.ColumnSpan="2"
                         ItemsSource="{Binding UserLists}"
                         SelectionMode="None">
-            <CollectionView.ItemTemplate>
+            <CollectionView.ItemTemplate >
                 <DataTemplate x:DataType="model:UserList">
                     <Grid Padding="10">
-                        <Frame HeightRequest="125">
-                            <Label Text="{Binding Name}"/>
+                        <Frame HeightRequest="125"
+                               BackgroundColor="White">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=GoToListItemsCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Name}" TextColor="Black"/>
                         </Frame>
                     </Grid>
                 </DataTemplate>

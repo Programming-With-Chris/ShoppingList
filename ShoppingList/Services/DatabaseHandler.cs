@@ -59,6 +59,18 @@ public class DatabaseHandler
 
         throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with ID = " + id); 
     }
+
+    public List<T> GetQueryByParentId<T>(int id) where T : new()
+    {
+
+        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE parentid = '" + id + "'");
+        if (returnList.Count > 0)
+            return returnList;
+
+        throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with Parent Id = " + id); 
+    }
+
+
     public T Insert<T>(T newData) where T : new()
     {
         var numOfRowsInserted = _db.Insert(newData);

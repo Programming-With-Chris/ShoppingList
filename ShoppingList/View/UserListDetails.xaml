@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ShoppingList.Model"
+             xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             x:DataType="viewmodel:UserListDetailViewModel"
+             x:Class="ShoppingList.UserListDetails">
+
+    <Grid ColumnDefinitions="*,Auto"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto">
+
+        <Label Text="{Binding UserList.Name}" TextColor="White"/>
+        <CollectionView BackgroundColor="Blue"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding UserList.Items}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate >
+                <DataTemplate x:DataType="model:Item">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"
+                               BackgroundColor="White">
+                            <Label Text="{Binding Name}" TextColor="Black"/>
+                        </Frame>
+                        <VerticalStackLayout HorizontalOptions="End">
+                            <Label Text="{Binding Category}" TextColor="Black"/>
+                            <Label Text="{Binding Description}" TextColor="Black"/>
+                            <Label Text="{Binding Aisle}" TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        
+        <Button Text="Create New Item"
+                Command="{Binding CreateItemCommand}"
+                CommandParameter="{Binding UserList}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Margin="8"/>
+    </Grid>
+
+</ContentPage>

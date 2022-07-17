@@ -7,7 +7,6 @@ public class Item
 {
     [PrimaryKey, AutoIncrement]
     [Column("id")]
-    [ForeignKey(typeof(UserList))]
     public int Id { get; set; }
 
     [Column("name")]
@@ -25,4 +24,7 @@ public class Item
     [Column("estimated price")]
     public decimal EstimatedPrice { get; set; }
 
+    [ForeignKey(typeof(UserList))]
+    [Column("parentid")]
+    public int ParentId { get; set; }
 }

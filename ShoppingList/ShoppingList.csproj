@@ -71,4 +71,16 @@
 	  <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="View\UserListDetails.xaml.cs">
+	    <DependentUpon>UserListDetails.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\UserListDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

@@ -10,6 +10,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = ulViewModel;
+		ulViewModel.GetUserLists(); 
 
 	}
 

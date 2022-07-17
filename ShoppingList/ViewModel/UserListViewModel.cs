@@ -7,12 +7,15 @@ public partial class UserListViewModel : BaseViewModel
 {
    
     private UserListService _uls;
+    private ItemService _itemService;
+
     public ObservableCollection<UserList> UserLists { get; } = new(); 
 
 
     public UserListViewModel(UserListService uls)
     {
         _uls = uls;
+        _itemService = new();
     }
 
     [ICommand]
@@ -61,9 +64,6 @@ public partial class UserListViewModel : BaseViewModel
 
             var userList = _uls.CreateUserList(ul);
 
-            if (UserLists.Count != 0)
-                UserLists.Clear();
-
             UserLists.Add(userList);
 
         }
@@ -77,5 +77,26 @@ public partial class UserListViewModel : BaseViewModel
         {
             IsBusy = false;
         }
+    }
+
+    [ICommand]
+    public async void GoToListItems(UserList ul)
+    {
+        if (IsBusy || ul is null)
+            return;
+        try
+        {
+            ul.Items = _itemService.GetItemByParentId(ul);
+        }
+        catch (Exception e)
+        {
+            await Shell.Current.DisplayAlert("Info","No Items Yet. Create Some!", "Ok");
+            ul.Items.Clear(); 
+        }
+        await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?id={ul.Id}", true,
+            new Dictionary<string, object>
+            {
+                {"UserList", ul}
+            }); 
     }
 }

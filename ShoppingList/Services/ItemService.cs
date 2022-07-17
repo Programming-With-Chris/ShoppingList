@@ -38,6 +38,12 @@ public class ItemService
         return returnLists.Items; 
     }
 
+    public List<Item> GetItemByParentId(UserList ul)
+    {
+        var returnLists = _db.GetQueryByParentId<Item>(ul.Id);
+        return returnLists; 
+    }
+
     public Item CreateItem(Item newItem)
     {
         return _db.Insert(newItem); 
