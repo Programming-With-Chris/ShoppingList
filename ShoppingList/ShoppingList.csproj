@@ -72,12 +72,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="View\UserListDataInput.xaml.cs">
+	    <DependentUpon>UserListDataInput.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\UserListDetails.xaml.cs">
 	    <DependentUpon>UserListDetails.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\UserListDataInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\UserListDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,16 +1,33 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace ShoppingList.ViewModels; 
+namespace ShoppingList.ViewModels;
 
+[QueryProperty("NewListId","id")]
 public partial class UserListViewModel : BaseViewModel
 {
    
     private UserListService _uls;
     private ItemService _itemService;
+    private int _newListId; 
 
-    public ObservableCollection<UserList> UserLists { get; } = new(); 
+    public ObservableCollection<UserList> UserLists { get; } = new();
 
+    //TODO there is probably a better way to do this? idk
+    public int NewListId
+    {
+        get { return _newListId; }
+        set
+        {
+            _newListId = value;
+            UserList ul = new UserList()
+            {
+                Id = value
+            };
+            ul = _uls.GetUserListById(ul); 
+            UserLists.Add(ul);
+        }
+    }  
 
     public UserListViewModel(UserListService uls)
     {
@@ -50,12 +67,19 @@ public partial class UserListViewModel : BaseViewModel
         }
     }
     [ICommand]
-    public void CreateUserList()
+    public async void CreateUserList()
     {
         if (IsBusy)
             return;
 
-        try
+
+        await Shell.Current.GoToAsync($"{nameof(UserListDataInput)}", true,
+            new Dictionary<string, object>
+            {
+                {"UserLists", UserLists}
+            }); 
+        
+       /* try
         {
             IsBusy = true;
             UserList ul = new();
@@ -76,7 +100,7 @@ public partial class UserListViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
-        }
+        }*/
     }
 
     [ICommand]
