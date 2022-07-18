@@ -1,7 +1,7 @@
 ﻿namespace ShoppingList.Services;
 public class UserListService
 {
-    DatabaseHandler _db; 
+    readonly DatabaseHandler _db = new(); 
     
     public UserListService()
     {
@@ -21,7 +21,6 @@ public class UserListService
 
     public List<UserList> GetUserListByName(string name)
     {
-
         var returnLists = _db.GetQueryByName<UserList>(name);
         return returnLists; 
     }
@@ -30,11 +29,6 @@ public class UserListService
     {
         var returnLists = _db.GetQueryById<UserList>(ul.Id);
         return returnLists; 
-    }
-    public List<Item> GetUserListItems(UserList ul)
-    {
-        var returnLists = _db.GetQueryById<UserList>(ul.Id);
-        return returnLists.Items; 
     }
 
     public UserList CreateUserList(UserList newlist)

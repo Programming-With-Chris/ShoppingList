@@ -1,9 +1,8 @@
 ﻿namespace ShoppingList.Services;
 public class ItemService
 {
-    readonly DatabaseHandler _db; 
+    readonly DatabaseHandler _db = new(); 
     
-    // TODO Figure Out how the onetomany stuff works between Item and UserList
     public ItemService()
     {
         _db = new DatabaseHandler();

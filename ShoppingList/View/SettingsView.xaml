@@ -26,6 +26,7 @@
             <Label Text="Start at back of store?"
                    TextColor="{StaticResource Primary}"/>
             <CheckBox IsChecked="{Binding StartAtBackOfStore}"
+                      Color="{StaticResource Primary}"
                       HorizontalOptions="End"/>
         </HorizontalStackLayout>
 
@@ -34,6 +35,7 @@
             <Label Text="Get Frozen and Refrigerated Food Last?" 
                    TextColor="{StaticResource Primary}"/>
             <CheckBox IsChecked="{Binding FrozenFoodLast}" 
+                      Color="{StaticResource Primary}"
                       HorizontalOptions="End"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>

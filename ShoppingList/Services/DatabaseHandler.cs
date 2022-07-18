@@ -37,12 +37,23 @@ public class DatabaseHandler
         _db.CreateTable<UserList>();
     }
 
+    /// <summary>
+    ///  Does the .Table() query on the type passed, then performs a .ToList() on it.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public List<T> GetAllQuery<T>() where T : new()
     {
         List<T> returnList = _db.Table<T>().ToList();
         return returnList; 
     }
-
+    /// <summary>
+    /// Query Performed:
+    ///       SELECT * FROM typeof(T).Name (s) + WHERE name = parameter
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public List<T> GetQueryByName<T>(string name) where T : new()
     {
         List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE name = '" + name + "'");
@@ -50,6 +61,16 @@ public class DatabaseHandler
         return returnList; 
     }
 
+    /// <summary>
+    /// Query Performed:
+    ///      "SELECT * FROM " + typeof(T).Name + "s" + " WHERE id = '" + id + "'")
+    ///  
+    ///  If nothing is found, throws a generic exception
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="id"></param>
+    /// <returns>the 0th index of the list that's returned (if you're getting by ID, that will only ever be 1 row, right????</returns>
+    /// <exception cref="Exception">If nothing is found, throws a generic exception</exception>
     public T GetQueryById<T>(int id) where T : new()
     {
         
@@ -60,6 +81,15 @@ public class DatabaseHandler
         throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with ID = " + id); 
     }
 
+    /// <summary>
+    ///  Query Performed
+    ///     "SELECT * FROM " + typeof(T).Name + "s" + " WHERE parentid = '" + id + "'")
+    ///   If nothing is found, throws a generic exception
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="id">The Parent's ID you're looking for (Foreign Key on the Item Table)</param>
+    /// <returns>All Items found belonging to that parent</returns>
+    /// <exception cref="Exception"></exception>
     public List<T> GetQueryByParentId<T>(int id) where T : new()
     {
 
@@ -70,7 +100,13 @@ public class DatabaseHandler
         throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with Parent Id = " + id); 
     }
 
-
+/// <summary>
+///  Inserts Object to it's table (as handled by Sqlite-net
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <param name="newData"></param>
+/// <returns>Returns the updated object from Sqlite-net (usually updating the autoincrementing id from the table)</returns>
+/// <exception cref="Exception"></exception>
     public T Insert<T>(T newData) where T : new()
     {
         var numOfRowsInserted = _db.Insert(newData);
@@ -81,7 +117,12 @@ public class DatabaseHandler
         return newData;
 
     }
-
+/// <summary>
+/// Deletes from the T table the object you pass it (as determined by sqlite-net)
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <param name="deleteTarget"></param>
+/// <exception cref="Exception"></exception>
     public void Delete<T>(T deleteTarget) where T : new()
     {
         var numOfRowsFound = _db.Delete(deleteTarget);
