@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              x:DataType="viewmodel:UserListDataInputViewModel"
              x:Class="ShoppingList.UserListDataInput"
-             Shell.PresentationMode="ModalAnimated"
+             Shell.PresentationMode="Animated"
              >
 
     <Grid ColumnDefinitions="*,*"

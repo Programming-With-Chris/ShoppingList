@@ -10,48 +10,65 @@
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
             />
     </Shell.BackButtonBehavior>
-    <Grid ColumnDefinitions="*,Auto"
-          ColumnSpacing="5"
-          RowDefinitions="Auto,*,Auto">
 
-        <Label Text="{Binding UserList.Name}"
-               Grid.Row="0"/>
-        <CollectionView Grid.ColumnSpan="2"
+    
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto">
+
+        <CollectionView Grid.ColumnSpan="3"
                         ItemsSource="{Binding UserList.Items}"
-                        SelectionMode="None"
-                        Grid.Row="1">
+                        SelectionMode="None">
             <CollectionView.ItemTemplate >
                 <DataTemplate x:DataType="model:Item">
-                    <Grid Padding="10">
-                        <Frame HeightRequest="125">
-                            <Label Text="{Binding Name}" />
+                    <Grid Padding="10"
+                          ColumnDefinitions="*,*"
+                          RowDefinitions="*,Auto">
+                        <Frame Grid.ColumnSpan="3"
+                               Padding="10">
+                            <Grid ColumnDefinitions="Auto,*,*"
+                                  RowDefinitions="*,Auto"
+                                  Grid.ColumnSpan="1"
+                                  Grid.RowSpan="2"
+                                  Padding="1"
+                                  Margin="1">
+                                <CheckBox Color="{StaticResource Secondary}" 
+                                                  Grid.Row="1"
+                                                  Grid.RowSpan="2"
+                                                  Grid.Column="0" />
+                                <Label Text="{Binding Name}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           Grid.RowSpan="1"/>
+                                    <!--<VerticalStackLayout Grid.Column="5"
+                                                         Grid.Row="0"
+                                                         HorizontalOptions="End">
+                                        <Label Text="{Binding Category}" />
+                                        <Label Text="{Binding Description}" />
+                                        <Label Text="{Binding Aisle}" />
+                                    </VerticalStackLayout>-->
+                            </Grid>
                         </Frame>
-                        <VerticalStackLayout HorizontalOptions="End">
-                            <Label Text="{Binding Category}" />
-                            <Label Text="{Binding Description}" />
-                            <Label Text="{Binding Aisle}" />
-                        </VerticalStackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <HorizontalStackLayout Grid.Row="2">
             
         <Button Text="Create New Item"
                 Command="{Binding CreateItemCommand}"
                 CommandParameter="{Binding UserList}"
                 IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="1"
+                Grid.Row="2"
                 Margin="8"/>
             
         <Button Text="Back to My Lists"
                 Command="{Binding GoBackToListScreenCommand}"
                 CommandParameter="{Binding UserList}"
                 IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="1"
+                Grid.Row="2"
+                Grid.Column="3"
                 Margin="8"/>
-        </HorizontalStackLayout> 
     </Grid>
 
 </ContentPage>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ShoppingList.Model"
+             xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             x:DataType="viewmodel:SettingsViewModel"
+             x:Class="ShoppingList.SettingsView"
+             Shell.PresentationMode="Animated"
+             >
+
+    <StackLayout Margin="20,35,50,25">
+
+        <HorizontalStackLayout>
+            <Label Text="Start at back of store?"
+                   TextColor="{StaticResource Primary}"/>
+            <CheckBox IsChecked="{Binding StartAtBackOfStore}"
+                      HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Get Frozen and Refrigerated Food Last?" 
+                   TextColor="{StaticResource Primary}"/>
+            <CheckBox IsChecked="{Binding FrozenFoodLast}" 
+                      HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+    </StackLayout>
+
+</ContentPage>

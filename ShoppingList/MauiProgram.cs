@@ -24,6 +24,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<UserListDetails>();
 		builder.Services.AddTransient<UserListDataInput>();
 		builder.Services.AddTransient<ItemInput>();
+		builder.Services.AddSingleton<SettingsView>();
+		builder.Services.AddSingleton<SettingsViewModel>();
 		
 
 
