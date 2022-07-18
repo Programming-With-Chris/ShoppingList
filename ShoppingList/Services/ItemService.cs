@@ -53,6 +53,11 @@ public class ItemService
     {
         _db.Delete(deletedItem);
     }
+
+    public void UpdateItem(Item updatedItem)
+    {
+        _db.Update(updatedItem); 
+    }
 }
 
 

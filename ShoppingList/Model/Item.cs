@@ -27,4 +27,7 @@ public class Item
     [ForeignKey(typeof(UserList))]
     [Column("parentid")]
     public int ParentId { get; set; }
+
+    [Column("iscompleted")]
+    public bool IsCompleted { get; set; } 
 }

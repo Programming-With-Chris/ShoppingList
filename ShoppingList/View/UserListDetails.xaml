@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             xmlns:view="clr-namespace:ShoppingList"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails">
 
@@ -37,6 +38,9 @@
                                   Padding="1"
                                   Margin="1">
                                 <CheckBox Color="{StaticResource Secondary}" 
+                                                  x:DataType="model:Item"
+                                                  IsChecked="{Binding IsCompleted}"
+                                                  CheckedChanged="OnCheckboxClicked"
                                                   Grid.Row="1"
                                                   Grid.RowSpan="2"
                                                   Grid.Column="0" />

@@ -3,8 +3,8 @@
 namespace ShoppingList.Services;
 public class DatabaseHandler
 {
-    private SQLiteConnection _db;
-    private string _pathToDb;
+    private readonly SQLiteConnection _db;
+    private readonly string _pathToDb;
     
     
     /// <summary>
@@ -129,5 +129,13 @@ public class DatabaseHandler
 
         if (numOfRowsFound == 0)
             throw new Exception("No Rows Found To Delete in Table " + typeof(T).Name + "s."); 
+    }
+
+    public void Update<T>(T updateTarget) where T : new()
+    {
+        var numOfRowsFound = _db.Update(updateTarget);
+
+        if (numOfRowsFound == 0)
+            throw new Exception("No Rows Found To Update in Table " + typeof(T).Name + "s."); 
     }
 }
