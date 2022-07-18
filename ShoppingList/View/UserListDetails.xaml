@@ -26,6 +26,10 @@
                           RowDefinitions="*,Auto">
                         <Frame Grid.ColumnSpan="3"
                                Padding="10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=GoToItemDetailCommand}"/>
+                            </Frame.GestureRecognizers>
                             <Grid ColumnDefinitions="Auto,*,*"
                                   RowDefinitions="*,Auto"
                                   Grid.ColumnSpan="1"

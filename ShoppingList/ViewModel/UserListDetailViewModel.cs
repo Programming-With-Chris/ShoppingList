@@ -78,6 +78,18 @@ public partial class UserListDetailViewModel : BaseViewModel
 
         UserList.Items = _itemService.GetUserListItems(UserList); 
     }
+
+    [ICommand]
+    public async void GoToItemDetail(Item item)
+    {
+        await Shell.Current.DisplayAlert(item.Name, $"Category: {item.Category} \nDescription: {item.Description} \n" +
+            $"Aisle: {item.Aisle}", "Ok"); 
+     /*   await Shell.Current.GoToAsync(nameof(ItemDetail), true,
+            new Dictionary<string, object>
+            {
+                {"Item", item }
+            }); */
+    }
     
 
 }

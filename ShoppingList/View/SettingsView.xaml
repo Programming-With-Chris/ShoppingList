@@ -8,21 +8,34 @@
              Shell.PresentationMode="Animated"
              >
 
-    <StackLayout Margin="20,35,50,25">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoBackToMainCommand}"/>
+    </Shell.BackButtonBehavior>
+    
+    <VerticalStackLayout Margin="0,35,50,25"
+                 Spacing="10">
 
-        <HorizontalStackLayout>
+        <Border>
+            <Label Text="List Sorting Settings" TextColor="{StaticResource Primary}"
+                   Margin="5,15,15,15"
+                   Padding="10"/>
+        </Border>
+        
+        <HorizontalStackLayout
+            Margin="25,0,0,0">
             <Label Text="Start at back of store?"
                    TextColor="{StaticResource Primary}"/>
             <CheckBox IsChecked="{Binding StartAtBackOfStore}"
                       HorizontalOptions="End"/>
         </HorizontalStackLayout>
 
-        <HorizontalStackLayout>
+        <HorizontalStackLayout
+            Margin="25,0,0,0">
             <Label Text="Get Frozen and Refrigerated Food Last?" 
                    TextColor="{StaticResource Primary}"/>
             <CheckBox IsChecked="{Binding FrozenFoodLast}" 
                       HorizontalOptions="End"/>
         </HorizontalStackLayout>
-    </StackLayout>
+    </VerticalStackLayout>
 
 </ContentPage>

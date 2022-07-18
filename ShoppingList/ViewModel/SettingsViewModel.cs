@@ -33,4 +33,9 @@ public partial class SettingsViewModel : BaseViewModel
     {
     }
 
+    [ICommand]
+    public async void GoBackToMain()
+    {
+        await Shell.Current.GoToAsync($"//{nameof(MainPage)}"); 
+    }
 }
