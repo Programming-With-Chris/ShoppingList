@@ -8,8 +8,6 @@ public partial class SettingsViewModel : BaseViewModel
 {
 
 
-    //private bool _startAtBackOfStore; 
-
     public bool StartAtBackOfStore
     {
         get => Preferences.Get("StartAtBackOfStore", false);

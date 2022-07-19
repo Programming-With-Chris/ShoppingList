@@ -26,10 +26,6 @@ public partial class UserListDataInputViewModel : BaseViewModel
     [ICommand]
     public async void OnUserListCompleted()
     {
-        // if (IsBusy)
-        //   return;
-
-        //string name = "Test Name";// ((Entry)sender).Text;
         userList = new(); 
 
         userList.Name = UlName;
@@ -38,7 +34,6 @@ public partial class UserListDataInputViewModel : BaseViewModel
         userList = _userListService.CreateUserList(userList);
 
         await Shell.Current.GoToAsync("..?id=" + userList.Id + "&createflag=true"); 
-        //await Shell.Current.DisplayAlert("Test alert", "Information recieved :" + UlName + ", " + UlTargetStore, "Ok");
 
     }
 

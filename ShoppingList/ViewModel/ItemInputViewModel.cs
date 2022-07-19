@@ -42,9 +42,6 @@ public partial class ItemInputViewModel : BaseViewModel
         if (IsBusy)
            return;
 
-        //string name = "Test Name";// ((Entry)sender).Text;
-        //userList = new(); 
-
         Item newItem = new()
         {
             Name = ItemName,
@@ -60,19 +57,11 @@ public partial class ItemInputViewModel : BaseViewModel
 
         UserList.Items.Add(newItem);
 
-        /*await Shell.Current.GoToAsync("..?id=" + newItem.Id + "&createflag=true", true, 
-            new Dictionary<string, object>
-            {
-                {"UserList", UserList}
-            }); 
-        */
-
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?", true,
             new Dictionary<string, object>
             {
                 {"UserList", userList}
             }); 
-        //await Shell.Current.DisplayAlert("Test alert", "Information recieved :" + UlName + ", " + UlTargetStore, "Ok");
 
     }
 
