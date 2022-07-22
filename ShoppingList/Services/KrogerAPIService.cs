@@ -7,11 +7,13 @@ public class KrogerAPIService
 {
     HttpClient _client;
     List<string> config;
-    AccessTokenRes accessToken; 
+    AccessTokenRes accessToken;
+    DateTime expireTime; 
 
     public KrogerAPIService()
     {
         _client = new HttpClient();
+        expireTime = DateTime.Now;
 
     }
 
@@ -59,6 +61,11 @@ public class KrogerAPIService
 
     public async Task<bool> SetAuthTokens(ApiConfig apiConfig)
     {
+
+
+        if (accessToken is not null && DateTime.Now < expireTime)
+            return false; 
+
         var authData = $"{apiConfig.ClientId}:{apiConfig.ClientSecret}";
         var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
 
@@ -73,6 +80,8 @@ public class KrogerAPIService
         {
             var resCont = await res.Content.ReadAsStringAsync();
             accessToken = JsonSerializer.Deserialize<AccessTokenRes>(resCont);
+            expireTime = DateTime.Now; 
+            expireTime = expireTime.AddSeconds(accessToken.expires_in); 
 
             return true; 
         } else
