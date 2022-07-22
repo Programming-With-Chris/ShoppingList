@@ -27,6 +27,15 @@ public partial class SettingsViewModel : BaseViewModel
         }
     }
 
+    public string KrogerLocation
+    {
+        get => Preferences.Get("KrogerLocation", "N/A");
+        set
+        {
+            Preferences.Set("KrogerLocation", value); 
+        }
+    }
+
     public SettingsViewModel()
     {
     }
@@ -35,5 +44,11 @@ public partial class SettingsViewModel : BaseViewModel
     public async void GoBackToMain()
     {
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}"); 
+    }
+
+    [ICommand]
+    public async void OpenLocationFinderDialog()
+    {
+        await Shell.Current.GoToAsync($"{nameof(StoreFinder)}"); 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using ShoppingList.Model.Api;
 
 namespace ShoppingList.ViewModels;
 
@@ -102,6 +103,8 @@ public partial class UserListViewModel : BaseViewModel
         {
             ul.Items.Clear(); 
         }
+
+
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?id={ul.Id}", true,
             new Dictionary<string, object>
             {

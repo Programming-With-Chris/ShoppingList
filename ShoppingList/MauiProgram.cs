@@ -28,7 +28,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<ItemDetail>();
 		builder.Services.AddSingleton<SettingsView>();
 		builder.Services.AddSingleton<SettingsViewModel>();
-		
+		builder.Services.AddSingleton<StoreFinder>();
+		builder.Services.AddSingleton<StoreFinderViewModel>();
 
 
 
