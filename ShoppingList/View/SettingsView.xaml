@@ -15,8 +15,9 @@
     <VerticalStackLayout Margin="0,35,50,25"
                  Spacing="10">
 
-        <Border>
+        <Border BackgroundColor="{StaticResource Secondary}">
             <Label Text="List Sorting Settings" TextColor="{StaticResource Primary}"
+                   
                    Margin="5,15,15,15"
                    Padding="10"/>
         </Border>
