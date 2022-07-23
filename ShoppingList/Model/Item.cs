@@ -31,6 +31,7 @@ public class Item : ObservableObject
     [Column("iscompleted")]
     public bool IsCompleted { get; set; }
 
-    [Ignore]
+    [OneToOne]
+    [Column("itemlocationdata")]
     public ItemLocationData LocationData { get; set; }
 }

@@ -13,9 +13,11 @@ namespace ShoppingList.Services
         {
             // Code to sort the Aisles here, let's do aphabetical for now
 
-            List<Item> list = userList.Items; 
+            List<Item> list = userList.Items;
+            //var sortedItems = List<Item>(); 
 
-            var sortedItems = list.OrderBy(x => x.Aisle).ToList();
+            
+            var sortedItems = list.OrderBy(x => x.LocationData?.Number).ToList();
 
             var anotherSort = sortedItems.OrderBy(x => x.IsCompleted).ToList(); 
 

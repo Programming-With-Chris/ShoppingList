@@ -13,8 +13,6 @@ public partial class ItemInputViewModel : BaseViewModel
     [ObservableProperty]
     UserList userList;
 
-    public ObservableCollection<Item> Items { get; set; } = new();     
-
     [ObservableProperty]
     public string itemName;
 
@@ -71,18 +69,11 @@ public partial class ItemInputViewModel : BaseViewModel
 
         newItem = _itemService.CreateItem(newItem);
 
-
+        newItem.LocationData.ParentId = newItem.Id; 
         UserList.Items.Add(newItem);
 
         ListSorter.SortUserListItems(UserList);
         ListSorter.SortUserListItems(userList); 
-
-
-        Items.Clear(); 
-        foreach (var item in UserList.Items)
-        {
-            Items.Add(item);
-        }
 
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?", true,
             new Dictionary<string, object>

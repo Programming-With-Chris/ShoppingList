@@ -45,7 +45,11 @@ public class ItemService
 
     public Item CreateItem(Item newItem)
     {
-        return _db.Insert(newItem); 
+        var item = _db.Insert(newItem);
+        newItem.LocationData.ParentId = item.Id; 
+        newItem.Id = item.Id;
+        _db.Insert<ItemLocationData>(newItem.LocationData); 
+        return newItem; 
 
     }
 
