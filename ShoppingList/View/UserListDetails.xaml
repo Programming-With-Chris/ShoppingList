@@ -17,37 +17,47 @@
           ColumnSpacing="5"
           RowDefinitions="*,Auto">
 
-        <CollectionView Grid.ColumnSpan="3"
-                        ItemsSource="{Binding UserList.Items}"
-                        SelectionMode="None">
-            <CollectionView.ItemTemplate >
-                <DataTemplate x:DataType="model:Item">
-                    <Grid Padding="10"
+        <RefreshView Grid.ColumnSpan="3"
+                     Command="{Binding RefreshUserListDetailScreenCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView ItemsSource="{Binding UserList.Items}"
+                        CanReorderItems="True"
+                        SelectionMode="None"
+                        x:Name="UserListCollectionView">
+                <CollectionView.ItemTemplate >
+                    <DataTemplate x:DataType="model:Item">
+                        <Grid Padding="10"
                           ColumnDefinitions="*,*"
                           RowDefinitions="*,Auto">
-                        <Frame Grid.ColumnSpan="3"
-                               Padding="10">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                            <Frame Grid.ColumnSpan="3"
+                               Padding="10"
+                               x:Name="ItemFrame"
+                               BindingContext="{Binding .}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=GoToItemDetailCommand}"/>
-                            </Frame.GestureRecognizers>
-                            <Grid ColumnDefinitions="Auto,*,*"
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions="Auto,*,*"
                                   RowDefinitions="*,Auto"
                                   Grid.ColumnSpan="1"
                                   Grid.RowSpan="2"
                                   Padding="1"
                                   Margin="1">
-                                <CheckBox Color="{StaticResource Secondary}" 
+                                    <CheckBox Color="{StaticResource Secondary}" 
                                                   x:DataType="model:Item"
-                                                  IsChecked="{Binding IsCompleted}"
+                                                  BindingContext="{x:Reference ItemFrame}"
+                                                  IsChecked="{Binding IsCompleted, Source={RelativeSource AncestorType={x:Type model:Item}}}"
                                                   CheckedChanged="OnCheckboxClicked"
                                                   Grid.Row="1"
                                                   Grid.RowSpan="2"
                                                   Grid.Column="0" />
-                                <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Name}"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            Grid.RowSpan="1"/>
+                                    <Label Text="{Binding Aisle}"
+                                           Grid.Row="1"
+                                           Grid.Column="3"/>
                                     <!--<VerticalStackLayout Grid.Column="5"
                                                          Grid.Row="0"
                                                          HorizontalOptions="End">
@@ -55,25 +65,23 @@
                                         <Label Text="{Binding Description}" />
                                         <Label Text="{Binding Aisle}" />
                                     </VerticalStackLayout>-->
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
 
-            
         <Button Text="Create New Item"
                 Command="{Binding CreateItemCommand}"
                 CommandParameter="{Binding UserList}"
-                IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="2"
                 Margin="8"/>
             
         <Button Text="Back to My Lists"
                 Command="{Binding GoBackToListScreenCommand}"
                 CommandParameter="{Binding UserList}"
-                IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="2"
                 Grid.Column="3"
                 Margin="8"/>

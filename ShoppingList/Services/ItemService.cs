@@ -33,8 +33,8 @@ public class ItemService
     }
     public List<Item> GetUserListItems(UserList ul)
     {
-        var returnLists = _db.GetQueryById<UserList>(ul.Id);
-        return returnLists.Items; 
+        var itemList = _db.GetQueryByParentId<Item>(ul.Id);
+        return itemList; 
     }
 
     public List<Item> GetItemByParentId(UserList ul)

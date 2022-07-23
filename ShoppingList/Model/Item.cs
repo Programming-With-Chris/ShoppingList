@@ -3,7 +3,7 @@
 namespace ShoppingList.Model;
 
 [Table("Items")] 
-public class Item
+public class Item : ObservableObject 
 {
     [PrimaryKey, AutoIncrement]
     [Column("id")]
@@ -29,5 +29,8 @@ public class Item
     public int ParentId { get; set; }
 
     [Column("iscompleted")]
-    public bool IsCompleted { get; set; } 
+    public bool IsCompleted { get; set; }
+
+    [Ignore]
+    public ItemLocationData LocationData { get; set; }
 }

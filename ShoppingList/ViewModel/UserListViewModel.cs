@@ -44,7 +44,7 @@ public partial class UserListViewModel : BaseViewModel
         _itemService = new();
     }
 
-    [ICommand]
+    [RelayCommand]
     public void GetUserLists()
     {
         if (IsBusy)
@@ -75,7 +75,7 @@ public partial class UserListViewModel : BaseViewModel
             IsBusy = false;
         }
     }
-    [ICommand]
+    [RelayCommand]
     public async void CreateUserList()
     {
         if (IsBusy)
@@ -90,7 +90,7 @@ public partial class UserListViewModel : BaseViewModel
         
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoToListItems(UserList ul)
     {
         if (IsBusy || ul is null)
@@ -103,7 +103,6 @@ public partial class UserListViewModel : BaseViewModel
         {
             ul.Items.Clear(); 
         }
-
 
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?id={ul.Id}", true,
             new Dictionary<string, object>

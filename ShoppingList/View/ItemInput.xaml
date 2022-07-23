@@ -19,32 +19,32 @@
             <Entry Text="{Binding ItemName}"
                    MaxLength="100"
                    Style="{StaticResource CommonEntryStyle}"
-                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   ReturnCommand="{Binding ItemEntryCompletedCommand}"
                    Placeholder="Item Name"/>
 
             <Entry Text="{Binding ItemDescription}"
                    MaxLength="150"
                    Style="{StaticResource CommonEntryStyle}"
-                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   ReturnCommand="{Binding ItemEntryCompletedCommand}"
                    Placeholder="Item Description"/>
             
             <Entry Text="{Binding ItemCategory}"
                    MaxLength="99"
                    Style="{StaticResource CommonEntryStyle}"
-                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   ReturnCommand="{Binding ItemEntryCompletedCommand}"
                    Placeholder="Item Category"/>
             
             <Entry Text="{Binding ItemAisle}"
                    MaxLength="8"
                    Style="{StaticResource CommonEntryStyle}"
-                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"
+                   ReturnCommand="{Binding ItemEntryCompletedCommand}"
                    Placeholder="Known Aisle? (if you don't that's okay)"/>
            
             <Entry Text="{Binding ItemEstimatedPrice}"
                    MaxLength="20"
                    Style="{StaticResource CommonEntryStyle}"
                    Placeholder="Known price? (if you don't that's okay)"
-                   ReturnCommand="{Binding OnItemEntryCompletedCommand}"/>
+                   ReturnCommand="{Binding ItemEntryCompletedCommand}"/>
 
 
         </StackLayout>
@@ -53,7 +53,7 @@
             
         <Button Text="Create New Item"
                     IsEnabled="True"
-                    Command="{Binding OnItemEntryCompletedCommand}"
+                    Command="{Binding ItemEntryCompletedCommand}"
                     CommandParameter="{Binding UserList}"
                     Margin="8"
                 Grid.Row="1"
@@ -62,7 +62,7 @@
 
         <Button Text="Cancel"
                     IsEnabled="True"
-                    Command="{Binding OnCancelButtonPressedCommand}"
+                    Command="{Binding CancelButtonPressedCommand}"
                     CommandParameter="{Binding UserList}"
                     Margin="8"
                 Grid.Row="1"

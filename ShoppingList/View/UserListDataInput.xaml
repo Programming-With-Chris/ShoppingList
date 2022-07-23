@@ -17,27 +17,27 @@
             <Entry Text="{Binding UlName}" 
                    MaxLength="20"
                    Style="{StaticResource CommonEntryStyle}"
-                   ReturnCommand="{Binding OnUserListCompletedCommand}"
+                   ReturnCommand="{Binding UserListCompletedCommand}"
                    Placeholder="List Name"/>
 
             <Entry Text="{Binding UlTargetStore}"
                    MaxLength="20"
                    Style="{StaticResource CommonEntryStyle}"
                    Placeholder="The Store you want to use this list for?"
-                   ReturnCommand="{Binding OnUserListCompletedCommand}"/>
+                   ReturnCommand="{Binding UserListCompletedCommand}"/>
 
 
         </StackLayout>
 
         <Button Text="Create New List"
                     IsEnabled="True"
-                    Command="{Binding OnUserListCompletedCommand}"
+                    Command="{Binding UserListCompletedCommand}"
                     Margin="8"
                 Grid.Row="1"/>
 
         <Button Text="Cancel"
                     IsEnabled="True"
-                    Command="{Binding OnCancelCommand}"
+                    Command="{Binding CancelCommand}"
                     Margin="8"
                 Grid.Row="1"
                 Grid.Column="2"/>

@@ -11,15 +11,27 @@ public partial class UserListDetails : ContentPage
 		InitializeComponent();
 		BindingContext = userListDetailViewModel;
 		_ulvm = userListDetailViewModel; 
-		//userListDetailViewModel.RefreshUserListDetailScreen();
 
 	}
 
 	public void OnCheckboxClicked(object sender, CheckedChangedEventArgs e )
 	{
-		Item itemThatWasClicked = (Item)((CheckBox)sender).BindingContext;
+		CheckBox thisCheckbox = (CheckBox)sender;
+
+		Frame currentFrame = (Frame)((CheckBox)sender).BindingContext;
+
+		Item itemThatWasClicked = (Item)(currentFrame).BindingContext;
+
+
+
+		if (thisCheckbox.IsChecked)
+			currentFrame.FadeTo(.4, 1000);
+		else
+			currentFrame.FadeTo(1, 1000); 
+
 		itemThatWasClicked.IsCompleted = ((CheckBox)sender).IsChecked; 
-		_ulvm.ItemWasChecked(itemThatWasClicked);  
-	}
+		_ulvm.ItemWasChecked(itemThatWasClicked);
+		 
+    }
 }
 

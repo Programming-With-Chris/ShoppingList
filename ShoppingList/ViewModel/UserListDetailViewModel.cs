@@ -4,23 +4,38 @@ using System.Diagnostics;
 namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
+[QueryProperty("Items", "Items")]
 public partial class UserListDetailViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
+    readonly KrogerAPIService _krogerAPIService;
 
     public UserListDetailViewModel()
     {
         _itemService = new();
+        _krogerAPIService = new();
+        //RefreshUserListDetailScreen(); 
+    }
+
+    UserList userList;
+
+    public UserList UserList
+    {
+        get => userList;
+        set
+        {
+            userList = value;
+            ListSorter.SortUserListItems(userList); 
+            OnUserListChanged(value); 
+            OnPropertyChanged(nameof(UserList));
+            OnPropertyChanged(nameof(UserList.Items));
+        }
     }
 
     [ObservableProperty]
-    UserList userList;
+    public bool isRefreshing; 
 
-    [ObservableProperty]
-    List<Item> items; 
-
-    
-    [ICommand]
+    [RelayCommand]
     public async void CreateItem(UserList ul)
     {
         if (IsBusy)
@@ -29,38 +44,65 @@ public partial class UserListDetailViewModel : BaseViewModel
         await Shell.Current.GoToAsync($"{nameof(ItemInput)}", true,
             new Dictionary<string, object>
             {
-                {"UserList", UserList}
+                {"UserList", userList}
             }); 
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoBackToListScreen()
     {
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
     }
 
+    public void OnUserListChanged(UserList value)
+    {
+        ListSorter.SortUserListItems(userList); 
+    }
+
+    [RelayCommand]
     public void RefreshUserListDetailScreen()
     {
 
+        isRefreshing = true;
         UserList.Items.Clear();
 
         UserList.Items = _itemService.GetUserListItems(UserList); 
+
+        /*var apiConfig = await _krogerAPIService.GetStartupConfig();
+
+        var done = await _krogerAPIService.SetAuthTokens(apiConfig);
+
+        foreach (var item in UserList.Items)
+        {
+            ItemLocationData ild = await _krogerAPIService.GetProductInfo(item.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+            item.LocationData = ild;
+        }*/
+
+        ListSorter.SortUserListItems(userList); 
+        ListSorter.SortUserListItems(UserList);
+        isRefreshing = false; 
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoToItemDetail(Item item)
     {
         await Shell.Current.DisplayAlert(item.Name, $"Category: {item.Category} \nDescription: {item.Description} \n" +
             $"Aisle: {item.Aisle}", "Ok"); 
     }
 
-    [ICommand]
+    [RelayCommand]
     public void ItemWasChecked(Item item)
     { 
         _itemService.UpdateItem(item);
-    }
-    
 
+        //ListSorter.SortUserListItems(userList);
+        //ListSorter.SortUserListItems(UserList);
+        UserList.Items = ListSorter.SortUserListItems(userList);
+        //OnPropertyChanged(nameof(UserList));
+        //var newUserList = UserList;
+        //UserList = newUserList; 
+        //UserList = new UserList(userList); 
+    }
 }
 
 

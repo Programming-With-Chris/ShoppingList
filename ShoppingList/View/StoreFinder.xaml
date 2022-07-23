@@ -25,7 +25,10 @@
                     <HorizontalStackLayout
                         Margin="20,20,10,5">
                         <Button Text="Make My Store"
-                                Margin="0,0,10,0"/>
+                                Margin="0,0,10,0"
+                                HeightRequest="50"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StoreFinderViewModel}}, Path=SetUserKrogerCommand}"
+                                CommandParameter="{Binding .}"/>
 
                         <Label Text="{Binding .}"
                                TextColor="{StaticResource Primary}"/>

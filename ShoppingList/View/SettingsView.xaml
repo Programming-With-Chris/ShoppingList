@@ -45,7 +45,7 @@
             <Label Text="Default Kroger Location:"
                    TextColor="{StaticResource Primary}"
                    Margin="0,0,25,0"/>
-            <Label Text="{Binding KrogerLocation}"
+            <Label Text="{Binding KrogerStoreName}"
                    TextColor="{StaticResource Primary}"
                    >
                 <Label.GestureRecognizers>

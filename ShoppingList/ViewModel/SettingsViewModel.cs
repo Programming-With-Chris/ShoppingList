@@ -4,9 +4,9 @@ using System.Diagnostics;
 namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
+[QueryProperty("KrogerLocation", "KrogerLocation")]
 public partial class SettingsViewModel : BaseViewModel
 {
-
 
     public bool StartAtBackOfStore
     {
@@ -32,7 +32,17 @@ public partial class SettingsViewModel : BaseViewModel
         get => Preferences.Get("KrogerLocation", "N/A");
         set
         {
-            Preferences.Set("KrogerLocation", value); 
+            Preferences.Set("KrogerLocation", value);
+        }
+    }
+
+
+    public string KrogerStoreName
+    {
+        get => Preferences.Get("KrogerStoreName", "N/A");
+        set
+        {
+            Preferences.Set("KrogerStoreName", value);
         }
     }
 
@@ -40,13 +50,13 @@ public partial class SettingsViewModel : BaseViewModel
     {
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoBackToMain()
     {
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}"); 
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void OpenLocationFinderDialog()
     {
         await Shell.Current.GoToAsync($"{nameof(StoreFinder)}"); 

@@ -64,8 +64,12 @@
   	  <None Remove="Tests\**" />
   	</ItemGroup>
 
+  	<ItemGroup>
+  	  <None Remove="Resources\Raw\krogerapiconfig-test.json" />
+  	</ItemGroup>
+
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
 	  <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.7" />
 	  <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
@@ -116,6 +120,12 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\APIs\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\krogerapiconfig-test.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>

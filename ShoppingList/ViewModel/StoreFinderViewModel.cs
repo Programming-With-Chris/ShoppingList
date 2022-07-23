@@ -24,13 +24,13 @@ public partial class StoreFinderViewModel : BaseViewModel
         _kapis = new KrogerAPIService();
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void GoBackToMain()
     {
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}"); 
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void DoSearchQuery(string zipcode)
     {
         ApiConfig apiconfig = await _kapis.GetStartupConfig();
@@ -38,7 +38,7 @@ public partial class StoreFinderViewModel : BaseViewModel
 
         try
         {
-            var locations = await _kapis.GetLocationNearZip(zipcode, apiconfig);
+            locations = await _kapis.GetLocationNearZip(zipcode, apiconfig);
 
             if (StoreNames.Count > 0)
                 StoreNames.Clear();
@@ -54,7 +54,15 @@ public partial class StoreFinderViewModel : BaseViewModel
             return; 
         }
 
+    }
+    [RelayCommand]
+    public async void SetUserKroger(string selectedStoreName)
+    {
+       var locationId = locations.FirstOrDefault(x => x.Value == selectedStoreName).Key;
 
+        Preferences.Set("KrogerStoreName", selectedStoreName); 
+        Preferences.Set("KrogerLocation", locationId); 
 
+        await Shell.Current.GoToAsync($"..?KrogerLocation={locationId}"); 
     }
 }

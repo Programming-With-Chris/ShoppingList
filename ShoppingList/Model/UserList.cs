@@ -4,7 +4,7 @@ namespace ShoppingList.Model;
 
 
 [Table("UserLists")]
-public class UserList
+public class UserList : ObservableObject 
 {
     [PrimaryKey, AutoIncrement]
     [Column("id")]
@@ -16,6 +16,7 @@ public class UserList
     [Column("targetStore")]
     public string TargetStore { get; set; }
 
+    
     [OneToMany]
     public List<Item> Items { get; set; }
 
@@ -23,6 +24,14 @@ public class UserList
     public UserList()
     {
         Items = new(); 
+    }
+
+    public UserList(UserList ul)
+    {
+        this.Id = ul.Id;
+        this.Name = ul.Name;
+        this.TargetStore = ul.TargetStore;
+        this.Items = ul.Items; 
     }
 
     public UserList(string name, string targetStore)

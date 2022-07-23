@@ -23,7 +23,7 @@ public partial class UserListDataInputViewModel : BaseViewModel
     }
 
 
-    [ICommand]
+    [RelayCommand]
     public async void OnUserListCompleted()
     {
         userList = new(); 
@@ -38,7 +38,7 @@ public partial class UserListDataInputViewModel : BaseViewModel
     }
 
 
-    [ICommand]
+    [RelayCommand]
     public async void OnCancel()
     {
 

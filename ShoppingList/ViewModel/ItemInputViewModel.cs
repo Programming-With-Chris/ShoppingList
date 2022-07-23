@@ -4,12 +4,16 @@ using System.Diagnostics;
 namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
+[QueryProperty("Items", "Items")]
 public partial class ItemInputViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
+    readonly KrogerAPIService _krogerAPIService;
 
     [ObservableProperty]
     UserList userList;
+
+    public ObservableCollection<Item> Items { get; set; } = new();     
 
     [ObservableProperty]
     public string itemName;
@@ -27,16 +31,19 @@ public partial class ItemInputViewModel : BaseViewModel
     public decimal itemEstimatedPrice; 
 
     [ObservableProperty]
-    public int itemParentId; 
+    public int itemParentId;
+
+    public ItemLocationData locationData; 
 
 
     public ItemInputViewModel()
     {
         _itemService = new();
+        _krogerAPIService = new(); 
     }
 
 
-    [ICommand]
+    [RelayCommand]
     public async void OnItemEntryCompleted()
     {
         if (IsBusy)
@@ -50,12 +57,32 @@ public partial class ItemInputViewModel : BaseViewModel
             Aisle = ItemAisle,
             EstimatedPrice = ItemEstimatedPrice,
             ParentId = UserList.Id
-        }; 
+        };
 
+        var apiConfig = await _krogerAPIService.GetStartupConfig();
+
+        var done = await _krogerAPIService.SetAuthTokens(apiConfig);
+        
+        ItemLocationData ild = await _krogerAPIService.GetProductInfo(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+
+        newItem.LocationData = ild;
+
+        newItem.Aisle = ild.Description; 
 
         newItem = _itemService.CreateItem(newItem);
 
+
         UserList.Items.Add(newItem);
+
+        ListSorter.SortUserListItems(UserList);
+        ListSorter.SortUserListItems(userList); 
+
+
+        Items.Clear(); 
+        foreach (var item in UserList.Items)
+        {
+            Items.Add(item);
+        }
 
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?", true,
             new Dictionary<string, object>
@@ -65,7 +92,7 @@ public partial class ItemInputViewModel : BaseViewModel
 
     }
 
-    [ICommand]
+    [RelayCommand]
     public async void OnCancelButtonPressed()
     {
 
