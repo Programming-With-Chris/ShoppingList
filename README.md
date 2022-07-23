@@ -2,7 +2,7 @@
 
 
 ## Major Features needed for MVP
-- Sorting by aisle (populate aisles by either ML or webscraper)
+- Sorting by aisle (Data from API, sorting by ??? (that might be where the ML comes in))
 - Create new list starting with last week's list
 
 ## The Build Roadmap
