@@ -42,6 +42,7 @@ public partial class UserListViewModel : BaseViewModel
     {
         _uls = uls;
         _itemService = new();
+        Title = "My Shopping Lists"; 
     }
 
     [RelayCommand]

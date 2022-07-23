@@ -5,7 +5,8 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:view="clr-namespace:ShoppingList"
              x:DataType="viewmodel:UserListDetailViewModel"
-             x:Class="ShoppingList.UserListDetails">
+             x:Class="ShoppingList.UserListDetails"
+             Title="{Binding Title}">
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
@@ -38,8 +39,12 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=GoToItemDetailCommand}"/>
+
+                                    <SwipeGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=DeleteItemCommand}"
+                                                            Direction="Right"/>
                                 </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions="Auto,*,*"
+                                <Grid ColumnDefinitions="Auto,*,*,*,Auto"
                                   RowDefinitions="*,Auto"
                                   Grid.ColumnSpan="1"
                                   Grid.RowSpan="2"
@@ -67,6 +72,16 @@
                                         <Label Text="{Binding Description}" />
                                         <Label Text="{Binding Aisle}" />
                                     </VerticalStackLayout>-->
+
+                                    <!--<ImageButton Source="ellipsis_vertical_outline.svg"
+                                                 Scale="1"
+                                                 HeightRequest="25"
+                                                 Grid.Column="3"
+                                                 Grid.Row="1"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="End"
+                                                 Clicked="{Binding PullUpItemOptionModal}"/>
+                                                 -->
                                 </Grid>
                             </Frame>
                         </Grid>

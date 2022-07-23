@@ -13,8 +13,8 @@ public partial class UserListDetailViewModel : BaseViewModel
     {
         _itemService = new();
         _krogerAPIService = new();
-        //RefreshUserListDetailScreen(); 
-        Items = new(); 
+        Items = new();
+        //Title = UserList.Name; 
     }
 
     UserList userList;
@@ -33,6 +33,7 @@ public partial class UserListDetailViewModel : BaseViewModel
             {
                 Items.Add(item); 
             }
+            Title = UserList.Name; 
             OnUserListChanged(value); 
             OnPropertyChanged(nameof(UserList));
             OnPropertyChanged(nameof(UserList.Items));
@@ -125,6 +126,18 @@ public partial class UserListDetailViewModel : BaseViewModel
         //var newUserList = UserList;
         //UserList = newUserList; 
         //UserList = new UserList(userList); 
+    }
+
+    [RelayCommand]
+    public void DeleteItem(Item item)
+    {
+        _itemService.DeleteItem(item);
+        UserList.Items.Remove(item); 
+
+        UserList.Items = ListSorter.SortUserListItems(userList);
+
+        UserList = UserList; 
+
     }
 }
 

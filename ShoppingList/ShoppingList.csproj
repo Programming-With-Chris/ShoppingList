@@ -65,6 +65,7 @@
   	</ItemGroup>
 
   	<ItemGroup>
+  	  <None Remove="Resources\Images\ellipsis_vertical_outline.svg" />
   	  <None Remove="Resources\Raw\krogerapiconfig-test.json" />
   	</ItemGroup>
 
