@@ -4,7 +4,6 @@ using System.Diagnostics;
 namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
-[QueryProperty("Items", "Items")]
 public partial class UserListDetailViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
@@ -15,9 +14,12 @@ public partial class UserListDetailViewModel : BaseViewModel
         _itemService = new();
         _krogerAPIService = new();
         //RefreshUserListDetailScreen(); 
+        Items = new(); 
     }
 
     UserList userList;
+
+    public ObservableCollection<Item> Items { get; set; } 
 
     public UserList UserList
     {
@@ -25,7 +27,12 @@ public partial class UserListDetailViewModel : BaseViewModel
         set
         {
             userList = value;
-            ListSorter.SortUserListItems(userList); 
+            ListSorter.SortUserListItems(userList);
+            Items.Clear(); 
+            foreach (var item in userList.Items)
+            {
+                Items.Add(item); 
+            }
             OnUserListChanged(value); 
             OnPropertyChanged(nameof(UserList));
             OnPropertyChanged(nameof(UserList.Items));
@@ -80,6 +87,14 @@ public partial class UserListDetailViewModel : BaseViewModel
 
         ListSorter.SortUserListItems(userList); 
         ListSorter.SortUserListItems(UserList);
+
+        Items.Clear(); 
+        foreach (var item in userList.Items)
+        {
+            Items.Add(item); 
+        }
+
+
         isRefreshing = false; 
     }
 
@@ -98,6 +113,13 @@ public partial class UserListDetailViewModel : BaseViewModel
         //ListSorter.SortUserListItems(userList);
         //ListSorter.SortUserListItems(UserList);
         UserList.Items = ListSorter.SortUserListItems(userList);
+
+        Items.Clear(); 
+        foreach (var ulItem in userList.Items)
+        {
+            Items.Add(ulItem); 
+        }
+
         //OnPropertyChanged(nameof(UserList));
         //var newUserList = UserList;
         //UserList = newUserList; 

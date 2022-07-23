@@ -16,6 +16,45 @@ public class KrogerAPIService
 
     }
 
+    public async Task<ApiConfig> GetStartupConfig()
+    {
+        using var stream = await FileSystem.OpenAppPackageFileAsync("krogerapiconfig-test.json");
+        using var reader = new StreamReader(stream);
+        var json = await reader.ReadToEndAsync();
+        var output = JsonSerializer.Deserialize<ApiConfig>(json);
+        return output;
+    }
+
+    public async Task<bool> SetAuthTokens(ApiConfig apiConfig)
+    {
+
+        if (accessToken is not null && DateTime.Now < expireTime)
+            return false; 
+
+        var authData = $"{apiConfig.ClientId}:{apiConfig.ClientSecret}";
+        var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
+
+        _client.DefaultRequestHeaders.Authorization = new("Basic", authHeaderValue);
+
+        StringContent content = new("grant_type=client_credentials&scope=product.compact", Encoding.ASCII, "application/x-www-form-urlencoded"); 
+        
+        HttpResponseMessage res = await _client.PostAsync(apiConfig.KrogerUrl + "connect/oauth2/token", content); 
+
+        if (res.IsSuccessStatusCode)
+        {
+            var resCont = await res.Content.ReadAsStringAsync();
+            accessToken = JsonSerializer.Deserialize<AccessTokenRes>(resCont);
+            expireTime = DateTime.Now; 
+            expireTime = expireTime.AddSeconds(accessToken.expires_in); 
+
+            return true; 
+        } else
+        {
+            throw new Exception("Unable to Authenticate, Sorting Functionality Offline"); 
+        }
+
+    }
+
     public async Task<Dictionary<string, string>> GetLocationNearZip(string zip, ApiConfig apiConfig)
     {
         Dictionary<string, string> closeKrogerNames = new Dictionary<string, string>(); 
@@ -52,47 +91,7 @@ public class KrogerAPIService
     }
 
 
-    public async Task<ApiConfig> GetStartupConfig()
-    {
-        using var stream = await FileSystem.OpenAppPackageFileAsync("krogerapiconfig-test.json");
-        using var reader = new StreamReader(stream);
-        var json = await reader.ReadToEndAsync();
-        var output = JsonSerializer.Deserialize<ApiConfig>(json);
-        return output;
-    }
 
-
-    public async Task<bool> SetAuthTokens(ApiConfig apiConfig)
-    {
-
-
-        if (accessToken is not null && DateTime.Now < expireTime)
-            return false; 
-
-        var authData = $"{apiConfig.ClientId}:{apiConfig.ClientSecret}";
-        var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
-
-        _client.DefaultRequestHeaders.Authorization = new("Basic", authHeaderValue);
-        
-
-        StringContent content = new("grant_type=client_credentials&scope=product.compact", Encoding.ASCII, "application/x-www-form-urlencoded"); 
-        
-        HttpResponseMessage res = await _client.PostAsync(apiConfig.KrogerUrl + "connect/oauth2/token", content); 
-
-        if (res.IsSuccessStatusCode)
-        {
-            var resCont = await res.Content.ReadAsStringAsync();
-            accessToken = JsonSerializer.Deserialize<AccessTokenRes>(resCont);
-            expireTime = DateTime.Now; 
-            expireTime = expireTime.AddSeconds(accessToken.expires_in); 
-
-            return true; 
-        } else
-        {
-            throw new Exception("Unable to Authenticate, Sorting Functionality Offline"); 
-        }
-
-    }
 
     public async Task<ShoppingList.Model.ItemLocationData> GetProductInfo(string term, string locationId, ApiConfig apiConfig)
     {
@@ -128,10 +127,6 @@ public class KrogerAPIService
                     return returnItem; 
                 }
             }
-
-
-
-            //Figure out why aislelocations is null on our test query
 
             return null; 
         }

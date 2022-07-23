@@ -10,15 +10,16 @@ public partial class UserListDetails : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = userListDetailViewModel;
-		_ulvm = userListDetailViewModel; 
+		_ulvm = userListDetailViewModel;
 
+		_ulvm.Items = new(); 
 	}
 
 	public void OnCheckboxClicked(object sender, CheckedChangedEventArgs e )
 	{
 		CheckBox thisCheckbox = (CheckBox)sender;
 
-		Frame currentFrame = (Frame)((CheckBox)sender).BindingContext;
+		Frame currentFrame = (Frame)(thisCheckbox).BindingContext;
 
 		Item itemThatWasClicked = (Item)(currentFrame).BindingContext;
 
