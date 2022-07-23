@@ -70,7 +70,7 @@ public partial class UserListDetailViewModel : BaseViewModel
     public void RefreshUserListDetailScreen()
     {
 
-        isRefreshing = true;
+        IsRefreshing = true;
         UserList.Items.Clear();
 
         UserList.Items = _itemService.GetUserListItems(UserList); 
@@ -94,8 +94,9 @@ public partial class UserListDetailViewModel : BaseViewModel
             Items.Add(item); 
         }
 
+        UserList = UserList; 
 
-        isRefreshing = false; 
+        IsRefreshing = false; 
     }
 
     [RelayCommand]

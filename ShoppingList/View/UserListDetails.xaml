@@ -19,11 +19,13 @@
 
         <RefreshView Grid.ColumnSpan="3"
                      Command="{Binding RefreshUserListDetailScreenCommand}"
+                     CommandParameter="UserListCollectionView"
                      IsRefreshing="{Binding IsRefreshing}">
             <CollectionView ItemsSource="{Binding UserList.Items}"
                         CanReorderItems="True"
                         SelectionMode="None"
                         x:Name="UserListCollectionView">
+                
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Item">
                         <Grid Padding="10"
