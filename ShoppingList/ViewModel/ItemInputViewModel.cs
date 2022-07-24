@@ -61,9 +61,15 @@ public partial class ItemInputViewModel : BaseViewModel
 
         var done = await _krogerAPIService.SetAuthTokens(apiConfig);
         
-        ItemLocationData ild = await _krogerAPIService.GetProductInfo(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+        //Will do this in background thread later
+        var result =  await _krogerAPIService.GetProductLocationData(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+
+        ItemLocationData ild = result.Item1;
+        Item item = result.Item2;
 
         newItem.LocationData = ild;
+        newItem.Description = item.Description;
+        newItem.Category = item.Category; 
 
         newItem.Aisle = ild.Description; 
 

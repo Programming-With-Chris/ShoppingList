@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.Model
 {
-    [Table("ItemLocationData")]
+    [Table("ItemLocationDatas")]
     public class ItemLocationData
     {
         [AutoIncrement, PrimaryKey]

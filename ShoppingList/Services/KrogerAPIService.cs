@@ -93,7 +93,7 @@ public class KrogerAPIService
 
 
 
-    public async Task<ShoppingList.Model.ItemLocationData> GetProductInfo(string term, string locationId, ApiConfig apiConfig)
+    public async Task<(ItemLocationData, Item)> GetProductLocationData(string term, string locationId, ApiConfig apiConfig)
     {
         string productQuery = $"?filter.locationId={locationId}&filter.term={term}&filter.fulfillment=ais&filter.limit=50";
 
@@ -106,29 +106,37 @@ public class KrogerAPIService
         if (res.IsSuccessStatusCode)
         {
             string content = await res.Content.ReadAsStringAsync();
-            var jsonRes = JsonSerializer.Deserialize<Root>(content);
+            var fixedContent = content.Replace(@"\", String.Empty); 
+            var jsonRes = JsonSerializer.Deserialize<Root>(fixedContent);
 
-            foreach(var item in jsonRes.data)
+            foreach(var jsonItem in jsonRes.data)
             {
-                if (item.aisleLocations.Count > 0)
+                if (jsonItem.aisleLocations.Count > 0)
                 {
                     //Change selection data matching to be more accurate depending on what we searched vs what the user input?
-                     ShoppingList.Model.ItemLocationData returnItem = new()
+                    ItemLocationData returnILD = new()
                     {
-                        BayNumber = item.aisleLocations.ElementAt(0).bayNumber,
-                        Description = item.aisleLocations.ElementAt(0).description,
-                        Number = item.aisleLocations.ElementAt(0).number,
-                        NumberOfFacing = item.aisleLocations.ElementAt(0).numberOfFacings, 
-                        Side =  item.aisleLocations.ElementAt(0).side, 
-                        ShelfNumber =  item.aisleLocations.ElementAt(0).shelfNumber,
-                        ShelfPositionInBay = item.aisleLocations.ElementAt(0).shelfPositionInBay
+                        BayNumber = jsonItem.aisleLocations.ElementAt(0).bayNumber,
+                        Description = jsonItem.aisleLocations.ElementAt(0).description,
+                        Number = jsonItem.aisleLocations.ElementAt(0).number,
+                        NumberOfFacing = jsonItem.aisleLocations.ElementAt(0).numberOfFacings, 
+                        Side =  jsonItem.aisleLocations.ElementAt(0).side, 
+                        ShelfNumber =  jsonItem.aisleLocations.ElementAt(0).shelfNumber,
+                        ShelfPositionInBay = jsonItem.aisleLocations.ElementAt(0).shelfPositionInBay
                     };
 
-                    return returnItem; 
+                    Item item = new()
+                    {
+                        Name = term,
+                        Description = jsonItem.description,
+                        Category = jsonItem.categories[0]
+                    }; 
+
+                    return (returnILD, item); 
                 }
             }
 
-            return null; 
+            return (null, null); 
         }
         else
         {

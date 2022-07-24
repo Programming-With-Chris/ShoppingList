@@ -34,12 +34,22 @@ public class ItemService
     public List<Item> GetUserListItems(UserList ul)
     {
         var itemList = _db.GetQueryByParentId<Item>(ul.Id);
+
+        foreach (Item item in itemList)
+        {
+            item.LocationData = _db.GetQueryByParentId<ItemLocationData>(item.Id).FirstOrDefault(); 
+        }
         return itemList; 
     }
 
     public List<Item> GetItemByParentId(UserList ul)
     {
         var returnLists = _db.GetQueryByParentId<Item>(ul.Id);
+        foreach (Item item in returnLists)
+        {
+            item.LocationData = _db.GetQueryByParentId<ItemLocationData>(item.Id).FirstOrDefault(); 
+        }
+
         return returnLists; 
     }
 

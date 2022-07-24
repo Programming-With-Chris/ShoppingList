@@ -75,7 +75,7 @@ public class AisleLocation
 {
     public string bayNumber { get; set; }
     public string description { get; set; }
-    public string number { get; set; }
+    public string  number { get; set; }
     public string numberOfFacings { get; set; }
     public string side { get; set; }
     public string shelfNumber { get; set; }

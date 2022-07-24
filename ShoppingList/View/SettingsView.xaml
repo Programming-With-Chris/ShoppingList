@@ -33,7 +33,7 @@
 
         <HorizontalStackLayout
             Margin="25,0,0,0">
-            <Label Text="Get Frozen and Refrigerated Food Last?" 
+            <Label Text="Get Frozen Aisle Food Last?" 
                    TextColor="{StaticResource Primary}"/>
             <CheckBox IsChecked="{Binding FrozenFoodLast}" 
                       Color="{StaticResource Primary}"
