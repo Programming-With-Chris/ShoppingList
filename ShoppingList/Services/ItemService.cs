@@ -10,6 +10,8 @@ public class ItemService
 
     public ItemService(DatabaseHandler db)
     {
+        Guard.IsNotNull(db, nameof(db));
+
         _db = db;
     }
 
@@ -21,6 +23,7 @@ public class ItemService
 
     public List<Item> GetItemByName(string name)
     {
+        Guard.IsNotNullOrEmpty(name, nameof(name)); 
 
         var returnLists = _db.GetQueryByName<Item>(name);
         return returnLists; 
@@ -28,11 +31,15 @@ public class ItemService
 
     public Item GetItemById(Item item)
     {
+        Guard.IsNotNull(item, nameof(item)); 
+
         var returnItem = _db.GetQueryById<Item>(item.Id); 
         return returnItem; 
     }
     public List<Item> GetUserListItems(UserList ul)
     {
+        Guard.IsNotNull(ul, nameof(ul)); 
+        
         var itemList = _db.GetQueryByParentId<Item>(ul.Id);
 
         foreach (Item item in itemList)
@@ -44,6 +51,8 @@ public class ItemService
 
     public List<Item> GetItemByParentId(UserList ul)
     {
+        Guard.IsNotNull(ul, nameof(ul));
+
         var returnLists = _db.GetQueryByParentId<Item>(ul.Id);
         foreach (Item item in returnLists)
         {
@@ -55,6 +64,8 @@ public class ItemService
 
     public Item CreateItem(Item newItem)
     {
+        Guard.IsNotNull(newItem, nameof(newItem)); 
+
         var item = _db.Insert(newItem);
         newItem.LocationData.ParentId = item.Id; 
         newItem.Id = item.Id;
@@ -65,11 +76,15 @@ public class ItemService
 
     public void DeleteItem(Item deletedItem)
     {
+        Guard.IsNotNull(deletedItem, nameof(deletedItem)); 
+
         _db.Delete(deletedItem);
     }
 
     public void UpdateItem(Item updatedItem)
     {
+        Guard.IsNotNull(updatedItem, nameof(updatedItem));
+
         _db.Update(updatedItem); 
     }
 }

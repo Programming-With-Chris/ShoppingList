@@ -32,6 +32,9 @@ public class DatabaseHandler
     /// </summary>
     public DatabaseHandler(string newDBName)
     {
+        Guard.IsNotNullOrEmpty(newDBName, nameof(newDBName)); 
+        
+
         _pathToDb = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), newDBName);
         _db = new SQLiteConnection(_pathToDb);
         _db.CreateTable<Item>();
@@ -58,6 +61,9 @@ public class DatabaseHandler
     /// <returns></returns>
     public List<T> GetQueryByName<T>(string name) where T : new()
     {
+
+        Guard.IsNotNullOrEmpty(name, nameof(name)); 
+        
         List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE name = '" + name + "'");
 
         return returnList; 
@@ -75,7 +81,7 @@ public class DatabaseHandler
     /// <exception cref="Exception">If nothing is found, throws a generic exception</exception>
     public T GetQueryById<T>(int id) where T : new()
     {
-        
+
         List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE id = '" + id + "'");
         if (returnList.Count > 0)
             return returnList[0];
@@ -111,6 +117,8 @@ public class DatabaseHandler
 /// <exception cref="Exception"></exception>
     public T Insert<T>(T newData) where T : new()
     {
+        Guard.IsNotNull(newData, nameof(newData));
+        
         var numOfRowsInserted = _db.Insert(newData);
 
         if (numOfRowsInserted == 0)
@@ -127,6 +135,8 @@ public class DatabaseHandler
 /// <exception cref="Exception"></exception>
     public void Delete<T>(T deleteTarget) where T : new()
     {
+        Guard.IsNotNull(deleteTarget, nameof(deleteTarget));
+        
         var numOfRowsFound = _db.Delete(deleteTarget);
 
         if (numOfRowsFound == 0)
@@ -135,6 +145,8 @@ public class DatabaseHandler
 
     public void Update<T>(T updateTarget) where T : new()
     {
+        Guard.IsNotNull(updateTarget, nameof(updateTarget));  
+
         var numOfRowsFound = _db.Update(updateTarget);
 
         if (numOfRowsFound == 0)

@@ -70,6 +70,7 @@
   	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0-preview4" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
 	  <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.7" />
 	  <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />

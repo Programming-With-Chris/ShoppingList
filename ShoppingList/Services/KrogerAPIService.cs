@@ -31,6 +31,8 @@ public class KrogerAPIService
         if (accessToken is not null && DateTime.Now < expireTime)
             return false; 
 
+        Guard.IsNotNull(accessToken, nameof(accessToken));
+
         var authData = $"{apiConfig.ClientId}:{apiConfig.ClientSecret}";
         var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
 
@@ -57,7 +59,12 @@ public class KrogerAPIService
 
     public async Task<Dictionary<string, string>> GetLocationNearZip(string zip, ApiConfig apiConfig)
     {
+
+        Guard.IsNotNullOrEmpty(zip, nameof(zip));
+        Guard.IsNotNull(apiConfig, nameof(apiConfig));
+
         Dictionary<string, string> closeKrogerNames = new Dictionary<string, string>(); 
+
 
         string zipQuery = $"?filter.zipCode.near={zip}&filter.radiusInMiles=25&filter.chain=KROGER";
         Uri uri = new($"{apiConfig.KrogerUrl}locations{zipQuery}");
@@ -95,6 +102,11 @@ public class KrogerAPIService
 
     public async Task<(ItemLocationData, Item)> GetProductLocationData(string term, string locationId, ApiConfig apiConfig)
     {
+        Guard.IsNotNullOrEmpty(term, nameof(term)); 
+        Guard.IsNotNullOrEmpty(locationId, nameof(locationId)); 
+        Guard.IsNotNull(apiConfig, nameof(apiConfig)); 
+
+
         string productQuery = $"?filter.locationId={locationId}&filter.term={term}&filter.fulfillment=ais&filter.limit=50";
 
         Uri uri = new($"{apiConfig.KrogerUrl}products{productQuery}");

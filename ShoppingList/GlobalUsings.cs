@@ -12,5 +12,6 @@ global using ShoppingList.Model;
 global using ShoppingList.Services;
 global using ShoppingList.ViewModels;
 global using SQLiteNetExtensions.Attributes;
+global using CommunityToolkit.Diagnostics; 
 
 
