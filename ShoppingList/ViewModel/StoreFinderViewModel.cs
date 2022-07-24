@@ -63,6 +63,6 @@ public partial class StoreFinderViewModel : BaseViewModel
         Preferences.Set("KrogerStoreName", selectedStoreName); 
         Preferences.Set("KrogerLocation", locationId); 
 
-        await Shell.Current.GoToAsync($"..?KrogerLocation={locationId}"); 
+        await Shell.Current.GoToAsync($"..?KrogerLocation={locationId}&KrogerStoreName={selectedStoreName}"); 
     }
 }

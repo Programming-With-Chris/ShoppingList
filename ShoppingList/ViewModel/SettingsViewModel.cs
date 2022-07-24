@@ -5,6 +5,7 @@ namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
 [QueryProperty("KrogerLocation", "KrogerLocation")]
+[QueryProperty("KrogerStoreName", "KrogerStoreName")]
 public partial class SettingsViewModel : BaseViewModel
 {
 
@@ -14,6 +15,7 @@ public partial class SettingsViewModel : BaseViewModel
         set
         {
             Preferences.Set("StartAtBackOfStore", value);
+            OnPropertyChanged(nameof(StartAtBackOfStore)); 
         }
     }
     
@@ -24,6 +26,7 @@ public partial class SettingsViewModel : BaseViewModel
         set
         {
             Preferences.Set("FrozenFoodLast", value);
+            OnPropertyChanged(nameof(FrozenFoodLast));
         }
     }
 
@@ -33,6 +36,7 @@ public partial class SettingsViewModel : BaseViewModel
         set
         {
             Preferences.Set("KrogerLocation", value);
+            OnPropertyChanged(nameof(KrogerLocation)); 
         }
     }
 
@@ -43,6 +47,7 @@ public partial class SettingsViewModel : BaseViewModel
         set
         {
             Preferences.Set("KrogerStoreName", value);
+            OnPropertyChanged(nameof(KrogerStoreName)); 
         }
     }
 
