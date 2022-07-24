@@ -57,12 +57,12 @@ public partial class ItemInputViewModel : BaseViewModel
             ParentId = UserList.Id
         };
 
-        var apiConfig = await _krogerAPIService.GetStartupConfig();
+        var apiConfig = await _krogerAPIService.GetStartupConfigAsync();
 
-        var done = await _krogerAPIService.SetAuthTokens(apiConfig);
+        var done = await _krogerAPIService.SetAuthTokensAsync(apiConfig);
         
         //Will do this in background thread later
-        var result =  await _krogerAPIService.GetProductLocationData(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+        var result =  await _krogerAPIService.GetProductLocationDataAsync(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
 
         ItemLocationData ild = result.Item1;
         Item item = result.Item2;

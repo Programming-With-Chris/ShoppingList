@@ -16,7 +16,7 @@ public class KrogerAPIService
 
     }
 
-    public async Task<ApiConfig> GetStartupConfig()
+    public async Task<ApiConfig> GetStartupConfigAsync()
     {
         using var stream = await FileSystem.OpenAppPackageFileAsync("krogerapiconfig-test.json");
         using var reader = new StreamReader(stream);
@@ -25,13 +25,13 @@ public class KrogerAPIService
         return output;
     }
 
-    public async Task<bool> SetAuthTokens(ApiConfig apiConfig)
+    public async Task<bool> SetAuthTokensAsync(ApiConfig apiConfig)
     {
 
         if (accessToken is not null && DateTime.Now < expireTime)
             return false; 
 
-        Guard.IsNotNull(accessToken, nameof(accessToken));
+        Guard.IsNotNull(apiConfig, nameof(apiConfig));
 
         var authData = $"{apiConfig.ClientId}:{apiConfig.ClientSecret}";
         var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
@@ -57,7 +57,7 @@ public class KrogerAPIService
 
     }
 
-    public async Task<Dictionary<string, string>> GetLocationNearZip(string zip, ApiConfig apiConfig)
+    public async Task<Dictionary<string, string>> GetLocationNearZipAsync(string zip, ApiConfig apiConfig)
     {
 
         Guard.IsNotNullOrEmpty(zip, nameof(zip));
@@ -100,7 +100,7 @@ public class KrogerAPIService
 
 
 
-    public async Task<(ItemLocationData, Item)> GetProductLocationData(string term, string locationId, ApiConfig apiConfig)
+    public async Task<(ItemLocationData, Item)> GetProductLocationDataAsync(string term, string locationId, ApiConfig apiConfig)
     {
         Guard.IsNotNullOrEmpty(term, nameof(term)); 
         Guard.IsNotNullOrEmpty(locationId, nameof(locationId)); 
@@ -137,6 +137,7 @@ public class KrogerAPIService
                         ShelfPositionInBay = jsonItem.aisleLocations.ElementAt(0).shelfPositionInBay
                     };
 
+                    // Just packaging up some of the 'extra' data to pass back into the calling method's item.
                     Item item = new()
                     {
                         Name = term,

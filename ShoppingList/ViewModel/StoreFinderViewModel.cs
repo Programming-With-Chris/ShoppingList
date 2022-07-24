@@ -33,12 +33,12 @@ public partial class StoreFinderViewModel : BaseViewModel
     [RelayCommand]
     public async void DoSearchQuery(string zipcode)
     {
-        ApiConfig apiconfig = await _kapis.GetStartupConfig();
-        var done = await _kapis.SetAuthTokens(apiconfig);
+        ApiConfig apiconfig = await _kapis.GetStartupConfigAsync();
+        var done = await _kapis.SetAuthTokensAsync(apiconfig);
 
         try
         {
-            locations = await _kapis.GetLocationNearZip(zipcode, apiconfig);
+            locations = await _kapis.GetLocationNearZipAsync(zipcode, apiconfig);
 
             if (StoreNames.Count > 0)
                 StoreNames.Clear();

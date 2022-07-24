@@ -53,7 +53,7 @@ public class ListSorter
 
             if (!wasSorted)
             {
-                if (item.Category.Contains("Frozen") && FrozenFoodLast)
+                if (item.Category.Contains("Frozen") && FrozenFoodLast && !StartAtBackOfStore)
                 {
                     frozenList.Add(item);
                 } else

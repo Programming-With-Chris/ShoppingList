@@ -46,10 +46,6 @@ public partial class SettingsViewModel : BaseViewModel
         }
     }
 
-    public SettingsViewModel()
-    {
-    }
-
     [RelayCommand]
     public async void GoBackToMain()
     {
