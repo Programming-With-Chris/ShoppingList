@@ -18,4 +18,5 @@
 
 ## Feature Roadmap
 - Supporting more stores
+- Skia graphic showing a route through the store?
 - As I think of more features, we'll put them here.
