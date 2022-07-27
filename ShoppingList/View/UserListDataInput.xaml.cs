@@ -4,20 +4,23 @@ namespace ShoppingList;
 
 public partial class UserListDataInput : ContentPage
 {
+	private UserListDataInputViewModel _uldiv = new();
 
 	public UserListDataInput(UserListDataInputViewModel userListDataInputViewModel)
 	{
 		InitializeComponent();
 		BindingContext = userListDataInputViewModel;
+		_uldiv = userListDataInputViewModel; 
 
 	}
 
-/*	public void OnUserListNameCompleted(object sender, EventArgs e)
+	private void Picker_SelectedIndexChanged(object sender, EventArgs e)
 	{
-		string name = ((Entry)sender).Text;
+		var picker = sender as Picker;
 
-		Console.WriteLine(name);
-		Shell.Current.DisplayAlert("Your list name:", name, "Ok"); 
-	}*/
+
+		_uldiv.UserListType = (UserList.ListType) picker.SelectedIndex; 
+
+	}
 }
 

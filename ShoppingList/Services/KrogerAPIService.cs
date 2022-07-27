@@ -118,8 +118,7 @@ public class KrogerAPIService
         if (res.IsSuccessStatusCode)
         {
             string content = await res.Content.ReadAsStringAsync();
-            var fixedContent = content.Replace(@"\", String.Empty); 
-            var jsonRes = JsonSerializer.Deserialize<Root>(fixedContent);
+            var jsonRes = JsonSerializer.Deserialize<Root>(content);
 
             foreach(var jsonItem in jsonRes.data)
             {

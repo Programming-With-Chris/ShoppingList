@@ -27,6 +27,28 @@
                    ReturnCommand="{Binding UserListCompletedCommand}"/>
 
 
+            <HorizontalStackLayout>
+                <Label Text="Type of List: "
+                      TextColor="{StaticResource Primary}"
+                       Margin="0,5,5,0"/>
+                
+                <Picker ItemsSource="{Binding TypeList}"
+                        SelectedIndexChanged="Picker_SelectedIndexChanged"
+                        TextColor="{StaticResource Primary}"
+                        SelectedIndex="0"/>
+                
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout>
+                <Label Text="Pre-populate list with Items from last time?"
+                       TextColor="{StaticResource Primary}"/>
+                
+                <CheckBox IsChecked="{Binding PrepopulateList}"
+                          Color="{StaticResource Primary}"/>
+                
+            </HorizontalStackLayout>
+            
         </StackLayout>
 
         <Button Text="Create New List"

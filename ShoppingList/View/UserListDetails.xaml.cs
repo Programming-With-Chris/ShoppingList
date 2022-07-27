@@ -17,11 +17,11 @@ public partial class UserListDetails : ContentPage
 
 	public void OnCheckboxClicked(object sender, CheckedChangedEventArgs e )
 	{
-		CheckBox thisCheckbox = (CheckBox)sender;
+		CheckBox thisCheckbox = sender as CheckBox;
 
-		Frame currentFrame = (Frame)(thisCheckbox).BindingContext;
+		Frame currentFrame = thisCheckbox.BindingContext as Frame;
 
-		Item itemThatWasClicked = (Item)(currentFrame).BindingContext;
+		Item itemThatWasClicked = currentFrame.BindingContext as Item;
 
 
 
@@ -30,7 +30,7 @@ public partial class UserListDetails : ContentPage
 		else
 			currentFrame.FadeTo(1, 1000); 
 
-		itemThatWasClicked.IsCompleted = ((CheckBox)sender).IsChecked; 
+		itemThatWasClicked.IsCompleted = thisCheckbox.IsChecked; 
 		_ulvm.ItemWasChecked(itemThatWasClicked);
 		 
     }

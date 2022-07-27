@@ -78,7 +78,7 @@ public partial class ItemInputViewModel : BaseViewModel
         newItem.LocationData.ParentId = newItem.Id; 
         UserList.Items.Add(newItem);
 
-        ListSorter.SortUserListItems(UserList);
+        //ListSorter.SortUserListItems(UserList);
         ListSorter.SortUserListItems(userList); 
 
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?", true,

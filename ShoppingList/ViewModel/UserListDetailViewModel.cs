@@ -76,25 +76,15 @@ public partial class UserListDetailViewModel : BaseViewModel
 
         UserList.Items = _itemService.GetUserListItems(UserList); 
 
-        /*var apiConfig = await _krogerAPIService.GetStartupConfig();
-
-        var done = await _krogerAPIService.SetAuthTokens(apiConfig);
-
-        foreach (var item in UserList.Items)
-        {
-            ItemLocationData ild = await _krogerAPIService.GetProductInfo(item.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
-            item.LocationData = ild;
-        }*/
-
         ListSorter.SortUserListItems(userList); 
-        ListSorter.SortUserListItems(UserList);
-
+       
         Items.Clear(); 
         foreach (var item in userList.Items)
         {
             Items.Add(item); 
         }
 
+        // Forces CollectionView to update on refresh, otherwise, it doesn't work!
         UserList = UserList; 
 
         IsRefreshing = false; 

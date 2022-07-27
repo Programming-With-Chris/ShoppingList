@@ -20,6 +20,15 @@ public class UserList : ObservableObject
     [OneToMany]
     public List<Item> Items { get; set; }
 
+    public enum ListType
+    {
+        WeeklyGrocery,
+        ForAParty,
+        OutOfSnacks
+    }
+
+    [Column("type")]
+    public ListType Type { get; set; }
 
     public UserList()
     {

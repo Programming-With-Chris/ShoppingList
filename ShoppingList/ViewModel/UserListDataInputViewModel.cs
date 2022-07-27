@@ -22,6 +22,20 @@ public partial class UserListDataInputViewModel : BaseViewModel
         _userListService = new();
     }
 
+    public List<string> TypeList
+    {
+        get
+        {
+            return Enum.GetNames(typeof(UserList.ListType)).ToList(); 
+        }
+    }
+
+    [ObservableProperty]
+    public bool prepopulateList; 
+
+    [ObservableProperty]
+    private UserList.ListType userListType; 
+
 
     [RelayCommand]
     public async void OnUserListCompleted()
@@ -29,9 +43,16 @@ public partial class UserListDataInputViewModel : BaseViewModel
         userList = new(); 
 
         userList.Name = UlName;
-        userList.TargetStore = ulTargetStore; 
+        userList.TargetStore = ulTargetStore;
+        userList.Type = UserListType; 
 
         userList = _userListService.CreateUserList(userList);
+
+        if (PrepopulateList)
+        {
+            Console.WriteLine("Yup"); 
+        }
+
 
         await Shell.Current.GoToAsync("..?id=" + userList.Id + "&createflag=true"); 
 
