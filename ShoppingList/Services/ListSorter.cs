@@ -31,21 +31,21 @@ public class ListSorter
 
         foreach(var item in list)
         {
-            switch (item.Aisle)
+            switch (item.Aisle.ToUpper())
             {
-                case "Meat":
+                case "MEAT":
                     meatList.Add(item);
                     wasSorted = true; 
                     break;
-                case "Seafood":
+                case "SEAFOOD":
                     meatList.Add(item);
                     wasSorted = true;
                     break;
-                case "Dairy":
+                case "DAIRY":
                     dairyList.Add(item);
                     wasSorted = true; 
                     break;
-                case "Produce":
+                case "PRODUCE":
                     produceList.Add(item);
                     wasSorted = true;
                     break; 
@@ -53,7 +53,7 @@ public class ListSorter
 
             if (!wasSorted)
             {
-                if (item.Category.Contains("Frozen") && FrozenFoodLast && !StartAtBackOfStore)
+                if (item.Category.ToUpper().Contains("FROZEN") && FrozenFoodLast && !StartAtBackOfStore)
                 {
                     frozenList.Add(item);
                 } else

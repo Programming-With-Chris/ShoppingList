@@ -18,7 +18,7 @@ public class KrogerAPIService
 
     public async Task<ApiConfig> GetStartupConfigAsync()
     {
-        using var stream = await FileSystem.OpenAppPackageFileAsync("krogerapiconfig-test.json");
+        using var stream = await FileSystem.OpenAppPackageFileAsync("krogerapiconfig.json");
         using var reader = new StreamReader(stream);
         var json = await reader.ReadToEndAsync();
         var output = JsonSerializer.Deserialize<ApiConfig>(json);
@@ -127,13 +127,13 @@ public class KrogerAPIService
                     //Change selection data matching to be more accurate depending on what we searched vs what the user input?
                     ItemLocationData returnILD = new()
                     {
-                        BayNumber = jsonItem.aisleLocations.ElementAt(0).bayNumber,
-                        Description = jsonItem.aisleLocations.ElementAt(0).description,
-                        Number = jsonItem.aisleLocations.ElementAt(0).number,
-                        NumberOfFacing = jsonItem.aisleLocations.ElementAt(0).numberOfFacings, 
-                        Side =  jsonItem.aisleLocations.ElementAt(0).side, 
-                        ShelfNumber =  jsonItem.aisleLocations.ElementAt(0).shelfNumber,
-                        ShelfPositionInBay = jsonItem.aisleLocations.ElementAt(0).shelfPositionInBay
+                        BayNumber = jsonItem.aisleLocations.ElementAt(0).bayNumber ?? "0",
+                        Description = jsonItem.aisleLocations.ElementAt(0).description ?? "No Description",
+                        Number = jsonItem.aisleLocations.ElementAt(0).number ?? "0",
+                        NumberOfFacing = jsonItem.aisleLocations.ElementAt(0).numberOfFacings ?? "0", 
+                        Side =  jsonItem.aisleLocations.ElementAt(0).side ?? "L", 
+                        ShelfNumber =  jsonItem.aisleLocations.ElementAt(0).shelfNumber ?? "0",
+                        ShelfPositionInBay = jsonItem.aisleLocations.ElementAt(0).shelfPositionInBay ?? "0"
                     };
 
                     // Just packaging up some of the 'extra' data to pass back into the calling method's item.

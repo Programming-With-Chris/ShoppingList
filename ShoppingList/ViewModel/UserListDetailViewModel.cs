@@ -14,7 +14,6 @@ public partial class UserListDetailViewModel : BaseViewModel
         _itemService = new();
         _krogerAPIService = new();
         Items = new();
-        //Title = UserList.Name; 
     }
 
     UserList userList;
@@ -102,8 +101,6 @@ public partial class UserListDetailViewModel : BaseViewModel
     { 
         _itemService.UpdateItem(item);
 
-        //ListSorter.SortUserListItems(userList);
-        //ListSorter.SortUserListItems(UserList);
         UserList.Items = ListSorter.SortUserListItems(userList);
 
         Items.Clear(); 
@@ -112,10 +109,9 @@ public partial class UserListDetailViewModel : BaseViewModel
             Items.Add(ulItem); 
         }
 
-        //OnPropertyChanged(nameof(UserList));
-        //var newUserList = UserList;
-        //UserList = newUserList; 
-        //UserList = new UserList(userList); 
+        //This forces on check to refresh collection view, but breaks opening a list for some reason
+        //UserList = UserList; 
+
     }
 
     [RelayCommand]

@@ -50,7 +50,7 @@ public partial class UserListDataInputViewModel : BaseViewModel
 
         if (PrepopulateList)
         {
-            Console.WriteLine("Yup"); 
+            // TODO Code to prepopulate list  
         }
 
 
