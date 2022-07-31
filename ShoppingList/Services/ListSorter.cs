@@ -8,6 +8,18 @@ public class ListSorter
     public static bool StartAtBackOfStore { get; set; }
 
 
+    /// <summary>
+    ///  Sorts a UserList's Items in a predetermined order <br/>
+    ///  The Sorting is like this - <br/>
+    ///    1. Break list down by categories - Meat, Produce, Dairy, Aisle, and FrozenAisle <br/>
+    ///    2. Order those category lists in a certain way (Aisles are by aisle number, Meat Dairy and Produce are by Bay Number) <br/>
+    ///    3. Recombine those lists back in this order - Produce, then Aisles, Then Dairy, Then Meat, Then Frozen (if setting is turned on). <br/>
+    ///    4. Reverse List is StartAtBackOfStore is turned on
+    ///     
+    /// </summary>
+    /// <param name="userList"></param>
+    /// <returns>Returns the sorted Items, as well as sets the give userlist's items to be the new sorted list, updating the passed object</returns>
+    /// <exception cref="ArgumentNullException">For Both UserList and UserList.Items</exception>
     public static List<Item> SortUserListItems(UserList userList)
     {
 
@@ -67,38 +79,19 @@ public class ListSorter
 
         meatList = meatList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList(); 
         dairyList = dairyList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
-
-        aisleList = aisleList.OrderBy(x => Int32.Parse(x.LocationData.Number)).ToList(); 
-
+        produceList = produceList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
 
         //research bay number order on aisles (do we want to do alternating asc/desc to form a 'route'?
+        aisleList = aisleList.OrderBy(x => Int32.Parse(x.LocationData.Number)).ToList();
 
-
-        foreach(var item in produceList)
-        {
-            sortedItems.Add(item); 
-        }
 
         
-        foreach(var item in aisleList)
-        {
-            sortedItems.Add(item); 
-        }
+        sortedItems.AddRange(produceList); 
+        sortedItems.AddRange(aisleList);
+        sortedItems.AddRange(dairyList);
+        sortedItems.AddRange(meatList);
+        sortedItems.AddRange(frozenList); 
 
-        foreach(var item in dairyList)
-        {
-            sortedItems.Add(item); 
-        }
-
-        foreach(var item in meatList) 
-        {
-            sortedItems.Add(item); 
-        }
-
-        foreach(var item in frozenList)
-        {
-            sortedItems.Add(item); 
-        }
 
         if(StartAtBackOfStore)
         {

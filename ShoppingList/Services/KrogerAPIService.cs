@@ -104,7 +104,10 @@ public class KrogerAPIService
     {
         Guard.IsNotNullOrEmpty(term, nameof(term)); 
         Guard.IsNotNullOrEmpty(locationId, nameof(locationId)); 
-        Guard.IsNotNull(apiConfig, nameof(apiConfig)); 
+        Guard.IsNotNull(apiConfig, nameof(apiConfig));
+
+        if (Int32.Parse(locationId) == 0)
+            throw new ArgumentException($"Location ID: {locationId} is zero and not valid (Is one not set and it went with the default?)"); 
 
 
         string productQuery = $"?filter.locationId={locationId}&filter.term={term}&filter.fulfillment=ais&filter.limit=50";
