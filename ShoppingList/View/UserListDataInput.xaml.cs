@@ -10,7 +10,9 @@ public partial class UserListDataInput : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = userListDataInputViewModel;
-		_uldiv = userListDataInputViewModel; 
+		_uldiv = userListDataInputViewModel;
+
+		this.TypeOfListPicker.SelectedIndex = 0; 
 
 	}
 
@@ -21,6 +23,13 @@ public partial class UserListDataInput : ContentPage
 
 		_uldiv.UserListType = (UserList.ListType) picker.SelectedIndex; 
 
+	}
+
+	private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+	{
+
+		var checkbox = sender as CheckBox;
+		_uldiv.PrepopulateList = checkbox.IsChecked; 
 	}
 }
 

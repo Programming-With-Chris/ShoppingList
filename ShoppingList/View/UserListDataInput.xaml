@@ -10,9 +10,11 @@
 
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
-          RowDefinitions="*,Auto,Auto">
+          RowDefinitions="*,Auto">
 
-        <StackLayout Margin="20,35,20,20">
+        <StackLayout Margin="20,35,20,20"
+                     Grid.ColumnSpan="2">
+
 
             <Entry Text="{Binding UlName}" 
                    MaxLength="20"
@@ -27,7 +29,9 @@
                    ReturnCommand="{Binding UserListCompletedCommand}"/>
 
 
-            <HorizontalStackLayout>
+            <HorizontalStackLayout
+                Grid.ColumnSpan="2">
+
                 <Label Text="Type of List: "
                       TextColor="{StaticResource Primary}"
                        Margin="0,5,5,0"/>
@@ -35,17 +39,22 @@
                 <Picker ItemsSource="{Binding TypeList}"
                         SelectedIndexChanged="Picker_SelectedIndexChanged"
                         TextColor="{StaticResource Primary}"
-                        SelectedIndex="0"/>
-                
+                        FontSize="15"
+                        SelectedIndex="0"
+                        x:Name="TypeOfListPicker"
+                        />
+
             </HorizontalStackLayout>
 
 
             <HorizontalStackLayout>
                 <Label Text="Pre-populate list with Items from last time?"
-                       TextColor="{StaticResource Primary}"/>
+                       TextColor="{StaticResource Primary}"
+                       Padding="10"/>
                 
-                <CheckBox IsChecked="{Binding PrepopulateList}"
-                          Color="{StaticResource Primary}"/>
+                <CheckBox IsChecked="{Binding PrepopulateList, Mode=TwoWay}"
+                          Color="{StaticResource Primary}"
+                          CheckedChanged="CheckBox_CheckedChanged"/>
                 
             </HorizontalStackLayout>
             

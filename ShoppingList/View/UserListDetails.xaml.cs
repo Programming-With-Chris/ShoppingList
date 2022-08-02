@@ -12,7 +12,6 @@ public partial class UserListDetails : ContentPage
 		BindingContext = userListDetailViewModel;
 		_ulvm = userListDetailViewModel;
 
-		_ulvm.Items = new(); 
 	}
 
 	public void OnCheckboxClicked(object sender, CheckedChangedEventArgs e )

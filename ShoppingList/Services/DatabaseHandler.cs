@@ -64,7 +64,8 @@ public class DatabaseHandler
 
         Guard.IsNotNullOrEmpty(name, nameof(name)); 
         
-        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE name = '" + name + "'");
+
+        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE name = ?", name);
 
         return returnList; 
     }
@@ -82,7 +83,7 @@ public class DatabaseHandler
     public T GetQueryById<T>(int id) where T : new()
     {
 
-        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE id = '" + id + "'");
+        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE id = ?", id);
         if (returnList.Count > 0)
             return returnList[0];
 
@@ -101,11 +102,11 @@ public class DatabaseHandler
     public List<T> GetQueryByParentId<T>(int id) where T : new()
     {
 
-        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE parentid = '" + id + "'");
+        List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE parentid = ?", id);
         if (returnList.Count > 0)
             return returnList;
 
-        throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with Parent Id = " + id); 
+        throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with Parent Id = ?" + id); 
     }
 
 /// <summary>

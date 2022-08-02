@@ -77,8 +77,8 @@ public class ListSorter
             wasSorted = false; 
         }
 
-        meatList = meatList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList(); 
-        dairyList = dairyList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
+        meatList = meatList.OrderByDescending(x => Int32.Parse(x.LocationData.BayNumber)).ToList(); 
+        dairyList = dairyList.OrderByDescending(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
         produceList = produceList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
 
         //research bay number order on aisles (do we want to do alternating asc/desc to form a 'route'?

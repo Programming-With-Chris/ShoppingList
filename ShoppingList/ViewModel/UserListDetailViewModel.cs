@@ -13,12 +13,10 @@ public partial class UserListDetailViewModel : BaseViewModel
     {
         _itemService = new();
         _krogerAPIService = new();
-        Items = new();
     }
 
     UserList userList;
 
-    public ObservableCollection<Item> Items { get; set; } 
 
     public UserList UserList
     {
@@ -27,11 +25,6 @@ public partial class UserListDetailViewModel : BaseViewModel
         {
             userList = value;
             ListSorter.SortUserListItems(userList);
-            Items.Clear(); 
-            foreach (var item in userList.Items)
-            {
-                Items.Add(item); 
-            }
             Title = UserList.Name; 
             OnUserListChanged(value); 
             OnPropertyChanged(nameof(UserList));
@@ -76,12 +69,6 @@ public partial class UserListDetailViewModel : BaseViewModel
         UserList.Items = _itemService.GetUserListItems(UserList); 
 
         ListSorter.SortUserListItems(userList); 
-       
-        Items.Clear(); 
-        foreach (var item in userList.Items)
-        {
-            Items.Add(item); 
-        }
 
         // Forces CollectionView to update on refresh, otherwise, it doesn't work!
         UserList = UserList; 
@@ -102,12 +89,6 @@ public partial class UserListDetailViewModel : BaseViewModel
         _itemService.UpdateItem(item);
 
         UserList.Items = ListSorter.SortUserListItems(userList);
-
-        Items.Clear(); 
-        foreach (var ulItem in userList.Items)
-        {
-            Items.Add(ulItem); 
-        }
 
         //This forces on check to refresh collection view, but breaks opening a list for some reason
         //UserList = UserList; 

@@ -51,6 +51,26 @@ public class UserListService
 
         _db.Delete(newlist);
     }
+
+    public UserList GetLastUserListOfType(UserList newList)
+    {
+        Guard.IsNotNull(newList, nameof(newList));
+
+        var allUserLists = _db.GetAllQuery<UserList>();
+        UserList lastListOfThatType = new();
+        lastListOfThatType.Id = 0; 
+
+        foreach(var ul in allUserLists)
+        {
+            if (ul.Type == newList.Type && ul.Id > lastListOfThatType.Id)
+            {
+                lastListOfThatType = ul; 
+            }
+        }
+
+        return lastListOfThatType; 
+
+    }
 }
 
 
