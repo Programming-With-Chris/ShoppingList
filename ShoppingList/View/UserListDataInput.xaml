@@ -40,7 +40,7 @@
                         SelectedIndexChanged="Picker_SelectedIndexChanged"
                         TextColor="{StaticResource Primary}"
                         FontSize="15"
-                        SelectedIndex="0"
+                        SelectedIndex="1"
                         x:Name="TypeOfListPicker"
                         />
 

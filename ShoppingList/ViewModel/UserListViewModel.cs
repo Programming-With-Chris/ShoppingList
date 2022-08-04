@@ -111,4 +111,13 @@ public partial class UserListViewModel : BaseViewModel
                 {"UserList", ul}
             }); 
     }
+    
+    [RelayCommand]
+    public void DeleteItem(UserList ul)
+    {
+        _uls.DeleteUserList(ul);
+
+        UserLists.Remove(ul); 
+
+    }
 }

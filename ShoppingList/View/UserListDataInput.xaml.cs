@@ -12,7 +12,7 @@ public partial class UserListDataInput : ContentPage
 		BindingContext = userListDataInputViewModel;
 		_uldiv = userListDataInputViewModel;
 
-		this.TypeOfListPicker.SelectedIndex = 0; 
+		//this.TypeOfListPicker.SelectedIndex = 0; 
 
 	}
 

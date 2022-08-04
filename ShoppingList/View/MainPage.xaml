@@ -21,6 +21,11 @@
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=GoToListItemsCommand}"/>
+
+                                
+                                <SwipeGestureRecognizer CommandParameter="{Binding .}"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
+                                                    Direction="Right"/>
                             </Frame.GestureRecognizers>
                             <VerticalStackLayout>
                                 <Label Text="{Binding Name}"

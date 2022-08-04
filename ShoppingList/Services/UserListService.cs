@@ -62,7 +62,7 @@ public class UserListService
 
         foreach(var ul in allUserLists)
         {
-            if (ul.Type == newList.Type && ul.Id > lastListOfThatType.Id)
+            if (ul.Type == newList.Type && ul.Id > lastListOfThatType.Id && ul.Id != newList.Id)
             {
                 lastListOfThatType = ul; 
             }

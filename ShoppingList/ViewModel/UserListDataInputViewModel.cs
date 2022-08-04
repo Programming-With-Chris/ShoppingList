@@ -7,6 +7,7 @@ namespace ShoppingList.ViewModels;
 public partial class UserListDataInputViewModel : BaseViewModel
 {
     readonly UserListService _userListService;
+    readonly ItemService _itemService; 
 
     [ObservableProperty]
     UserList userList;
@@ -20,6 +21,7 @@ public partial class UserListDataInputViewModel : BaseViewModel
     public UserListDataInputViewModel()
     {
         _userListService = new();
+        _itemService = new(); 
     }
 
     public List<string> TypeList
@@ -46,11 +48,20 @@ public partial class UserListDataInputViewModel : BaseViewModel
         userList.TargetStore = ulTargetStore;
         userList.Type = UserListType; 
 
+        
         userList = _userListService.CreateUserList(userList);
 
         if (PrepopulateList)
         {
-            // TODO Code to prepopulate list  
+            UserList lastListOfThatType = _userListService.GetLastUserListOfType(userList);
+            lastListOfThatType.Items = _itemService.GetUserListItems(lastListOfThatType); 
+            
+            foreach(var item in lastListOfThatType.Items)
+            {
+                userList.Items.Add(item);
+                item.ParentId = userList.Id; 
+                _itemService.CreateItem(item); 
+            }
         }
 
 
