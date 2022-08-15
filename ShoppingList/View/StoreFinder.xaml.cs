@@ -17,8 +17,8 @@ public partial class StoreFinder : ContentPage
 
 	public void OnSearchButtonPressed(object sender, EventArgs e)
 	{
-		var test = ((SearchBar)sender).Text;
-		 _sfvm.DoSearchQuery(test); 
+		var zipCode = ((SearchBar)sender).Text;
+		 _sfvm.DoSearchQuery(zipCode); 
 		//_ulvm.ItemWasChecked(itemThatWasClicked);  
 	}
 }

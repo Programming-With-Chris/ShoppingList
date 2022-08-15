@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
-             xmlns:view="clr-namespace:ShoppingList"
+             xmlns:drawables="clr-namespace:ShoppingList.Drawable"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails"
              Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <drawables:CircularButton x:Key="circularButton"/>
+    </ContentPage.Resources>
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
@@ -14,14 +18,14 @@
     </Shell.BackButtonBehavior>
 
     
-    <Grid ColumnDefinitions="*,*"
-          ColumnSpacing="5"
-          RowDefinitions="*,Auto">
+    <Grid ColumnDefinitions="*,*,*"
+          ColumnSpacing="3"
+          RowDefinitions="*,*,Auto">
 
-        <RefreshView Grid.ColumnSpan="3"
-                     Command="{Binding RefreshUserListDetailScreenCommand}"
+        <RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
                      CommandParameter="UserListCollectionView"
-                     IsRefreshing="{Binding IsRefreshing}">
+                     IsRefreshing="{Binding IsRefreshing}"
+		             Grid.Row="0">
             <CollectionView ItemsSource="{Binding UserList.Items}"
                         CanReorderItems="True"
                         SelectionMode="None"
@@ -30,10 +34,11 @@
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Item">
                         <Grid Padding="10"
-                          ColumnDefinitions="*,*"
+                          ColumnDefinitions="*,*,*"
                           RowDefinitions="*,Auto">
-                            <Frame Grid.ColumnSpan="3"
+                            <Frame Grid.ColumnSpan="2"
                                Padding="10"
+                               Margin="0,0,0,10"
                                x:Name="ItemFrame"
                                BindingContext="{Binding .}">
                                 <Frame.GestureRecognizers>
@@ -44,7 +49,7 @@
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=DeleteItemCommand}"
                                                             Direction="Right"/>
                                 </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions="Auto,*,*,*,Auto"
+                                <Grid ColumnDefinitions="Auto,*,*"
                                   RowDefinitions="*,Auto"
                                   Grid.ColumnSpan="1"
                                   Grid.RowSpan="2"
@@ -64,7 +69,9 @@
                                            Grid.RowSpan="1"/>
                                     <Label Text="{Binding Aisle}"
                                            Grid.Row="1"
-                                           Grid.Column="3"/>
+                                           Grid.Column="2"
+                                           Grid.ColumnSpan="2"
+					                       />
                                     <!--<VerticalStackLayout Grid.Column="5"
                                                          Grid.Row="0"
                                                          HorizontalOptions="End">
@@ -90,18 +97,20 @@
             </CollectionView>
         </RefreshView>
 
-        <Button Text="Create New Item"
-                Command="{Binding CreateItemCommand}"
-                CommandParameter="{Binding UserList}"
-                Grid.Row="2"
-                Margin="8"/>
-            
-        <Button Text="Back to My Lists"
-                Command="{Binding GoBackToListScreenCommand}"
-                CommandParameter="{Binding UserList}"
-                Grid.Row="2"
-                Grid.Column="3"
-                Margin="8"/>
+       <GraphicsView   Drawable="{StaticResource circularButton}"
+			            Grid.Row="2"
+			            Grid.Column="0"
+                        x:Name="CircularButton"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        BackgroundColor="Transparent"
+			            >
+            <GraphicsView.GestureRecognizers>
+	            <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
+
+	        </GraphicsView.GestureRecognizers>
+	    </GraphicsView>
+
     </Grid>
 
 </ContentPage>

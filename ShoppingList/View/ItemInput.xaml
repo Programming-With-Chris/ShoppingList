@@ -6,6 +6,7 @@
              x:DataType="viewmodel:ItemInputViewModel"
              x:Class="ShoppingList.ItemInput"
              Shell.PresentationMode="Animated"
+             Padding="50"
              >
 
     <Grid ColumnDefinitions="*,*,*,*,Auto,Auto"

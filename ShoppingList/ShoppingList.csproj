@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		 <TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		 <TargetFrameworks>net6.0-ios;</TargetFrameworks>
     <!-- <TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>-->
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
@@ -19,7 +19,7 @@
 		<ApplicationTitle>ShoppingList</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.shoppinglist</ApplicationId>
+		<ApplicationId>dev.programmingwithchris.ShoppingList</ApplicationId>
 		<ApplicationIdGuid>C035DD89-2C0B-4F47-AF16-ACCD775A25F9</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -54,6 +54,9 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAsset Include="Resources\APIs\krogerapiconfig.json">
+		  <LogicalName>krogerapiconfig.json</LogicalName>
+		</MauiAsset>
 	</ItemGroup>
 
   	<ItemGroup>
@@ -62,21 +65,25 @@
   	  <MauiCss Remove="Tests\**" />
   	  <MauiXaml Remove="Tests\**" />
   	  <None Remove="Tests\**" />
+  	  <None Remove="SQLiteNetExtensions" />
+  	  <None Remove="Microsoft.Data.Sqlite.Core" />
+  	  <None Remove="sqlite-net-static" />
+  	  <None Remove="Drawable\" />
+  	  <None Remove="Resources\Images\plus_solid.svg" />
+  	  <None Remove="Resources\APIs\krogerapiconfig.json" />
+  	  <None Remove="Platforms\iOS\Entitlements.plist" />
+  	  <None Remove="Platforms\iOS\Info.plist" />
   	</ItemGroup>
 
   	<ItemGroup>
   	  <None Remove="Resources\Images\ellipsis_vertical_outline.svg" />
-  	  <None Remove="Resources\Raw\krogerapiconfig-test.json" />
   	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0-preview4" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
-	  <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.7" />
-	  <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-	  <PackageReference Include="SkiaSharp" Version="2.88.0" />
-	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+	  <PackageReference Include="sqlite-net-static" Version="1.8.116" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -123,12 +130,23 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\APIs\" />
+	  <Folder Include="Drawable\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Update="Resources\Raw\krogerapiconfig-test.json">
-	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
-	  </MauiAsset>
+	  <EmbeddedResource Include="Platforms\iOS\Entitlements.plist" />
+	  <EmbeddedResource Include="Platforms\iOS\Info.plist" />
+	  <EmbeddedResource Include="Resources\Images\plus_solid.svg" />
 	</ItemGroup>
-
+	
+   <!-- <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<CodesignKey>Apple Development: Created via API (T65FC7WCJW)</CodesignKey>
+		<CodesignProvision>ShoppingListDev</CodesignProvision>
+		<ArchiveOnBuild>true</ArchiveOnBuild>
+		<TcpPort>58181</TcpPort>
+	</PropertyGroup>-->
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\plus_solid.svg" />
+	</ItemGroup>
 </Project>

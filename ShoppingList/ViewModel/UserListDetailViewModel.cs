@@ -13,9 +13,14 @@ public partial class UserListDetailViewModel : BaseViewModel
     {
         _itemService = new();
         _krogerAPIService = new();
+        newItemName = " + ";
+
     }
 
     UserList userList;
+
+    [ObservableProperty]
+    string newItemName; 
 
 
     public UserList UserList
@@ -41,11 +46,16 @@ public partial class UserListDetailViewModel : BaseViewModel
         if (IsBusy)
             return;
 
-        await Shell.Current.GoToAsync($"{nameof(ItemInput)}", true,
+        var newItem = new Item();
+        newItem.Name = "new item"; 
+        ul.Items.Add(newItem);
+        ul = ul;  
+
+        /*await Shell.Current.GoToAsync($"{nameof(ItemInput)}", true,
             new Dictionary<string, object>
             {
                 {"UserList", userList}
-            }); 
+            }); */
     }
 
     [RelayCommand]
@@ -104,6 +114,60 @@ public partial class UserListDetailViewModel : BaseViewModel
         UserList.Items = ListSorter.SortUserListItems(userList);
 
         UserList = UserList; 
+
+    }
+
+    [RelayCommand]
+    public async void NewItemDialog()
+    {
+        if (IsBusy)
+            return;
+
+        IsBusy = true; 
+
+        string result = await Shell.Current.DisplayPromptAsync("New Item", "Enter The New Item:");
+
+        if (result is not null)
+            OnItemEntryCompleted(result);
+
+        IsBusy = false; 
+    }
+
+    [RelayCommand]
+    public async void OnItemEntryCompleted(string itemName)
+    {
+
+        Item newItem = new()
+        {
+            Name = itemName
+        };
+
+        var apiConfig = await _krogerAPIService.GetStartupConfigAsync();
+
+        var done = await _krogerAPIService.SetAuthTokensAsync(apiConfig);
+
+        //Will do this in background thread later
+        var result = await _krogerAPIService.GetProductLocationDataAsync(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+
+        ItemLocationData ild = result.Item1;
+        Item item = result.Item2;
+
+        newItem.LocationData = ild;
+        newItem.Description = item.Description;
+        newItem.Category = item.Category;
+
+        newItem.Aisle = ild.Description;
+        newItem.ParentId = UserList.Id;
+        
+        newItem = _itemService.CreateItem(newItem);
+
+        newItem.LocationData.ParentId = newItem.Id;
+        UserList.Items.Add(newItem);
+
+        ListSorter.SortUserListItems(userList);
+
+
+        UserList = UserList;
 
     }
 }
