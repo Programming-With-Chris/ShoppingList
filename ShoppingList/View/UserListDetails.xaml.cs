@@ -2,6 +2,9 @@
 using System.Reflection;
 using ShoppingList.ViewModels;
 using IImage = Microsoft.Maui.Graphics.IImage;
+using SkiaSharp.Extended.UI.Controls;
+using SkiaSharp.Views.Maui.Controls;
+using ShoppingList.Controls;
 
 namespace ShoppingList;
 
@@ -17,13 +20,17 @@ public partial class UserListDetails : ContentPage
 		BindingContext = userListDetailViewModel;
 		_ulvm = userListDetailViewModel;
 
-		var circularButtonGV = this.FindByName("CircularButton") as GraphicsView;
-		var circularButton = circularButtonGV.Drawable as CircularButton;
-		circularButton.StrokeColor = Colors.White;
+		var cartLottie = this.FindByName("SKLottieViewControlTemplate");
+		//var canvas = cartLottie.OnPaintSurface(); 
+		
 
-		circularButton.AreShadowsEnabled = true;
-		circularButton.Width = 75;
-		circularButton.Height = 75; 
+		//var circularButtonGV = this.FindByName("CircularButton") as GraphicsView;
+		//var circularButton = circularButtonGV.Drawable as CircularButton;
+		//circularButton.StrokeColor = Colors.White;
+
+		//circularButton.AreShadowsEnabled = true;
+		//circularButton.Width = 75;
+		//circularButton.Height = 75; 
 
         //IImage image;
         //Assembly assembly = GetType().GetTypeInfo().Assembly;
@@ -32,7 +39,7 @@ public partial class UserListDetails : ContentPage
         //    image = PlatformImage.FromStream(stream);
         //}
 		//circularButton.Image = image;
-		circularButtonGV.Invalidate();
+		//circularButtonGV.Invalidate();
 
 
     }

@@ -4,6 +4,8 @@
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:drawables="clr-namespace:ShoppingList.Drawable"
+             xmlns:controls="clr-namespace:ShoppingList.Controls"
+             xmlns:skiasharp="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails"
              Title="{Binding Title}">
@@ -17,10 +19,11 @@
             />
     </Shell.BackButtonBehavior>
 
+
     
     <Grid ColumnDefinitions="*,*,*"
           ColumnSpacing="3"
-          RowDefinitions="*,Auto">
+          RowDefinitions="*">
 
         <!--<RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
                      CommandParameter="UserListCollectionView"
@@ -75,23 +78,6 @@
                                            Grid.ColumnSpan="2"
                                            HorizontalOptions="End"
 					                       />
-                                    <!--<VerticalStackLayout Grid.Column="5"
-                                                         Grid.Row="0"
-                                                         HorizontalOptions="End">
-                                        <Label Text="{Binding Category}" />
-                                        <Label Text="{Binding Description}" />
-                                        <Label Text="{Binding Aisle}" />
-                                    </VerticalStackLayout>-->
-
-                                    <!--<ImageButton Source="ellipsis_vertical_outline.svg"
-                                                 Scale="1"
-                                                 HeightRequest="25"
-                                                 Grid.Column="3"
-                                                 Grid.Row="1"
-                                                 VerticalOptions="Center"
-                                                 HorizontalOptions="End"
-                                                 Clicked="{Binding PullUpItemOptionModal}"/>
-                                                 -->
                                 </Grid>
                             </Frame>
                         </Grid>
@@ -99,20 +85,37 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
        <!-- </RefreshView>-->
-
-       <GraphicsView   Drawable="{StaticResource circularButton}"
-			            Grid.Row="2"
+       <controls:CircularButton  
+			            Grid.Row="0"
 			            Grid.Column="0"
                         x:Name="CircularButton"
-                        WidthRequest="100"
-                        HeightRequest="100"
+                        WidthRequest="75"
+                        HeightRequest="75"
                         BackgroundColor="Transparent"
+                        VerticalOptions="End"
+                        HorizontalOptions="Start"
 			            >
             <GraphicsView.GestureRecognizers>
 	            <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
 
 	        </GraphicsView.GestureRecognizers>
-	    </GraphicsView>
+	    </controls:CircularButton>
+
+        <!--<skiasharp:SKLottieView x:Name="CartLottie"
+	                            WidthRequest="100"
+				                HeightRequest="100"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                VerticalOptions="End"
+                                HorizontalOptions="Start"
+				                Source="69114-shopping-cart.json"
+				                BackgroundColor="{StaticResource Primary}">
+	
+            <skiasharp:SKLottieView.GestureRecognizers>
+	            <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
+
+	        </skiasharp:SKLottieView.GestureRecognizers>
+	    </skiasharp:SKLottieView>-->
 
     </Grid>
 

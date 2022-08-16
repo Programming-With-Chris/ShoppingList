@@ -83,8 +83,9 @@
   	  <None Remove="Microsoft.Data.Sqlite.Core" />
   	  <None Remove="sqlite-net-static" />
   	  <None Remove="Drawable\" />
-  	  <None Remove="Resources\Images\plus_solid.svg" />
   	  <None Remove="Resources\APIs\krogerapiconfig.json" />
+  	  <None Remove="Controls\" />
+  	  <None Remove="Resources\Images\plus_sign.png" />
   	</ItemGroup>
 
   	<ItemGroup>
@@ -95,6 +96,7 @@
 	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.403" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.59" />
 	  <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 	  <PackageReference Include="sqlite-net-static" Version="1.8.116" />
 	</ItemGroup>
@@ -144,10 +146,11 @@
 	<ItemGroup>
 	  <Folder Include="Resources\APIs\" />
 	  <Folder Include="Drawable\" />
+	  <Folder Include="Controls\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\plus_solid.svg" />
+	  <EmbeddedResource Include="Resources\Images\plus_sign.png" />
 	</ItemGroup>
 	
    <!-- <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
@@ -157,7 +160,4 @@
 		<ArchiveOnBuild>true</ArchiveOnBuild>
 		<TcpPort>58181</TcpPort>
 	</PropertyGroup>-->
-	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\plus_solid.svg" />
-	</ItemGroup>
 </Project>
