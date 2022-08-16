@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace ShoppingList.ViewModels;
@@ -8,6 +9,8 @@ public partial class UserListDetailViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
     readonly KrogerAPIService _krogerAPIService;
+
+    public bool PreventCheckEvent { get; set; } = false; 
 
     public UserListDetailViewModel()
     {
@@ -41,24 +44,6 @@ public partial class UserListDetailViewModel : BaseViewModel
     public bool isRefreshing; 
 
     [RelayCommand]
-    public async void CreateItem(UserList ul)
-    {
-        if (IsBusy)
-            return;
-
-        var newItem = new Item();
-        newItem.Name = "new item"; 
-        ul.Items.Add(newItem);
-        ul = ul;  
-
-        /*await Shell.Current.GoToAsync($"{nameof(ItemInput)}", true,
-            new Dictionary<string, object>
-            {
-                {"UserList", userList}
-            }); */
-    }
-
-    [RelayCommand]
     public async void GoBackToListScreen()
     {
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
@@ -80,8 +65,7 @@ public partial class UserListDetailViewModel : BaseViewModel
 
         ListSorter.SortUserListItems(userList); 
 
-        // Forces CollectionView to update on refresh, otherwise, it doesn't work!
-        UserList = UserList; 
+        UserListNotifers();
 
         IsRefreshing = false; 
     }
@@ -95,13 +79,12 @@ public partial class UserListDetailViewModel : BaseViewModel
 
     [RelayCommand]
     public void ItemWasChecked(Item item)
-    { 
+    {
         _itemService.UpdateItem(item);
 
         UserList.Items = ListSorter.SortUserListItems(userList);
 
-        //This forces on check to refresh collection view, but breaks opening a list for some reason
-        //UserList = UserList; 
+        //UserListNotifers();
 
     }
 
@@ -113,8 +96,8 @@ public partial class UserListDetailViewModel : BaseViewModel
 
         UserList.Items = ListSorter.SortUserListItems(userList);
 
-        UserList = UserList; 
-
+        //UserList = UserList;
+        UserListNotifers(); 
     }
 
     [RelayCommand]
@@ -167,8 +150,18 @@ public partial class UserListDetailViewModel : BaseViewModel
         ListSorter.SortUserListItems(userList);
 
 
-        UserList = UserList;
+        //UserList = UserList;
+        UserListNotifers();
 
+    }
+
+    private void UserListNotifers()
+    {
+        PreventCheckEvent = true; 
+        OnUserListChanged(UserList);
+        OnPropertyChanged(nameof(UserList));
+        OnPropertyChanged(nameof(UserList.Items));
+        PreventCheckEvent = false; 
     }
 }
 
