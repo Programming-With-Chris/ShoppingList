@@ -14,7 +14,7 @@
 
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Settings Test" 
+        <ShellContent Title="Settings" 
                       Route="SettingsView"
                       ContentTemplate="{DataTemplate views:SettingsView}"/>
         <!-- Had to remove Icon, it was causing issues on IOS, Settings page wouldn't route-->

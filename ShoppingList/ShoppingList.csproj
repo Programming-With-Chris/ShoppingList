@@ -19,7 +19,7 @@
 		<ApplicationTitle>ShoppingList</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>dev.programmingwithchris.ShoppingList</ApplicationId>
+    <ApplicationId>dev.programmingwithchris.ShoppingList</ApplicationId>
 		<ApplicationIdGuid>C035DD89-2C0B-4F47-AF16-ACCD775A25F9</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -32,7 +32,21 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-	</PropertyGroup>
+    <ProvisioningType>automatic</ProvisioningType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
+    <CodesignKey>Apple Development: Created via API (8TKY844XYR)</CodesignKey>
+    <CodesignProvision>VS: dev.programmingwithchris.ShoppingList Development</CodesignProvision>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+    <CodesignEntitlements />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">
+    <CodesignEntitlements />
+  </PropertyGroup>
 
 
   <!--<PropertyGroup Condition="$(TargetFramework) == 'net6.0'">
@@ -71,8 +85,6 @@
   	  <None Remove="Drawable\" />
   	  <None Remove="Resources\Images\plus_solid.svg" />
   	  <None Remove="Resources\APIs\krogerapiconfig.json" />
-  	  <None Remove="Platforms\iOS\Entitlements.plist" />
-  	  <None Remove="Platforms\iOS\Info.plist" />
   	</ItemGroup>
 
   	<ItemGroup>
@@ -82,6 +94,7 @@
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.403" />
 	  <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 	  <PackageReference Include="sqlite-net-static" Version="1.8.116" />
 	</ItemGroup>
@@ -134,8 +147,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Platforms\iOS\Entitlements.plist" />
-	  <EmbeddedResource Include="Platforms\iOS\Info.plist" />
 	  <EmbeddedResource Include="Resources\Images\plus_solid.svg" />
 	</ItemGroup>
 	

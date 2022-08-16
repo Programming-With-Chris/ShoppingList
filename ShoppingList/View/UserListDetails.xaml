@@ -20,23 +20,25 @@
     
     <Grid ColumnDefinitions="*,*,*"
           ColumnSpacing="3"
-          RowDefinitions="*,*,Auto">
+          RowDefinitions="*,Auto">
 
-        <RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
+        <!--<RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
                      CommandParameter="UserListCollectionView"
                      IsRefreshing="{Binding IsRefreshing}"
-		             Grid.Row="0">
+		             Grid.Row="0">-->
             <CollectionView ItemsSource="{Binding UserList.Items}"
                         CanReorderItems="True"
                         SelectionMode="None"
-                        x:Name="UserListCollectionView">
+                        x:Name="UserListCollectionView"
+                            Grid.ColumnSpan="3"
+                            Grid.Row="0">
                 
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Item">
                         <Grid Padding="10"
                           ColumnDefinitions="*,*,*"
                           RowDefinitions="*,Auto">
-                            <Frame Grid.ColumnSpan="2"
+                            <Frame Grid.ColumnSpan="3"
                                Padding="10"
                                Margin="0,0,0,10"
                                x:Name="ItemFrame"
@@ -71,6 +73,7 @@
                                            Grid.Row="1"
                                            Grid.Column="2"
                                            Grid.ColumnSpan="2"
+                                           HorizontalOptions="End"
 					                       />
                                     <!--<VerticalStackLayout Grid.Column="5"
                                                          Grid.Row="0"
@@ -95,7 +98,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </RefreshView>
+       <!-- </RefreshView>-->
 
        <GraphicsView   Drawable="{StaticResource circularButton}"
 			            Grid.Row="2"

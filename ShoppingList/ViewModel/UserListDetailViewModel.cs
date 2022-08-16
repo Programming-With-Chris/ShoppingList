@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-
-namespace ShoppingList.ViewModels;
+﻿namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
 public partial class UserListDetailViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
     readonly KrogerAPIService _krogerAPIService;
-
-    public bool PreventCheckEvent { get; set; } = false; 
 
     public UserListDetailViewModel()
     {
@@ -157,11 +151,9 @@ public partial class UserListDetailViewModel : BaseViewModel
 
     private void UserListNotifers()
     {
-        PreventCheckEvent = true; 
         OnUserListChanged(UserList);
         OnPropertyChanged(nameof(UserList));
         OnPropertyChanged(nameof(UserList.Items));
-        PreventCheckEvent = false; 
     }
 }
 

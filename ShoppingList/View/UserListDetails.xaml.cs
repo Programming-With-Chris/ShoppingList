@@ -39,8 +39,6 @@ public partial class UserListDetails : ContentPage
 
 	public void OnCheckboxClicked(object sender, CheckedChangedEventArgs e)
 	{
-		if (_ulvm.PreventCheckEvent == true)
-			return; 
 
 		CheckBox thisCheckbox = sender as CheckBox;
 
@@ -55,7 +53,7 @@ public partial class UserListDetails : ContentPage
 			currentFrame.FadeTo(1, 1000);
 
 		//thisCheckbox.CheckedChanged -= OnCheckboxClicked; 
-		//itemThatWasClicked.IsCompleted = thisCheckbox.IsChecked;
+		itemThatWasClicked.IsCompleted = thisCheckbox.IsChecked;
 		_ulvm.ItemWasChecked(itemThatWasClicked);
 		//thisCheckbox.CheckedChanged += OnCheckboxClicked; 
 
