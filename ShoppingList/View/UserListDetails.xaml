@@ -5,7 +5,6 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:drawables="clr-namespace:ShoppingList.Drawable"
              xmlns:controls="clr-namespace:ShoppingList.Controls"
-             xmlns:skiasharp="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails"
              Title="{Binding Title}">
@@ -21,6 +20,7 @@
           ColumnSpacing="3"
           RowDefinitions="*">
 
+        <!-- Refresh view doesn't work on iOS yet-->
         <!--<RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
                      CommandParameter="UserListCollectionView"
                      IsRefreshing="{Binding IsRefreshing}"
@@ -87,6 +87,8 @@
                         x:Name="CircularButton"
                         WidthRequest="75"
                         HeightRequest="75"
+                        Margin="15,0,0,0"
+                        ButtonColor="{StaticResource Primary}"
                         BackgroundColor="Transparent"
                         VerticalOptions="End"
                         HorizontalOptions="Start"

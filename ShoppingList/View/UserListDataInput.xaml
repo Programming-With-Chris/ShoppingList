@@ -60,11 +60,6 @@
             
         </StackLayout>
 
-        <Button Text="Create New List"
-                    IsEnabled="True"
-                    Command="{Binding UserListCompletedCommand}"
-                    Margin="8"
-                Grid.Row="1"/>
 
         <Button Text="Cancel"
                     IsEnabled="True"
@@ -72,6 +67,12 @@
                     Margin="8"
                 Grid.Row="1"
                 Grid.Column="2"/>
+
+        <Button Text="Create New List"
+                    IsEnabled="True"
+                    Command="{Binding UserListCompletedCommand}"
+                    Margin="8"
+                Grid.Row="1"/>
     </Grid>
 
 
