@@ -16,7 +16,7 @@ public class CircularButton : GraphicsView, IGraphicsView
 
 	public CircularButton()
 	{
-		var drawable = new ShoppingList.Drawable.CircularButton();
+		var drawable = new ShoppingList.Drawable.CircularButtonDrawable();
 		Drawable = drawable;
 	}
 
@@ -24,7 +24,7 @@ public class CircularButton : GraphicsView, IGraphicsView
 	{
         var control = (CircularButton)bindable;
         var buttonColor = control.ButtonColor;
-		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButton;
+		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButtonDrawable;
 		thisDrawable.ButtonColor = buttonColor;
         control.Invalidate();
     }
