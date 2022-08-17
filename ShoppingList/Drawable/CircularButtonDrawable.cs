@@ -4,7 +4,7 @@ using Microsoft.Maui.Graphics.Platform;
 
 namespace ShoppingList.Drawable;
 
-public class CircularButton : IDrawable
+public class CircularButtonDrawable : IDrawable
 {
     public Color StrokeColor { get; set; } = Colors.DarkGrey;
 

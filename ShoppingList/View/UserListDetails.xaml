@@ -10,10 +10,6 @@
              x:Class="ShoppingList.UserListDetails"
              Title="{Binding Title}">
 
-    <ContentPage.Resources>
-        <drawables:CircularButton x:Key="circularButton"/>
-    </ContentPage.Resources>
-
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
             />
