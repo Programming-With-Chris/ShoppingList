@@ -66,12 +66,13 @@
                     Command="{Binding CancelCommand}"
                     Margin="8"
                 Grid.Row="1"
-                Grid.Column="2"/>
+                Grid.Column="0"/>
 
         <Button Text="Create New List"
                     IsEnabled="True"
                     Command="{Binding UserListCompletedCommand}"
                     Margin="8"
+                    Grid.Column="1"
                 Grid.Row="1"/>
     </Grid>
 

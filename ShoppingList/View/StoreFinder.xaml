@@ -8,17 +8,17 @@
              Shell.PresentationMode="ModalAnimated"
              >
 
-    <Grid ColumnDefinitions="*,*"
-          RowDefinitions="Auto,*">
+    <Grid ColumnDefinitions="*,*,*"
+          RowDefinitions="Auto,*,Auto">
 
-        <VerticalStackLayout Grid.ColumnSpan="2">
+        <VerticalStackLayout Grid.ColumnSpan="3">
             <SearchBar Placeholder="Enter your zip code to find stores near you" 
                        SearchButtonPressed="OnSearchButtonPressed"
                        SearchCommandParameter="{Binding ZipSearched}"
                        Text="{Binding ZipSearched}"/>
         </VerticalStackLayout>
         <CollectionView Grid.Row="1"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="3"
                         ItemsSource="{Binding StoreNames}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -37,6 +37,11 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         
+        <Button Text="Cancel"
+                Grid.Row="2"
+                Grid.Column="1"
+                Command="{Binding CancelQueryCommand}"/>
+
     </Grid>
 
 </ContentPage>

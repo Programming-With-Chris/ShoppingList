@@ -58,11 +58,17 @@ public partial class StoreFinderViewModel : BaseViewModel
     [RelayCommand]
     public async void SetUserKroger(string selectedStoreName)
     {
-       var locationId = locations.FirstOrDefault(x => x.Value == selectedStoreName).Key;
+        var locationId = locations.FirstOrDefault(x => x.Value == selectedStoreName).Key;
 
-        Preferences.Set("KrogerStoreName", selectedStoreName); 
-        Preferences.Set("KrogerLocation", locationId); 
+        Preferences.Set("KrogerStoreName", selectedStoreName);
+        Preferences.Set("KrogerLocation", locationId);
 
-        await Shell.Current.GoToAsync($"..?KrogerLocation={locationId}&KrogerStoreName={selectedStoreName}"); 
+        await Shell.Current.GoToAsync($"..?KrogerLocation={locationId}&KrogerStoreName={selectedStoreName}");
+    }
+
+    [RelayCommand]
+    public async void CancelQuery()
+    {
+        await Shell.Current.GoToAsync($".."); 
     }
 }

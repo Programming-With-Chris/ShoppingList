@@ -43,8 +43,8 @@
         <Button Text="Get UserLists"
                 Command="{Binding GetUserListsCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                TextColor="{StaticResource Secondary}"
-                BackgroundColor="{StaticResource Primary}"
+                TextColor="{StaticResource Primary}"
+                BackgroundColor="{StaticResource Secondary}"
                 Grid.Row="1"
                 Margin="8"/>
 
@@ -52,8 +52,8 @@
         <Button Text="Create New List"
                 Command="{Binding CreateUserListCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                TextColor="{StaticResource Secondary}"
-                BackgroundColor="{StaticResource Primary}"
+                TextColor="{StaticResource Primary}"
+                BackgroundColor="{StaticResource Secondary}"
                 Grid.Row="1"
                 Grid.Column="3"
                 Margin="8"/>

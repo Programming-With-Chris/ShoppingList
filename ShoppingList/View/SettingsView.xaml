@@ -11,51 +11,61 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToMainCommand}"/>
     </Shell.BackButtonBehavior>
-    
-    <VerticalStackLayout Margin="0,35,50,25"
-                 Spacing="10">
 
-        <Border BackgroundColor="{StaticResource Secondary}">
-            <Label Text="List Sorting Settings" TextColor="{StaticResource Primary}"
-                   
-                   Margin="5,15,15,15"
-                   Padding="10"/>
-        </Border>
+    <Grid RowDefinitions="*,Auto"
+          ColumnDefinitions="*,*,*">
+        <VerticalStackLayout Margin="0,35,0,25"
+                     Spacing="10"
+                     Grid.ColumnSpan="3">
+
+            <Border BackgroundColor="{StaticResource Secondary}">
+                <Label Text="List Sorting Settings" TextColor="{StaticResource Primary}"
+                       
+                       Margin="5,15,15,15"
+                       Padding="10"/>
+            </Border>
+            
+            <HorizontalStackLayout
+                Margin="25,0,0,0"
+                Grid.ColumnSpan="3">
+                <Label Text="Start at back of store?"
+                       TextColor="{StaticResource Primary}"/>
+                <CheckBox IsChecked="{Binding StartAtBackOfStore}"
+                          Color="{StaticResource Primary}"
+                          HorizontalOptions="Center"
+                          Grid.Column="2"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Margin="25,0,0,0"
+                Grid.ColumnSpan="3">
+                <Label Text="Get Frozen Aisle Food Last?" 
+                       TextColor="{StaticResource Primary}"/>
+                <CheckBox IsChecked="{Binding FrozenFoodLast}" 
+                          Color="{StaticResource Primary}"
+                          Grid.Column="2"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Margin="25,0,0,0">
+                <Label Text="Default Kroger Location:"
+                       TextColor="{StaticResource Primary}"
+                       Margin="0,0,25,0"/>
+                <Label Text="{Binding KrogerStoreName}"
+                       TextColor="{StaticResource Primary}"
+                       >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenLocationFinderDialogCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+
+            </HorizontalStackLayout>
         
-        <HorizontalStackLayout
-            Margin="25,0,0,0">
-            <Label Text="Start at back of store?"
-                   TextColor="{StaticResource Primary}"/>
-            <CheckBox IsChecked="{Binding StartAtBackOfStore}"
-                      Color="{StaticResource Primary}"
-                      HorizontalOptions="End"/>
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout
-            Margin="25,0,0,0">
-            <Label Text="Get Frozen Aisle Food Last?" 
-                   TextColor="{StaticResource Primary}"/>
-            <CheckBox IsChecked="{Binding FrozenFoodLast}" 
-                      Color="{StaticResource Primary}"
-                      HorizontalOptions="End"/>
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout
-            Margin="25,0,0,0">
-            <Label Text="Default Kroger Location:"
-                   TextColor="{StaticResource Primary}"
-                   Margin="0,0,25,0"/>
-            <Label Text="{Binding KrogerStoreName}"
-                   TextColor="{StaticResource Primary}"
-                   >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenLocationFinderDialogCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>
+        </VerticalStackLayout>
 
 
-        </HorizontalStackLayout>
-        
-    </VerticalStackLayout>
+
+    </Grid>
 
 </ContentPage>

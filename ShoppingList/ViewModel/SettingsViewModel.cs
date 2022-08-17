@@ -62,4 +62,10 @@ public partial class SettingsViewModel : BaseViewModel
     {
         await Shell.Current.GoToAsync($"{nameof(StoreFinder)}"); 
     }
+
+    [RelayCommand]
+    public async void CancelQuery()
+    {
+        await Shell.Current.GoToAsync($".."); 
+    }
 }

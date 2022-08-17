@@ -106,14 +106,8 @@
 	  <Compile Update="View\StoreFinder.xaml.cs">
 	    <DependentUpon>StoreFinder.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="View\ItemDetail.xaml.cs">
-	    <DependentUpon>ItemDetail.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="View\SettingsView.xaml.cs">
 	    <DependentUpon>SettingsView.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="View\ItemInput.xaml.cs">
-	    <DependentUpon>ItemInput.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\UserListDataInput.xaml.cs">
 	    <DependentUpon>UserListDataInput.xaml</DependentUpon>
@@ -127,13 +121,7 @@
 	  <MauiXaml Update="View\StoreFinder.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\ItemDetail.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="View\SettingsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\ItemInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\UserListDataInput.xaml">
