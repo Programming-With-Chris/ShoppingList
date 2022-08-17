@@ -15,6 +15,8 @@ public class CircularButton : IDrawable
     public int Width { get; set; } = 0;
     public int Height { get; set; } = 0;
 
+    public Color ButtonColor { get; set; } = Colors.White; 
+
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
         canvas.StrokeColor = StrokeColor;
@@ -41,7 +43,7 @@ public class CircularButton : IDrawable
         }
         if (Image != null)
         {
-            canvas.FillColor = Colors.White; 
+            canvas.FillColor = this.ButtonColor; 
             canvas.FillCircle(centerOfCircle, limitingDim / 2);
             canvas.DrawImage(Image, dirtyRect.X + dirtyRect.Width / 4, dirtyRect.Y + dirtyRect.Height / 4, dirtyRect.Width / 2, dirtyRect.Height / 2); 
         }
