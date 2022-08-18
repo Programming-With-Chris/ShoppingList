@@ -70,65 +70,33 @@ public partial class SettingsViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public void UpdatePrimaryColorPressed(string colorName)
+    public void UpdatePrimaryColorPressed(string themeName)
     {
-        Color colorSelected;
-        Color newPrimary;
-        Color newSecondary;
-        Color newTertiary;
-        Color newBackground; 
-
-        var wasSuccessfulColor = Color.TryParse(colorName, out colorSelected);
-        var theme = Application.Current.RequestedTheme; 
-
-        if (theme == AppTheme.Light)
-        {
-
-        }
-
-        switch (colorName)
-        {
-            case "CadetBlue":
-                newPrimary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newSecondary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newTertiary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newBackground = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                break;
-            case "Pink":
-                newPrimary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newSecondary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newTertiary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newBackground = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                break;
-            case "MediumPurple":
-                newPrimary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newSecondary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newTertiary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newBackground = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                break;
-            case "WhiteSmoke":
-                newPrimary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newSecondary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newTertiary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newBackground = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                break;
-            default:
-                newPrimary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newSecondary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newTertiary = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                newBackground = theme == AppTheme.Light ? Colors.CadetBlue : Colors.CadetBlue;
-                break;
-
-        }
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         if (mergedDictionaries != null)
         {
             foreach(ResourceDictionary dictionaries in mergedDictionaries)
             {
-                dictionaries["Primary"] = newPrimary;
-                dictionaries["Secondary"] = newSecondary;
-                dictionaries["Tertiary"] = newTertiary;
-                dictionaries["BackgroundLight"] = newBackground;
+                var primaryFound = dictionaries.TryGetValue(themeName + "Primary", out var primary);
+                if (primaryFound)
+                    dictionaries["Primary"] = primary; 
+
+                var secondaryFound = dictionaries.TryGetValue(themeName + "Secondary", out var secondary);
+                if (secondaryFound)
+                    dictionaries["Secondary"] = secondary; 
+
+                var tertiaryFound = dictionaries.TryGetValue(themeName + "Tertiary", out var tertiary);
+                if (tertiaryFound)
+                    dictionaries["Tertiary"] = tertiary; 
+
+                var accentFound = dictionaries.TryGetValue(themeName + "Accent", out var accent);
+                if (accentFound)
+                    dictionaries["Accent"] = accent; 
+                
+                var darkAccentFound = dictionaries.TryGetValue(themeName + "DarkAccent", out var darkAccent);
+                if (darkAccentFound)
+                    dictionaries["DarkAccent"] = darkAccent; 
+
 
             }
         }

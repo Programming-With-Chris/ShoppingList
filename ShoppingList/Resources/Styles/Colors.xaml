@@ -21,6 +21,31 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
+
+    <!-- My color themes -->
+
+    <!-- Nautical -->
+    <Color x:Key="NauticalPrimary">#0081A7</Color>
+    <Color x:Key="NauticalSecondary">#00AFB9</Color>
+    <Color x:Key="NauticalTertiary">#FDFCDC</Color>
+    <Color x:Key="NauticalAccent">#FED9B7</Color>
+    <Color x:Key="NauticalDarkAccent">#F07167</Color>
+
+    <!-- Neon -->
+    <Color x:Key="NeonPrimary">#0AFFC2</Color>
+    <Color x:Key="NeonSecondary">#00CCF5</Color>
+    <Color x:Key="NeonTertiary">#FF7700</Color>
+    <Color x:Key="NeonAccent">#F50076</Color>
+    <Color x:Key="NeonDarkAccent">#FFCF00</Color>
+
+    <!-- Striking -->
+    <Color x:Key="StrikingPrimary">#3D5A80</Color>
+    <Color x:Key="StrikingSecondary">#98C1D9</Color>
+    <Color x:Key="StrikingTertiary">#E0FBFC</Color>
+    <Color x:Key="StrikingAccent">#EE6C4D</Color>
+    <Color x:Key="StrikingDarkAccent">#293241</Color>
+
+
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
