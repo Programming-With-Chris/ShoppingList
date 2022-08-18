@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
-             xmlns:drawables="clr-namespace:ShoppingList.Drawable"
              xmlns:controls="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails"
@@ -81,15 +80,17 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
        <!-- </RefreshView>-->
-       <controls:CircularButton  
+       
+	    <controls:CircularButton  
 			            Grid.Row="0"
 			            Grid.Column="2"
-                        x:Name="CircularButton"
+                        x:Name="NewItemButton"
                         WidthRequest="75"
                         HeightRequest="75"
                         Margin="0,0,40,20"
-                        ButtonColor="{StaticResource Secondary}"
+                        ButtonColor="{StaticResource Primary}"
                         BackgroundColor="Transparent"
+                        Image="plus_sign.png"
                         VerticalOptions="End"
                         HorizontalOptions="End"
 			            >
@@ -99,6 +100,27 @@
 	        </GraphicsView.GestureRecognizers>
 	    </controls:CircularButton>
 
+       
+	    <controls:CircularButton  
+			            Grid.Row="0"
+			            Grid.Column="0"
+                        x:Name="UndoButton"
+                        WidthRequest="75"
+                        HeightRequest="75"
+                        Margin="20,40,0,0"
+                        ButtonColor="{StaticResource Primary}"
+                        BackgroundColor="Transparent"
+                        Image="undo.png"
+                        VerticalOptions="End"
+                        HorizontalOptions="Start"
+                        IsEnabled="{Binding HasUndo}"
+                        IsVisible="{Binding HasUndo}"
+			            >
+            <GraphicsView.GestureRecognizers>
+	            <TapGestureRecognizer Command="{Binding UndoButtonPressedCommand}"/>
+
+	        </GraphicsView.GestureRecognizers>
+	    </controls:CircularButton>
         <!--<skiasharp:SKLottieView x:Name="CartLottie"
 	                            WidthRequest="100"
 				                HeightRequest="100"

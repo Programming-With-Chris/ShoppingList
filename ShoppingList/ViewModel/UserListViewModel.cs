@@ -38,10 +38,10 @@ public partial class UserListViewModel : BaseViewModel
         }
     }  
 
-    public UserListViewModel(UserListService uls)
+    public UserListViewModel(UserListService userListService, ItemService itemService)
     {
-        _uls = uls;
-        _itemService = new();
+        _uls = userListService;
+        _itemService = itemService;
         Title = "My Shopping Lists"; 
     }
 

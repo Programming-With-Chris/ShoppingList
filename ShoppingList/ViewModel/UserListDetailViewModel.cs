@@ -1,23 +1,30 @@
-﻿namespace ShoppingList.ViewModels;
+﻿using System.Timers;
+
+namespace ShoppingList.ViewModels;
 
 [QueryProperty("UserList", "UserList")]
 public partial class UserListDetailViewModel : BaseViewModel
 {
     readonly ItemService _itemService;
     readonly KrogerAPIService _krogerAPIService;
+    
+    System.Timers.Timer undoTimer; 
+    Stack<Item> undoItemBuffer; 
 
-    public UserListDetailViewModel()
+    public UserListDetailViewModel(ItemService itemService, KrogerAPIService krogerAPIService)
     {
-        _itemService = new();
-        _krogerAPIService = new();
-        newItemName = " + ";
+        _itemService = itemService;
+        _krogerAPIService = krogerAPIService;
+        undoItemBuffer = new Stack<Item>(); 
 
+        undoTimer = new System.Timers.Timer(5000);
+        undoTimer.Elapsed += new ElapsedEventHandler(UndoTimerTick); 
     }
 
     UserList userList;
 
     [ObservableProperty]
-    string newItemName; 
+    string newItemName;
 
 
     public UserList UserList
@@ -35,7 +42,11 @@ public partial class UserListDetailViewModel : BaseViewModel
     }
 
     [ObservableProperty]
-    public bool isRefreshing; 
+    public bool isRefreshing;
+
+    [ObservableProperty]
+    public bool hasUndo;
+
 
     [RelayCommand]
     public async void GoBackToListScreen()
@@ -82,17 +93,6 @@ public partial class UserListDetailViewModel : BaseViewModel
 
     }
 
-    [RelayCommand]
-    public void DeleteItem(Item item)
-    {
-        _itemService.DeleteItem(item);
-        UserList.Items.Remove(item); 
-
-        UserList.Items = ListSorter.SortUserListItems(userList);
-
-        //UserList = UserList;
-        UserListNotifers(); 
-    }
 
     [RelayCommand]
     public async void NewItemDialog()
@@ -149,12 +149,69 @@ public partial class UserListDetailViewModel : BaseViewModel
 
     }
 
+    [RelayCommand]
+    public void DeleteItem(Item item)
+    {
+        undoItemBuffer.Push(item); 
+
+        _itemService.DeleteItem(item);
+        UserList.Items.Remove(item); 
+
+        UserList.Items = ListSorter.SortUserListItems(userList);
+
+
+        HasUndo = true;
+        // We stop and restart the timer in case they delete things back to back, it won't take 
+        // away the button after 5 seconds from the first delete
+        undoTimer.Stop();
+        undoTimer.Start();
+
+        UserListNotifers(); 
+    }
+
+    [RelayCommand]
+    public void UndoButtonPressed()
+    {
+        //restart the timer on press, to extend the time they can press it
+        undoTimer.Stop();
+        undoTimer.Start();
+
+
+        Item undoneItem; 
+        var wasUndone = undoItemBuffer.TryPop(out undoneItem); 
+
+        if (wasUndone)
+        {
+            undoneItem = _itemService.CreateItem(undoneItem);
+            undoneItem.LocationData.ParentId = undoneItem.Id;
+
+            UserList.Items.Add(undoneItem);
+            UserListNotifers(); 
+	    }
+        else
+        { 
+	        //maybe an error toast or something here
+	    }
+
+    
+    }
+
     private void UserListNotifers()
     {
         OnUserListChanged(UserList);
         OnPropertyChanged(nameof(UserList));
         OnPropertyChanged(nameof(UserList.Items));
     }
+
+    private void UndoTimerTick(object sender, EventArgs e)
+    {
+        HasUndo = false;
+        undoTimer.Stop();
+    
+    }
+
+    
+
 }
 
 

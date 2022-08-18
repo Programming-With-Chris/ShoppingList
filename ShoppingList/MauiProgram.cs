@@ -18,7 +18,9 @@ public static class MauiProgram
 				fonts.AddFont("Font Awesome 6 Free-Regular-400.otf");
 			});
 
-		builder.Services.AddSingleton<UserListService>();
+		builder.Services.AddSingleton<ItemService>(); 
+		builder.Services.AddSingleton<UserListService>(); 
+		builder.Services.AddSingleton<KrogerAPIService>(); 
 		builder.Services.AddSingleton<UserListViewModel>(); 
 		builder.Services.AddTransient<UserListDetailViewModel>(); 
 		builder.Services.AddTransient<UserListDataInputViewModel>(); 

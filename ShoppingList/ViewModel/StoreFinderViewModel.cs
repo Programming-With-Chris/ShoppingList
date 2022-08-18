@@ -19,9 +19,9 @@ public partial class StoreFinderViewModel : BaseViewModel
     string zipSearched; 
 
 
-    public StoreFinderViewModel()
+    public StoreFinderViewModel(KrogerAPIService krogerAPIService)
     {
-        _kapis = new KrogerAPIService();
+        _kapis = krogerAPIService;
     }
 
     [RelayCommand]
