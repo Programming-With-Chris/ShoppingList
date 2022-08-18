@@ -18,13 +18,13 @@
 
             <Entry Text="{Binding UlName}" 
                    MaxLength="20"
-                   Style="{StaticResource CommonEntryStyle}"
+                   Style="{DynamicResource CommonEntryStyle}"
                    ReturnCommand="{Binding UserListCompletedCommand}"
                    Placeholder="List Name"/>
 
             <Entry Text="{Binding UlTargetStore}"
                    MaxLength="20"
-                   Style="{StaticResource CommonEntryStyle}"
+                   Style="{DynamicResource CommonEntryStyle}"
                    Placeholder="The Store you want to use this list for?"
                    ReturnCommand="{Binding UserListCompletedCommand}"/>
 
@@ -33,12 +33,12 @@
                 Grid.ColumnSpan="2">
 
                 <Label Text="Type of List: "
-                      TextColor="{StaticResource Primary}"
+                      TextColor="{DynamicResource Primary}"
                        Margin="0,5,5,0"/>
                 
                 <Picker ItemsSource="{Binding TypeList}"
                         SelectedIndexChanged="Picker_SelectedIndexChanged"
-                        TextColor="{StaticResource Primary}"
+                        TextColor="{DynamicResource Primary}"
                         FontSize="15"
                         SelectedIndex="1"
                         x:Name="TypeOfListPicker"
@@ -49,11 +49,11 @@
 
             <HorizontalStackLayout>
                 <Label Text="Pre-populate list with Items from last time?"
-                       TextColor="{StaticResource Primary}"
+                       TextColor="{DynamicResource Primary}"
                        Padding="10"/>
                 
                 <CheckBox IsChecked="{Binding PrepopulateList, Mode=TwoWay}"
-                          Color="{StaticResource Primary}"
+                          Color="{DynamicResource Primary}"
                           CheckedChanged="CheckBox_CheckedChanged"/>
                 
             </HorizontalStackLayout>

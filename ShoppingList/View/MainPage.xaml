@@ -29,9 +29,11 @@
                             </Frame.GestureRecognizers>
                             <VerticalStackLayout>
                                 <Label Text="{Binding Name}"
-                                       FontSize="Medium"/>
+                                       FontSize="Medium"
+                                       TextColor="{DynamicResource Secondary}"/>
                                 <Label Text="{Binding Type}"
                                        FontSize="Micro"
+                                       TextColor="{DynamicResource Secondary}"
                                        Margin="25,0,0,0"/>
                             </VerticalStackLayout>
                         </Frame>
@@ -43,8 +45,8 @@
         <Button Text="Get UserLists"
                 Command="{Binding GetUserListsCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                TextColor="{StaticResource Primary}"
-                BackgroundColor="{StaticResource Secondary}"
+                TextColor="{DynamicResource Primary}"
+                BackgroundColor="{DynamicResource Secondary}"
                 Grid.Row="1"
                 Margin="8"/>
 
@@ -52,8 +54,8 @@
         <Button Text="Create New List"
                 Command="{Binding CreateUserListCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                TextColor="{StaticResource Primary}"
-                BackgroundColor="{StaticResource Secondary}"
+                TextColor="{DynamicResource Primary}"
+                BackgroundColor="{DynamicResource Secondary}"
                 Grid.Row="1"
                 Grid.Column="3"
                 Margin="8"/>

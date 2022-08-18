@@ -6,7 +6,8 @@
              xmlns:controls="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             >
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
@@ -55,7 +56,7 @@
                                   Grid.RowSpan="2"
                                   Padding="1"
                                   Margin="1">
-                                    <CheckBox Color="{StaticResource Secondary}" 
+                                    <CheckBox Color="{DynamicResource Secondary}" 
                                                   x:DataType="model:Item"
                                                   BindingContext="{x:Reference ItemFrame}"
                                                   IsChecked="{Binding IsCompleted, Source={RelativeSource AncestorType={x:Type model:Item}}}"
@@ -63,11 +64,11 @@
                                                   Grid.Row="1"
                                                   Grid.RowSpan="2"
                                                   Grid.Column="0" />
-                                    <Label Text="{Binding Name}"
+                                <Label Text="{Binding Name}"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            Grid.RowSpan="1"/>
-                                    <Label Text="{Binding Aisle}"
+                                <Label Text="{Binding Aisle}"
                                            Grid.Row="1"
                                            Grid.Column="2"
                                            Grid.ColumnSpan="2"
@@ -80,35 +81,36 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
        <!-- </RefreshView>-->
-       
-	    <controls:CircularButton  
+
+        <Grid   Grid.ColumnSpan="3"
+                ColumnDefinitions="*,*,*"
+                Padding="45">
+            <controls:CircularButton  
 			            Grid.Row="0"
 			            Grid.Column="2"
                         x:Name="NewItemButton"
                         WidthRequest="75"
                         HeightRequest="75"
-                        Margin="0,0,40,20"
-                        ButtonColor="{StaticResource Primary}"
+                        ButtonColor="{StaticResource Secondary}"
                         BackgroundColor="Transparent"
                         Image="plus_sign.png"
                         VerticalOptions="End"
                         HorizontalOptions="End"
 			            >
-            <GraphicsView.GestureRecognizers>
-	            <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
+                <GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
 
-	        </GraphicsView.GestureRecognizers>
-	    </controls:CircularButton>
+                </GraphicsView.GestureRecognizers>
+            </controls:CircularButton>
 
-       
-	    <controls:CircularButton  
+
+            <controls:CircularButton  
 			            Grid.Row="0"
 			            Grid.Column="0"
                         x:Name="UndoButton"
                         WidthRequest="75"
                         HeightRequest="75"
-                        Margin="20,40,0,0"
-                        ButtonColor="{StaticResource Primary}"
+                        ButtonColor="{StaticResource Secondary}"
                         BackgroundColor="Transparent"
                         Image="undo.png"
                         VerticalOptions="End"
@@ -116,12 +118,12 @@
                         IsEnabled="{Binding HasUndo}"
                         IsVisible="{Binding HasUndo}"
 			            >
-            <GraphicsView.GestureRecognizers>
-	            <TapGestureRecognizer Command="{Binding UndoButtonPressedCommand}"/>
+                <GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding UndoButtonPressedCommand}"/>
 
-	        </GraphicsView.GestureRecognizers>
-	    </controls:CircularButton>
-        <!--<skiasharp:SKLottieView x:Name="CartLottie"
+                </GraphicsView.GestureRecognizers>
+            </controls:CircularButton>
+            <!--<skiasharp:SKLottieView x:Name="CartLottie"
 	                            WidthRequest="100"
 				                HeightRequest="100"
                                 Grid.Row="0"
@@ -129,14 +131,14 @@
                                 VerticalOptions="End"
                                 HorizontalOptions="Start"
 				                Source="69114-shopping-cart.json"
-				                BackgroundColor="{StaticResource Primary}">
+				                BackgroundColor="{DynamicResource Primary}">
 	
             <skiasharp:SKLottieView.GestureRecognizers>
 	            <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
 
 	        </skiasharp:SKLottieView.GestureRecognizers>
 	    </skiasharp:SKLottieView>-->
-
+        </Grid>
     </Grid>
 
 </ContentPage>

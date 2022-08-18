@@ -11,5 +11,7 @@ public partial class SettingsView : ContentPage
 		BindingContext = settingsViewModel;
 
 	}
+
+
 }
 

@@ -31,7 +31,7 @@
                                 CommandParameter="{Binding .}"/>
 
                         <Label Text="{Binding .}"
-                               TextColor="{StaticResource Primary}"/>
+                               TextColor="{DynamicResource Primary}"/>
                     </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

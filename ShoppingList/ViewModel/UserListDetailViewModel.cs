@@ -15,7 +15,9 @@ public partial class UserListDetailViewModel : BaseViewModel
     {
         _itemService = itemService;
         _krogerAPIService = krogerAPIService;
-        undoItemBuffer = new Stack<Item>(); 
+        undoItemBuffer = new Stack<Item>();
+
+        Console.Write("Test Output");
 
         undoTimer = new System.Timers.Timer(5000);
         undoTimer.Elapsed += new ElapsedEventHandler(UndoTimerTick); 
@@ -160,7 +162,7 @@ public partial class UserListDetailViewModel : BaseViewModel
         UserList.Items = ListSorter.SortUserListItems(userList);
 
 
-        HasUndo = true;
+        HasUndo = true; 
         // We stop and restart the timer in case they delete things back to back, it won't take 
         // away the button after 5 seconds from the first delete
         undoTimer.Stop();

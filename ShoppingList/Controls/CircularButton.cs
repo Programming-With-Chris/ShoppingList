@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using IImage = Microsoft.Maui.Graphics.IImage;
 
 namespace ShoppingList.Controls;
@@ -38,7 +39,8 @@ public class CircularButton : GraphicsView
 		nameof(Image), typeof(string), typeof(CircularButton), propertyChanged: OnImageChanged); 
 
 	public new BindableProperty IsVisibleProperty = BindableProperty.Create(
-		nameof(IsVisible), typeof(bool), typeof(CircularButton), propertyChanged: OnIsVisibleChanged); 
+		nameof(IsVisible), typeof(bool), typeof(CircularButton),
+		propertyChanging: OnIsVisibleChanged); 
 
 	public CircularButton()
 	{
@@ -69,19 +71,17 @@ public class CircularButton : GraphicsView
     {
 		var control = (CircularButton)bindable;
 
-		//var newValueAsBool = (bool)newValue; 
+		//thisDrawable.SetInvisible = !(bool)newValue;
+		//control.Invalidate(); 
+		var newValueAsBool = (bool)newValue; 
 
-	//	if ( == true)
-	//	{
-	//		control.FadeTo(1, 2000); 
-	//	} else 
-	//	{
-	//		control.FadeTo(0, 4000); 
-	//	}
+		if (newValueAsBool == true)
+		{
+			control.FadeTo(1, 2000); 
+		} else 
+		{
+			control.FadeTo(0, 4000); 
+		}
 
-		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButtonDrawable;
-		//thisDrawable.SetInvisible = (bool)newValue;
-		control.Invalidate(); 
     }
-
 }

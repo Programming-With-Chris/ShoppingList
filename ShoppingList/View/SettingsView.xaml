@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             xmlns:control="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:SettingsViewModel"
              x:Class="ShoppingList.SettingsView"
              Shell.PresentationMode="Animated"
@@ -18,8 +19,8 @@
                      Spacing="10"
                      Grid.ColumnSpan="3">
 
-            <Border BackgroundColor="{StaticResource Secondary}">
-                <Label Text="List Sorting Settings" TextColor="{StaticResource Primary}"
+            <Border BackgroundColor="{DynamicResource Secondary}">
+                <Label Text="List Sorting Settings"
                        
                        Margin="5,15,15,15"
                        Padding="10"/>
@@ -28,10 +29,9 @@
             <HorizontalStackLayout
                 Margin="25,0,0,0"
                 Grid.ColumnSpan="3">
-                <Label Text="Start at back of store?"
-                       TextColor="{StaticResource Primary}"/>
+                <Label Text="Start at back of store?"/>
                 <CheckBox IsChecked="{Binding StartAtBackOfStore}"
-                          Color="{StaticResource Primary}"
+                          Color="{DynamicResource Primary}"
                           HorizontalOptions="Center"
                           Grid.Column="2"/>
             </HorizontalStackLayout>
@@ -39,20 +39,17 @@
             <HorizontalStackLayout
                 Margin="25,0,0,0"
                 Grid.ColumnSpan="3">
-                <Label Text="Get Frozen Aisle Food Last?" 
-                       TextColor="{StaticResource Primary}"/>
+                <Label Text="Get Frozen Aisle Food Last?" />
                 <CheckBox IsChecked="{Binding FrozenFoodLast}" 
-                          Color="{StaticResource Primary}"
+                          Color="{DynamicResource Primary}"
                           Grid.Column="2"/>
             </HorizontalStackLayout>
 
             <HorizontalStackLayout
                 Margin="25,0,0,0">
                 <Label Text="Default Kroger Location:"
-                       TextColor="{StaticResource Primary}"
                        Margin="0,0,25,0"/>
                 <Label Text="{Binding KrogerStoreName}"
-                       TextColor="{StaticResource Primary}"
                        >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OpenLocationFinderDialogCommand}"/>
@@ -62,6 +59,70 @@
 
             </HorizontalStackLayout>
         
+            <Border BackgroundColor="{DynamicResource Secondary}" Margin="0,25,0,0">
+                <Label Text="List Sorting Settings" 
+                       Margin="5,15,15,15"
+                       Padding="10"/>
+            </Border>
+
+            <Label  Margin="25,0,0,0"
+                    Text="Primary Theme Color:"
+                    >
+            </Label>
+
+            <HorizontalStackLayout Padding="25"
+                                   Margin="25,0,0,0">
+                <control:CircularButton ButtonColor="CadetBlue"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        x:Name="CadetBlueButton">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="CadetBlue"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="Pink"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        x:Name="PinkButton">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="Pink"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="MediumPurple"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        x:Name="MediumPurpleButton">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="MediumPurple"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="WhiteSmoke"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        x:Name="WhiteSmokeButton">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="WhiteSmoke"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                
+            </HorizontalStackLayout>
+
         </VerticalStackLayout>
 
 
