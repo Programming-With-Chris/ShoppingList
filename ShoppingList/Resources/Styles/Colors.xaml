@@ -27,7 +27,7 @@
     <!-- Nautical -->
     <Color x:Key="NauticalPrimary">#0081A7</Color>
     <Color x:Key="NauticalSecondary">#00AFB9</Color>
-    <Color x:Key="NauticalTertiary">#FDFCDC</Color>
+    <Color x:Key="NauticalTertiary">#d9512b</Color>
     <Color x:Key="NauticalAccent">#FED9B7</Color>
     <Color x:Key="NauticalDarkAccent">#F07167</Color>
 
@@ -45,7 +45,21 @@
     <Color x:Key="StrikingAccent">#EE6C4D</Color>
     <Color x:Key="StrikingDarkAccent">#293241</Color>
 
+    <!-- Muted -->
+    <Color x:Key="MutedPrimary">#355070</Color>
+    <Color x:Key="MutedSecondary">#6D597A</Color>
+    <Color x:Key="MutedTertiary">#B56576</Color>
+    <Color x:Key="MutedAccent">#E56B6F</Color>
+    <Color x:Key="MutedDarkAccent">#EAAC8B</Color>
 
+    <!-- Pretty -->
+    <Color x:Key="PrettyPrimary">#AF99FF</Color>
+    <Color x:Key="PrettySecondary">#CAADFF</Color>
+    <Color x:Key="PrettyTertiary">#FFC2E2</Color>
+    <Color x:Key="PrettyAccent">#FFADC7</Color>
+    <Color x:Key="PrettyDarkAccent">#FF99B6</Color>
+
+    
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>

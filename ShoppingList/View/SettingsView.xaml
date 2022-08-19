@@ -6,6 +6,7 @@
              xmlns:control="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:SettingsViewModel"
              x:Class="ShoppingList.SettingsView"
+             BackgroundColor="{DynamicResource Secondary}"
              Shell.PresentationMode="Animated"
              >
 
@@ -19,9 +20,9 @@
                      Spacing="10"
                      Grid.ColumnSpan="3">
 
-            <Border BackgroundColor="{DynamicResource Secondary}">
+            <Border BackgroundColor="{DynamicResource Primary}"
+                    >
                 <Label Text="List Sorting Settings"
-                       
                        Margin="5,15,15,15"
                        Padding="10"/>
             </Border>
@@ -31,7 +32,7 @@
                 Grid.ColumnSpan="3">
                 <Label Text="Start at back of store?"/>
                 <CheckBox IsChecked="{Binding StartAtBackOfStore}"
-                          Color="{DynamicResource Primary}"
+                          Color="{DynamicResource Tertiary}"
                           HorizontalOptions="Center"
                           Grid.Column="2"/>
             </HorizontalStackLayout>
@@ -41,7 +42,7 @@
                 Grid.ColumnSpan="3">
                 <Label Text="Get Frozen Aisle Food Last?" />
                 <CheckBox IsChecked="{Binding FrozenFoodLast}" 
-                          Color="{DynamicResource Primary}"
+                          Color="{DynamicResource Tertiary}"
                           Grid.Column="2"/>
             </HorizontalStackLayout>
 
@@ -59,7 +60,7 @@
 
             </HorizontalStackLayout>
         
-            <Border BackgroundColor="{DynamicResource Secondary}" Margin="0,25,0,0">
+            <Border BackgroundColor="{DynamicResource Primary}" Margin="0,25,0,0">
                 <Label Text="List Sorting Settings" 
                        Margin="5,15,15,15"
                        Padding="10"/>
@@ -106,6 +107,30 @@
                     <control:CircularButton.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
                                               CommandParameter="Striking"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="{StaticResource MutedPrimary}"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        x:Name="Muted">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="Muted"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="{StaticResource PrettyPrimary}"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        x:Name="Pretty">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="Pretty"/>
                     </control:CircularButton.GestureRecognizers>
                     
                 </control:CircularButton>

@@ -6,6 +6,7 @@
              xmlns:controls="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:UserListDetailViewModel"
              x:Class="ShoppingList.UserListDetails"
+             BackgroundColor="{DynamicResource Secondary}"
              Title="{Binding Title}"
              >
 
@@ -26,7 +27,7 @@
                      IsRefreshing="{Binding IsRefreshing}"
 		             Grid.Row="0">-->
             <CollectionView ItemsSource="{Binding UserList.Items}"
-                        CanReorderItems="True"
+                        CanReorderItems="False"
                         SelectionMode="None"
                         x:Name="UserListCollectionView"
                             Grid.ColumnSpan="3"
@@ -37,6 +38,17 @@
                         <Grid Padding="10"
                           ColumnDefinitions="*,*,*"
                           RowDefinitions="*,Auto">
+                    <SwipeView Grid.ColumnSpan="3">
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem  IconImageSource="delete.png"
+                                            BackgroundColor="{DynamicResource DarkAccent}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=DeleteItemCommand}"
+                                            CommandParameter="{Binding .}"
+                                            >
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
                             <Frame Grid.ColumnSpan="3"
                                Padding="10"
                                Margin="0,0,0,10"
@@ -46,9 +58,9 @@
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=GoToItemDetailCommand}"/>
 
-                                    <SwipeGestureRecognizer CommandParameter="{Binding .}"
+                                    <!--<SwipeGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=DeleteItemCommand}"
-                                                            Direction="Right"/>
+                                                            Direction="Right"/>-->
                                 </Frame.GestureRecognizers>
                                 <Grid ColumnDefinitions="Auto,*,*"
                                   RowDefinitions="*,Auto"
@@ -56,7 +68,7 @@
                                   Grid.RowSpan="2"
                                   Padding="1"
                                   Margin="1">
-                                    <CheckBox Color="{DynamicResource Secondary}" 
+                                    <CheckBox Color="{DynamicResource Tertiary}" 
                                                   x:DataType="model:Item"
                                                   BindingContext="{x:Reference ItemFrame}"
                                                   IsChecked="{Binding IsCompleted, Source={RelativeSource AncestorType={x:Type model:Item}}}"
@@ -64,11 +76,11 @@
                                                   Grid.Row="1"
                                                   Grid.RowSpan="2"
                                                   Grid.Column="0" />
-                                <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Name}"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            Grid.RowSpan="1"/>
-                                <Label Text="{Binding Aisle}"
+                                    <Label Text="{Binding Aisle}"
                                            Grid.Row="1"
                                            Grid.Column="2"
                                            Grid.ColumnSpan="2"
@@ -76,8 +88,9 @@
 					                       />
                                 </Grid>
                             </Frame>
+                    </SwipeView>
                         </Grid>
-                    </DataTemplate>
+                </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
        <!-- </RefreshView>-->
@@ -91,7 +104,7 @@
                         x:Name="NewItemButton"
                         WidthRequest="75"
                         HeightRequest="75"
-                        ButtonColor="{StaticResource Secondary}"
+                        ButtonColor="{StaticResource Tertiary}"
                         BackgroundColor="Transparent"
                         Image="plus_sign.png"
                         VerticalOptions="End"
@@ -110,7 +123,7 @@
                         x:Name="UndoButton"
                         WidthRequest="75"
                         HeightRequest="75"
-                        ButtonColor="{StaticResource Secondary}"
+                        ButtonColor="{StaticResource Tertiary}"
                         BackgroundColor="Transparent"
                         Image="undo.png"
                         VerticalOptions="End"

@@ -72,6 +72,8 @@ public partial class SettingsViewModel : BaseViewModel
     [RelayCommand]
     public void UpdatePrimaryColorPressed(string themeName)
     {
+        Preferences.Set("Theme", themeName); 
+
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         if (mergedDictionaries != null)
         {

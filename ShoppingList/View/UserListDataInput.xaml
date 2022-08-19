@@ -5,6 +5,7 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              x:DataType="viewmodel:UserListDataInputViewModel"
              x:Class="ShoppingList.UserListDataInput"
+             BackgroundColor="{DynamicResource Secondary}"
              Shell.PresentationMode="Animated"
              >
 
@@ -49,11 +50,11 @@
 
             <HorizontalStackLayout>
                 <Label Text="Pre-populate list with Items from last time?"
-                       TextColor="{DynamicResource Primary}"
+                          TextColor="{DynamicResource Tertiary}"
                        Padding="10"/>
                 
                 <CheckBox IsChecked="{Binding PrepopulateList, Mode=TwoWay}"
-                          Color="{DynamicResource Primary}"
+                          Color="{DynamicResource Tertiary}"
                           CheckedChanged="CheckBox_CheckedChanged"/>
                 
             </HorizontalStackLayout>
@@ -64,13 +65,15 @@
         <Button Text="Cancel"
                     IsEnabled="True"
                     Command="{Binding CancelCommand}"
+                    BackgroundColor="{DynamicResource Primary}"
                     Margin="8"
-                Grid.Row="1"
-                Grid.Column="0"/>
+                    Grid.Row="1"
+                    Grid.Column="0"/>
 
         <Button Text="Create New List"
                     IsEnabled="True"
                     Command="{Binding UserListCompletedCommand}"
+                    BackgroundColor="{DynamicResource Primary}"
                     Margin="8"
                     Grid.Column="1"
                 Grid.Row="1"/>

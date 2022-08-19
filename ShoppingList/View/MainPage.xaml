@@ -5,6 +5,7 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              x:DataType="viewmodel:UserListViewModel"
              Title="{Binding Title}"
+             BackgroundColor="{DynamicResource Secondary}"
              x:Class="ShoppingList.MainPage">
 
     <Grid ColumnDefinitions="*,*"
@@ -17,26 +18,38 @@
             <CollectionView.ItemTemplate >
                 <DataTemplate x:DataType="model:UserList">
                     <Grid Padding="10">
-                        <Frame>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                        <SwipeView Grid.ColumnSpan="3">
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem  Text="Delete"
+                                            IconImageSource="delete.png"
+                                            BackgroundColor="{DynamicResource DarkAccent}"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
+                                            CommandParameter="{Binding .}">
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=GoToListItemsCommand}"/>
 
-                                
-                                <SwipeGestureRecognizer CommandParameter="{Binding .}"
+
+                                    <!--<SwipeGestureRecognizer CommandParameter="{Binding .}"
                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
-                                                    Direction="Right"/>
-                            </Frame.GestureRecognizers>
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Name}"
+                                                    Direction="Right"/>-->
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}"
                                        FontSize="Medium"
                                        TextColor="{DynamicResource Secondary}"/>
-                                <Label Text="{Binding Type}"
+                                    <Label Text="{Binding Type}"
                                        FontSize="Micro"
                                        TextColor="{DynamicResource Secondary}"
                                        Margin="25,0,0,0"/>
-                            </VerticalStackLayout>
-                        </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </SwipeView>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -45,8 +58,7 @@
         <Button Text="Get UserLists"
                 Command="{Binding GetUserListsCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                TextColor="{DynamicResource Primary}"
-                BackgroundColor="{DynamicResource Secondary}"
+                BackgroundColor="{DynamicResource Primary}"
                 Grid.Row="1"
                 Margin="8"/>
 
@@ -54,8 +66,7 @@
         <Button Text="Create New List"
                 Command="{Binding CreateUserListCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                TextColor="{DynamicResource Primary}"
-                BackgroundColor="{DynamicResource Secondary}"
+                BackgroundColor="{DynamicResource Primary}"
                 Grid.Row="1"
                 Grid.Column="3"
                 Margin="8"/>

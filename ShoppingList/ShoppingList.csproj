@@ -33,15 +33,17 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     <ProvisioningType>automatic</ProvisioningType>
+    <CodesignProvision />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
-    <CodesignKey>Apple Development: Created via API (8TKY844XYR)</CodesignKey>
+    <CodesignKey>Apple Development: Created via API (4FWGR6HJNC)</CodesignKey>
     <CodesignProvision>VS: dev.programmingwithchris.ShoppingList Development</CodesignProvision>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
     <CodesignEntitlements />
+    <MtouchUseLlvm>True</MtouchUseLlvm>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">
@@ -79,6 +81,7 @@
   	  <MauiCss Remove="Tests\**" />
   	  <MauiXaml Remove="Tests\**" />
   	  <None Remove="Tests\**" />
+  	  <None Remove="Resources\Images\delete.png" />
   	  <None Remove="SQLiteNetExtensions" />
   	  <None Remove="Microsoft.Data.Sqlite.Core" />
       <None Remove="sqlite-net-pcl" />

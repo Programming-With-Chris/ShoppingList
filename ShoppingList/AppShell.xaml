@@ -5,15 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ShoppingList"
     xmlns:views="clr-namespace:ShoppingList"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.BackgroundColor="{DynamicResource Primary}"
+    Shell.FlyoutBehavior="Flyout"
+    >
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage" 
+        />
 
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems"
+                >
         <ShellContent Title="Settings" 
                       Route="SettingsView"
                       ContentTemplate="{DataTemplate views:SettingsView}"/>

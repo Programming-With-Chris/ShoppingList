@@ -5,6 +5,7 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              x:DataType="viewmodel:StoreFinderViewModel"
              x:Class="ShoppingList.StoreFinder"
+             BackgroundColor="{DynamicResource Secondary}"
              Shell.PresentationMode="ModalAnimated"
              >
 
@@ -27,6 +28,7 @@
                         <Button Text="Make My Store"
                                 Margin="0,0,10,0"
                                 HeightRequest="50"
+                                BackgroundColor="{DynamicResource Primary}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StoreFinderViewModel}}, Path=SetUserKrogerCommand}"
                                 CommandParameter="{Binding .}"/>
 
@@ -40,7 +42,8 @@
         <Button Text="Cancel"
                 Grid.Row="2"
                 Grid.Column="1"
-                Command="{Binding CancelQueryCommand}"/>
+                Command="{Binding CancelQueryCommand}"
+                BackgroundColor="{DynamicResource Primary}"/>
 
     </Grid>
 
