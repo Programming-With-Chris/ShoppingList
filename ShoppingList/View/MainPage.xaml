@@ -4,8 +4,10 @@
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:skiasharp="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:controls="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:UserListViewModel"
              Title="{Binding Title}"
+             x:Name="CurrentPage"
              BackgroundColor="{DynamicResource Secondary}"
              x:Class="ShoppingList.MainPage">
 
@@ -73,21 +75,35 @@
 				                BackgroundColor="Transparent">
         </skiasharp:SKLottieView>
        
-        <Button Text="Get UserLists"
-                Command="{Binding GetUserListsCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                BackgroundColor="{DynamicResource Primary}"
-                Grid.Row="1"
-                Margin="8"/>
 
 
-        <Button Text="Create New List"
+            <controls:CircularButton  
+			            Grid.Row="1"
+			            Grid.Column="3"
+                        x:Name="NewItemButton"
+                        WidthRequest="75"
+                        HeightRequest="75"
+                        Margin="0,0,45,45"
+                        ButtonColor="{StaticResource Tertiary}"
+                        BackgroundColor="Transparent"
+                        Image="plus_sign.png"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"
+			            >
+                <GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateUserListCommand}"/>
+
+                </GraphicsView.GestureRecognizers>
+            </controls:CircularButton>
+        
+
+        <!--<Button Text="Create New List"
                 Command="{Binding CreateUserListCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 BackgroundColor="{DynamicResource Primary}"
                 Grid.Row="1"
                 Grid.Column="3"
-                Margin="8"/>
+                Margin="8"/>-->
         
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"

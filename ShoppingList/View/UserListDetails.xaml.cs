@@ -42,4 +42,15 @@ public partial class UserListDetails : ContentPage
 
 	}
 
+	public void NewItemButtonPressed(object sender, EventArgs e)
+	{
+
+		var circularButton = sender as CircularButton;
+		//need to grab the drawable, add a method in the drawable to animate a scale, and then call it here
+
+		_ulvm.NewItemDialog(); 
+
+
+	}
+
 }

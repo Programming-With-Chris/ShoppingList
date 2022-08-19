@@ -40,7 +40,7 @@ public class CircularButton : GraphicsView
 
 	public new BindableProperty IsVisibleProperty = BindableProperty.Create(
 		nameof(IsVisible), typeof(bool), typeof(CircularButton),
-		propertyChanging: OnIsVisibleChanged); 
+		propertyChanged: OnIsVisibleChanged); 
 
 	public CircularButton()
 	{

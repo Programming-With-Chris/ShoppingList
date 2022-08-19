@@ -51,6 +51,7 @@
                 <Label Text="Default Kroger Location:"
                        Margin="0,0,25,0"/>
                 <Label Text="{Binding KrogerStoreName}"
+                       BackgroundColor="{DynamicResource Primary}"
                        >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OpenLocationFinderDialogCommand}"/>

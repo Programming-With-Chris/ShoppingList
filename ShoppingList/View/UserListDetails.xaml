@@ -10,6 +10,10 @@
              Title="{Binding Title}"
              >
 
+    <ContentPage.Resources>
+        <controls:StringToBoolConverter x:Key="stringToBool" />
+    </ContentPage.Resources>
+
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
             />
@@ -50,7 +54,7 @@
                             </SwipeItems>
                         </SwipeView.RightItems>
                             <Frame Grid.ColumnSpan="3"
-                               Padding="10"
+                               Padding="5"
                                Margin="0,0,0,10"
                                x:Name="ItemFrame"
                                BindingContext="{Binding .}">
@@ -110,10 +114,9 @@
                         VerticalOptions="End"
                         HorizontalOptions="End"
 			            >
-                <GraphicsView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
-
-                </GraphicsView.GestureRecognizers>
+                <controls:CircularButton.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NewItemButtonPressed"/>
+                </controls:CircularButton.GestureRecognizers>
             </controls:CircularButton>
 
 
@@ -131,10 +134,9 @@
                         IsEnabled="{Binding HasUndo}"
                         IsVisible="{Binding HasUndo}"
 			            >
-                <GraphicsView.GestureRecognizers>
+                <controls:CircularButton.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding UndoButtonPressedCommand}"/>
-
-                </GraphicsView.GestureRecognizers>
+                </controls:CircularButton.GestureRecognizers>
             </controls:CircularButton>
         </Grid>
     </Grid>
