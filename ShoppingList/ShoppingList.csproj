@@ -34,16 +34,16 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     <ProvisioningType>automatic</ProvisioningType>
     <CodesignProvision />
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
-    <CodesignKey>Apple Development: Created via API (4FWGR6HJNC)</CodesignKey>
+    <CodesignKey>Apple Development: Created via API (DU8TKLLB7K)</CodesignKey>
     <CodesignProvision>VS: dev.programmingwithchris.ShoppingList Development</CodesignProvision>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
     <CodesignEntitlements />
-    <MtouchUseLlvm>True</MtouchUseLlvm>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">

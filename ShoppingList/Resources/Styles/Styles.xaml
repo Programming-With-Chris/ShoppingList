@@ -124,7 +124,7 @@
         <Setter Property="HasShadow" Value="False" />
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={DynamicResource DarkAccent}, Dark={DynamicResource DarkAccent}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Tertiary}}" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="CornerRadius" Value="0" />
     </Style>
 
     <Style TargetType="ImageButton">

@@ -136,21 +136,6 @@
 
                 </GraphicsView.GestureRecognizers>
             </controls:CircularButton>
-            <!--<skiasharp:SKLottieView x:Name="CartLottie"
-	                            WidthRequest="100"
-				                HeightRequest="100"
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                VerticalOptions="End"
-                                HorizontalOptions="Start"
-				                Source="69114-shopping-cart.json"
-				                BackgroundColor="{DynamicResource Primary}">
-	
-            <skiasharp:SKLottieView.GestureRecognizers>
-	            <TapGestureRecognizer Command="{Binding NewItemDialogCommand}"/>
-
-	        </skiasharp:SKLottieView.GestureRecognizers>
-	    </skiasharp:SKLottieView>-->
         </Grid>
     </Grid>
 
