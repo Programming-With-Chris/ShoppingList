@@ -28,7 +28,7 @@
                      IsRefreshing="{Binding IsRefreshing}"
 		             Grid.Row="0">-->
             <CollectionView ItemsSource="{Binding UserList.Items}"
-                        CanReorderItems="True"
+                        CanReorderItems="False"
                         SelectionMode="None"
                         x:Name="UserListCollectionView"
                             Grid.ColumnSpan="3"
@@ -36,7 +36,7 @@
                 
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Item">
-                        <Grid Padding="10"
+                        <Grid Padding="5"
                           ColumnDefinitions="*,*,*"
                           RowDefinitions="*,Auto">
                     <SwipeView Grid.ColumnSpan="3">
@@ -52,8 +52,9 @@
                         </SwipeView.RightItems>
                             <Frame Grid.ColumnSpan="3"
                                Padding="5"
-                               Margin="0,0,0,10"
+                               Margin="10,0,0,10"
                                x:Name="ItemFrame"
+                               BackgroundColor="{DynamicResource Tertiary}"
                                BindingContext="{Binding .}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
@@ -69,7 +70,7 @@
                                   Grid.RowSpan="2"
                                   Padding="1"
                                   Margin="1">
-                                    <CheckBox Color="{DynamicResource Tertiary}" 
+                                    <CheckBox Color="{DynamicResource Accent}" 
                                                   x:DataType="model:Item"
                                                   BindingContext="{x:Reference ItemFrame}"
                                                   IsChecked="{Binding IsCompleted, Source={RelativeSource AncestorType={x:Type model:Item}}}"
@@ -80,11 +81,13 @@
                                     <Label Text="{Binding Name}"
                                            Grid.Row="1"
                                            Grid.Column="1"
+                                           TextColor="{DynamicResource Accent}"
                                            Grid.RowSpan="1"/>
                                     <Label Text="{Binding Aisle}"
                                            Grid.Row="1"
                                            Grid.Column="2"
                                            Grid.ColumnSpan="2"
+                                           TextColor="{DynamicResource Accent}"
                                            HorizontalOptions="End"
 					                       />
                                 </Grid>
@@ -107,7 +110,7 @@
                         Margin="25,25,25,25"
                         WidthRequest="75"
                         HeightRequest="75"
-                        ButtonColor="{StaticResource Tertiary}"
+                        ButtonColor="{DynamicResource Tertiary}"
                         BackgroundColor="Transparent"
                         Image="plus_sign.png"
                         VerticalOptions="End"
@@ -126,7 +129,7 @@
                         WidthRequest="75"
                         HeightRequest="75"
                         Margin="25,25,25,25"
-                        ButtonColor="{StaticResource Tertiary}"
+                        ButtonColor="{DynamicResource Tertiary}"
                         BackgroundColor="Transparent"
                         Image="undo.png"
                         VerticalOptions="End"

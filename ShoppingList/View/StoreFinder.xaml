@@ -42,6 +42,7 @@
         <Button Text="Cancel"
                 Grid.Row="2"
                 Grid.Column="1"
+                Margin="25,25,25,25"
                 Command="{Binding CancelQueryCommand}"
                 BackgroundColor="{DynamicResource Primary}"/>
 

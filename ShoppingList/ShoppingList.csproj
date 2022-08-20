@@ -81,6 +81,8 @@
   	  <MauiCss Remove="Tests\**" />
   	  <MauiXaml Remove="Tests\**" />
   	  <None Remove="Tests\**" />
+  	  <MauiImage Remove="Resources\Images\check.png" />
+  	  <MauiImage Remove="Resources\Images\x.png" />
   	  <None Remove="SQLiteNetExtensions" />
   	  <None Remove="Microsoft.Data.Sqlite.Core" />
       <None Remove="sqlite-net-pcl" />
@@ -139,8 +141,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Images\check.png" />
 	  <EmbeddedResource Include="Resources\Images\plus_sign.png" />
 	  <EmbeddedResource Include="Resources\Images\undo.png" />
+	  <EmbeddedResource Include="Resources\Images\x.png" />
 	</ItemGroup>
 
 	<!--<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">

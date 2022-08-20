@@ -147,7 +147,7 @@
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Tertiary}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={DynamicResource Accent}, Dark={DynamicResource Accent}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -156,7 +156,7 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={DynamicResource Accent}, Dark={DynamicResource Accent}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

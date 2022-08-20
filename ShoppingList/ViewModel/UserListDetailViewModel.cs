@@ -54,6 +54,7 @@ public partial class UserListDetailViewModel : BaseViewModel
     public async void GoBackToListScreen()
     {
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+        //await Shell.Current.GoToAsync($"..");
     }
 
     public void OnUserListChanged(UserList value)

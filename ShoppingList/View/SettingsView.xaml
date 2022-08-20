@@ -20,9 +20,9 @@
                      Spacing="10"
                      Grid.ColumnSpan="3">
 
-            <Border BackgroundColor="{DynamicResource Primary}"
-                    >
-                <Label Text="List Sorting Settings"
+            <Border BackgroundColor="{DynamicResource Primary}" Margin="0,25,0,0">
+                <Label Text="List Sorting Settings" 
+                       TextColor="{DynamicResource Accent}"
                        Margin="5,15,15,15"
                        Padding="10"/>
             </Border>
@@ -30,9 +30,10 @@
             <HorizontalStackLayout
                 Margin="25,0,0,0"
                 Grid.ColumnSpan="3">
-                <Label Text="Start at back of store?"/>
+                <Label Text="Start at back of store?"
+                    TextColor="{DynamicResource Accent}"/>
                 <CheckBox IsChecked="{Binding StartAtBackOfStore}"
-                          Color="{DynamicResource Tertiary}"
+                          Color="{DynamicResource Accent}"
                           HorizontalOptions="Center"
                           Grid.Column="2"/>
             </HorizontalStackLayout>
@@ -40,17 +41,20 @@
             <HorizontalStackLayout
                 Margin="25,0,0,0"
                 Grid.ColumnSpan="3">
-                <Label Text="Get Frozen Aisle Food Last?" />
+                <Label Text="Get Frozen Aisle Food Last?"
+                       TextColor="{DynamicResource Accent}"/>
                 <CheckBox IsChecked="{Binding FrozenFoodLast}" 
-                          Color="{DynamicResource Tertiary}"
+                          Color="{DynamicResource Accent}"
                           Grid.Column="2"/>
             </HorizontalStackLayout>
 
             <HorizontalStackLayout
                 Margin="25,0,0,0">
                 <Label Text="Default Kroger Location:"
+                       TextColor="{DynamicResource Accent}"
                        Margin="0,0,25,0"/>
                 <Label Text="{Binding KrogerStoreName}"
+                       TextColor="{DynamicResource Accent}"
                        BackgroundColor="{DynamicResource Primary}"
                        >
                     <Label.GestureRecognizers>
@@ -63,12 +67,14 @@
         
             <Border BackgroundColor="{DynamicResource Primary}" Margin="0,25,0,0">
                 <Label Text="Other Settings" 
+                       TextColor="{DynamicResource Accent}"
                        Margin="5,15,15,15"
                        Padding="10"/>
             </Border>
 
             <Label  Margin="25,0,0,0"
-                    Text="Primary Theme Color:"
+                    TextColor="{DynamicResource Accent}"
+                    Text="Light Themes:"
                     >
             </Label>
 
@@ -137,6 +143,57 @@
                     <control:CircularButton.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
                                               CommandParameter="Pretty"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                
+            </HorizontalStackLayout>
+
+            <Label  Margin="25,0,0,0"
+                    Text="Dark Themes:"
+                    TextColor="{DynamicResource Accent}"
+                    >
+            </Label>
+
+            <HorizontalStackLayout Padding="25"
+                                   Margin="25,0,0,0">
+                <control:CircularButton ButtonColor="{StaticResource RoyaltyPrimary}"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        IsVisible="True"
+                                        BackgroundColor="Transparent"
+                                        Margin="25,0,0,25"
+                                        x:Name="Royalty">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="Royalty"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="{StaticResource DeepRedPrimary}"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        BackgroundColor="Transparent"
+                                        x:Name="DeepRed">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="DeepRed"/>
+                    </control:CircularButton.GestureRecognizers>
+                    
+                </control:CircularButton>
+                <control:CircularButton ButtonColor="{StaticResource DepressionPrimary}"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="25,0,0,25"
+                                        BackgroundColor="Transparent"
+                                        x:Name="Depression">
+
+                    <control:CircularButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                                              CommandParameter="Depression"/>
                     </control:CircularButton.GestureRecognizers>
                     
                 </control:CircularButton>

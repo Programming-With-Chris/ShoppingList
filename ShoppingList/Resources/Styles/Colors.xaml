@@ -35,8 +35,8 @@
     <Color x:Key="NeonPrimary">#0AFFC2</Color>
     <Color x:Key="NeonSecondary">#00CCF5</Color>
     <Color x:Key="NeonTertiary">#FF7700</Color>
-    <Color x:Key="NeonAccent">#F50076</Color>
-    <Color x:Key="NeonDarkAccent">#FFCF00</Color>
+    <Color x:Key="NeonAccent">#FFFFFF</Color>
+    <Color x:Key="NeonDarkAccent">#F50076</Color>
 
     <!-- Striking -->
     <Color x:Key="StrikingPrimary">#3D5A80</Color>
@@ -49,16 +49,36 @@
     <Color x:Key="MutedPrimary">#355070</Color>
     <Color x:Key="MutedSecondary">#6D597A</Color>
     <Color x:Key="MutedTertiary">#B56576</Color>
-    <Color x:Key="MutedAccent">#E56B6F</Color>
+    <Color x:Key="MutedAccent">#e3b8ba</Color>
     <Color x:Key="MutedDarkAccent">#EAAC8B</Color>
 
     <!-- Pretty -->
     <Color x:Key="PrettyPrimary">#AF99FF</Color>
     <Color x:Key="PrettySecondary">#CAADFF</Color>
     <Color x:Key="PrettyTertiary">#FFC2E2</Color>
-    <Color x:Key="PrettyAccent">#FFADC7</Color>
+    <Color x:Key="PrettyAccent">#FFFFFF</Color>
     <Color x:Key="PrettyDarkAccent">#FF99B6</Color>
 
+    <!-- Royalty -->
+    <Color x:Key="RoyaltyPrimary">#3A015C</Color>
+    <Color x:Key="RoyaltySecondary">#4F0147</Color>
+    <Color x:Key="RoyaltyTertiary">#35012C</Color>
+    <Color x:Key="RoyaltyAccent">#6f5c73</Color>
+    <Color x:Key="RoyaltyDarkAccent">#11001C</Color>
+    
+    <!-- DeepRed  -->
+    <Color x:Key="DeepRedPrimary">#680808</Color>
+    <Color x:Key="DeepRedSecondary">#420000</Color>
+    <Color x:Key="DeepRedTertiary">#300000</Color>
+    <Color x:Key="DeepRedAccent">#995a62</Color>
+    <Color x:Key="DeepRedDarkAccent">#000000</Color>
+
+    <!-- Depression  -->
+    <Color x:Key="DepressionPrimary">#1B2A41</Color>
+    <Color x:Key="DepressionSecondary">#0C1821</Color>
+    <Color x:Key="DepressionTertiary">#000000</Color>
+    <Color x:Key="DepressionAccent">#385075</Color>
+    <Color x:Key="DepressionDarkAccent">#0C1821</Color>
     
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource Secondary}"/>

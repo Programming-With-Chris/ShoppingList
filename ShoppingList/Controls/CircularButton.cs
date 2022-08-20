@@ -32,7 +32,7 @@ public class CircularButton : GraphicsView
         set => SetValue(IsVisibleProperty, value);
     }
 
-	public BindableProperty ButtonColorProperty = BindableProperty.Create(
+	public static BindableProperty ButtonColorProperty = BindableProperty.Create(
 		nameof(ButtonColor), typeof(Color), typeof(CircularButton), propertyChanged: OnButtonColorChanged);
 
 	public BindableProperty ImageProperty = BindableProperty.Create(
@@ -47,6 +47,7 @@ public class CircularButton : GraphicsView
 		var drawable = new CircularButtonDrawable();
 		Drawable = drawable;
 	}
+
 
 	static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
 	{

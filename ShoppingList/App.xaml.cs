@@ -13,7 +13,23 @@ public partial class App : Application
 	public void SetTheme()
 	{
 
-		var themeName = Preferences.Get("Theme", "Nautical"); 
+        string themeName; 
+        var isFirstLoad = Preferences.Get("FirstLoad", true); 
+        if (isFirstLoad)
+        {
+            var currTheme = Application.Current.RequestedTheme;
+            if (currTheme == AppTheme.Dark)
+                themeName = "Royalty";
+            else
+                themeName = "Nautical";
+        }
+        else
+        {
+		    themeName = Preferences.Get("Theme", "Nautical"); 
+        }
+
+        Preferences.Set("FirstLoad", false);
+
 
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         if (mergedDictionaries != null)

@@ -32,7 +32,7 @@
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <Frame>
+                            <Frame  BackgroundColor="{DynamicResource Tertiary}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=GoToListItemsCommand}"/>
@@ -45,10 +45,10 @@
                                 <VerticalStackLayout>
                                     <Label Text="{Binding Name}"
                                        FontSize="Medium"
-                                       TextColor="{DynamicResource Secondary}"/>
+                                       TextColor="{DynamicResource Accent}"/>
                                     <Label Text="{Binding Type}"
                                        FontSize="Micro"
-                                       TextColor="{DynamicResource Secondary}"
+                                       TextColor="{DynamicResource Accent}"
                                        Margin="25,0,0,0"/>
                                 </VerticalStackLayout>
                             </Frame>
@@ -83,8 +83,8 @@
                         x:Name="NewItemButton"
                         WidthRequest="75"
                         HeightRequest="75"
-                        Margin="0,0,45,45"
-                        ButtonColor="{StaticResource Tertiary}"
+                        Margin="25,25,25,25"
+                        ButtonColor="{DynamicResource Tertiary}"
                         BackgroundColor="Transparent"
                         Image="plus_sign.png"
                         VerticalOptions="End"

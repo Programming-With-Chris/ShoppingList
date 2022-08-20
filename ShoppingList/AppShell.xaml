@@ -7,6 +7,8 @@
     xmlns:views="clr-namespace:ShoppingList"
     Shell.BackgroundColor="{DynamicResource Primary}"
     Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="{DynamicResource Secondary}"
+    Shell.TitleColor="{DynamicResource Accent}"
     >
 
     <ShellContent
