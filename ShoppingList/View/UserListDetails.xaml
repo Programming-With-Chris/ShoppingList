@@ -10,9 +10,6 @@
              Title="{Binding Title}"
              >
 
-    <ContentPage.Resources>
-        <controls:StringToBoolConverter x:Key="stringToBool" />
-    </ContentPage.Resources>
 
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding GoBackToListScreenCommand}"
@@ -23,7 +20,7 @@
     
     <Grid ColumnDefinitions="*,*,*"
           ColumnSpacing="3"
-          RowDefinitions="*">
+          RowDefinitions="*,Auto">
 
         <!-- Refresh view doesn't work on iOS yet-->
         <!--<RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
@@ -31,7 +28,7 @@
                      IsRefreshing="{Binding IsRefreshing}"
 		             Grid.Row="0">-->
             <CollectionView ItemsSource="{Binding UserList.Items}"
-                        CanReorderItems="False"
+                        CanReorderItems="True"
                         SelectionMode="None"
                         x:Name="UserListCollectionView"
                             Grid.ColumnSpan="3"
@@ -45,7 +42,7 @@
                     <SwipeView Grid.ColumnSpan="3">
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem  IconImageSource="delete.png"
+                                <SwipeItem  IconImageSource="delete"
                                             BackgroundColor="{DynamicResource DarkAccent}"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=DeleteItemCommand}"
                                             CommandParameter="{Binding .}"
@@ -92,7 +89,7 @@
 					                       />
                                 </Grid>
                             </Frame>
-                    </SwipeView>
+                            </SwipeView>
                         </Grid>
                 </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -101,11 +98,13 @@
 
         <Grid   Grid.ColumnSpan="3"
                 ColumnDefinitions="*,*,*"
-                Padding="45">
+                Grid.Row="1"
+                >
             <controls:CircularButton  
 			            Grid.Row="0"
 			            Grid.Column="2"
                         x:Name="NewItemButton"
+                        Margin="25,25,25,25"
                         WidthRequest="75"
                         HeightRequest="75"
                         ButtonColor="{StaticResource Tertiary}"
@@ -126,6 +125,7 @@
                         x:Name="UndoButton"
                         WidthRequest="75"
                         HeightRequest="75"
+                        Margin="25,25,25,25"
                         ButtonColor="{StaticResource Tertiary}"
                         BackgroundColor="Transparent"
                         Image="undo.png"

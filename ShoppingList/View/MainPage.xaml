@@ -25,7 +25,7 @@
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem  Text="Delete"
-                                            IconImageSource="delete.png"
+                                            IconImageSource="delete"
                                             BackgroundColor="{DynamicResource DarkAccent}"
                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
                                             CommandParameter="{Binding .}">

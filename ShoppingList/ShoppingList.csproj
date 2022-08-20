@@ -37,10 +37,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
-    <CodesignKey>Apple Development: Created via API (DU8TKLLB7K)</CodesignKey>
+  <!--<PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
+    <CodesignKey>Apple Development: Chris Cullins (4YGTGDMJ2A)</CodesignKey>
     <CodesignProvision>VS: dev.programmingwithchris.ShoppingList Development</CodesignProvision>
-  </PropertyGroup>
+  </PropertyGroup>-->
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
     <CodesignEntitlements />
@@ -81,14 +81,12 @@
   	  <MauiCss Remove="Tests\**" />
   	  <MauiXaml Remove="Tests\**" />
   	  <None Remove="Tests\**" />
-  	  <None Remove="Resources\Images\delete.png" />
   	  <None Remove="SQLiteNetExtensions" />
   	  <None Remove="Microsoft.Data.Sqlite.Core" />
       <None Remove="sqlite-net-pcl" />
   	  <None Remove="Drawable\" />
   	  <None Remove="Resources\APIs\krogerapiconfig.json" />
   	  <None Remove="Controls\" />
-  	  <None Remove="Resources\Images\plus_sign.png" />
   	</ItemGroup>
 
   	<ItemGroup>
@@ -154,9 +152,6 @@
 	  </PackageReference>
 	</ItemGroup>-->
 
-	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\undo.png" />
-	</ItemGroup>
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionShoppingListHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 	
    <!-- <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">

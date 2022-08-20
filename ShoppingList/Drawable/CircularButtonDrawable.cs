@@ -29,14 +29,18 @@ public class CircularButtonDrawable : IDrawable
 
         canvas.StrokeColor = StrokeColor;
 
-        if (AreShadowsEnabled)
-            canvas.EnableDefaultShadow();
+        //if (AreShadowsEnabled)
+        //    canvas.EnableDefaultShadow();
+
+        //canvas.SetShadow(new SizeF(5,5), 4, Colors.Gray); 
 
         var width = Width != 0 ? Width : dirtyRect.Width;
         var height = Height != 0 ? Height : dirtyRect.Height;
 
         var limitingDim = width > height ? height : width;
         PointF centerOfCircle = new PointF(width / 2, height / 2);
+        canvas.FillColor = this.ButtonColor; 
+        canvas.FillCircle(centerOfCircle, limitingDim / 2);
 
 #if WINDOWS
         canvas.FillColor = this.ButtonColor;
@@ -49,12 +53,11 @@ public class CircularButtonDrawable : IDrawable
             image =  Microsoft.Maui.Graphics.Platform.PlatformImage.FromStream(stream);
             if (image is null)
                 throw new FileNotFoundException("ShoppingList.Resources.Images." + Image); 
-        }
-        if (image != null)
-        {
-            canvas.FillColor = this.ButtonColor; 
-            canvas.FillCircle(centerOfCircle, limitingDim / 2);
-            canvas.DrawImage(image, dirtyRect.X + dirtyRect.Width / 4, dirtyRect.Y + dirtyRect.Height / 4, dirtyRect.Width / 2, dirtyRect.Height / 2); 
+            if (image != null)
+            {
+                //canvas.SetShadow(new SizeF(0,0), 0, Colors.Gray); 
+                canvas.DrawImage(image, dirtyRect.X + dirtyRect.Width / 4, dirtyRect.Y + dirtyRect.Height / 4, dirtyRect.Width / 2, dirtyRect.Height / 2); 
+            }
         }
 #endif
     }
