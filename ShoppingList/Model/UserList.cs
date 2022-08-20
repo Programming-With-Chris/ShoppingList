@@ -16,6 +16,20 @@ public class UserList : ObservableObject
     [Column("targetStore")]
     public string TargetStore { get; set; }
 
+    private decimal _totalPrice; 
+
+    public decimal TotalPrice { 
+	    get 
+	    {
+            _totalPrice = 0m;
+	        foreach(var item in Items)
+            {
+                _totalPrice += item.EstimatedPrice;
+	        }
+            return _totalPrice;
+	    } 
+    }
+
     
     [OneToMany]
     public List<Item> Items { get; set; }
@@ -40,7 +54,7 @@ public class UserList : ObservableObject
         this.Id = ul.Id;
         this.Name = ul.Name;
         this.TargetStore = ul.TargetStore;
-        this.Items = ul.Items; 
+        this.Items = ul.Items;
     }
 
     public UserList(string name, string targetStore)

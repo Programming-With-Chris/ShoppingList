@@ -144,8 +144,20 @@ public class KrogerAPIService
                     {
                         Name = term,
                         Description = jsonItem.description,
-                        Category = jsonItem.categories[0]
-                    }; 
+                        Category = jsonItem.categories[0],
+                    };
+
+                    if (jsonItem.items[0] is not null)
+                    { 
+                        if (jsonItem.items[0].price is not null)
+                        { 
+                            item.EstimatedPrice = jsonItem.items[0].price.promo; 
+
+						    if (item.EstimatedPrice == 0m)
+								item.EstimatedPrice = jsonItem.items[0].price.regular;
+			
+			            }
+		            }
 
                     return (returnILD, item); 
                 }

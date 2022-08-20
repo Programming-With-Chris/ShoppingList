@@ -9,7 +9,7 @@ public class Datum
     public string countryOrigin { get; set; }
     public string description { get; set; }
     public List<Image> images { get; set; }
-    public List<Item> items { get; set; }
+    public List<Items> items { get; set; }
     public ItemInformation itemInformation { get; set; }
     public Temperature temperature { get; set; }
 }
@@ -35,6 +35,14 @@ public class Items
     public bool favorite { get; set; }
     public Fulfillment fulfillment { get; set; }
     public string size { get; set; }
+    public Prices price { get; set; }
+}
+
+public class Prices
+{ 
+    public decimal regular { get; set; }
+    public decimal promo { get; set; }
+
 }
 
 public class ItemInformation

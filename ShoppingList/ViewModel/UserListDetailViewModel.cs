@@ -17,8 +17,6 @@ public partial class UserListDetailViewModel : BaseViewModel
         _krogerAPIService = krogerAPIService;
         undoItemBuffer = new Stack<Item>();
 
-        Console.Write("Test Output");
-
         undoTimer = new System.Timers.Timer(5000);
         undoTimer.Elapsed += new ElapsedEventHandler(UndoTimerTick); 
     }
@@ -36,9 +34,15 @@ public partial class UserListDetailViewModel : BaseViewModel
         {
             userList = value;
             ListSorter.SortUserListItems(userList);
-            Title = UserList.Name; 
+
+            if (UserList.Name.Length > 10)
+                Title = $"{UserList.Name.Substring(0, 10)}...        - est. price: {UserList.TotalPrice}"; 
+            else
+                Title = $"{UserList.Name}...        - est. price: {UserList.TotalPrice}"; 
+
             OnUserListChanged(value); 
             OnPropertyChanged(nameof(UserList));
+            OnPropertyChanged(nameof(Title));
             OnPropertyChanged(nameof(UserList.Items));
         }
     }
@@ -82,7 +86,7 @@ public partial class UserListDetailViewModel : BaseViewModel
     public async void GoToItemDetail(Item item)
     {
         await Shell.Current.DisplayAlert(item.Name, $"Category: {item.Category} \nDescription: {item.Description} \n" +
-            $"Aisle: {item.Aisle}", "Ok"); 
+            $"Aisle: {item.Aisle} \n Estimated Price: {item.EstimatedPrice}", "Ok"); 
     }
 
     [RelayCommand]
@@ -135,6 +139,7 @@ public partial class UserListDetailViewModel : BaseViewModel
         newItem.LocationData = ild;
         newItem.Description = item.Description;
         newItem.Category = item.Category;
+        newItem.EstimatedPrice = item.EstimatedPrice;
 
         newItem.Aisle = ild.Description;
         newItem.ParentId = UserList.Id;
@@ -158,7 +163,7 @@ public partial class UserListDetailViewModel : BaseViewModel
         undoItemBuffer.Push(item); 
 
         _itemService.DeleteItem(item);
-        UserList.Items.Remove(item); 
+        UserList.Items.Remove(item);
 
         UserList.Items = ListSorter.SortUserListItems(userList);
 
@@ -189,7 +194,7 @@ public partial class UserListDetailViewModel : BaseViewModel
             undoneItem.LocationData.ParentId = undoneItem.Id;
 
             UserList.Items.Add(undoneItem);
-            UserListNotifers(); 
+	        UserListNotifers(); 
 	    }
         else
         { 
@@ -201,6 +206,11 @@ public partial class UserListDetailViewModel : BaseViewModel
 
     private void UserListNotifers()
     {
+        if (UserList.Name.Length > 10)
+            Title = $"{UserList.Name.Substring(0, 10)}...        - est. price: {UserList.TotalPrice}"; 
+        else   
+	         Title = $"{UserList.Name}...        - est. price: {UserList.TotalPrice}"; 
+
         OnUserListChanged(UserList);
         OnPropertyChanged(nameof(UserList));
         OnPropertyChanged(nameof(UserList.Items));

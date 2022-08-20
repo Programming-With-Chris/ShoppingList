@@ -83,13 +83,29 @@
                                            Grid.Column="1"
                                            TextColor="{DynamicResource Accent}"
                                            Grid.RowSpan="1"/>
-                                    <Label Text="{Binding Aisle}"
+                                    <VerticalStackLayout Grid.Row="1"
+							                             Grid.Column="2"
+							                             Grid.ColumnSpan="2">
+
+                                        <Label Text="{Binding Aisle}"
                                            Grid.Row="1"
                                            Grid.Column="2"
                                            Grid.ColumnSpan="2"
                                            TextColor="{DynamicResource Accent}"
                                            HorizontalOptions="End"
+                                           VerticalOptions="Start"
 					                       />
+
+                                        <Label Text="{Binding EstimatedPrice}"
+                                           Grid.Row="1"
+                                           Grid.Column="2"
+                                           Grid.ColumnSpan="2"
+                                           TextColor="{DynamicResource Accent}"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="End"
+					                       />
+
+				                    </VerticalStackLayout>
                                 </Grid>
                             </Frame>
                             </SwipeView>
