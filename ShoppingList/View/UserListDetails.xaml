@@ -58,11 +58,8 @@
                                BindingContext="{Binding .}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=GoToItemDetailCommand}"/>
-
-                                    <!--<SwipeGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=DeleteItemCommand}"
-                                                            Direction="Right"/>-->
+                                                      Tapped="FrameTapped"/>
+                                                      <!--Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=GoToItemDetailCommand}"/>-->
                                 </Frame.GestureRecognizers>
                                 <Grid ColumnDefinitions="Auto,*,*"
                                   RowDefinitions="*,Auto"

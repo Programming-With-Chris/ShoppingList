@@ -34,8 +34,10 @@
                             </SwipeView.RightItems>
                             <Frame  BackgroundColor="{DynamicResource Tertiary}">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=GoToListItemsCommand}"/>
+                                    <TapGestureRecognizer   CommandParameter="{Binding .}"
+                                                            Tapped="FrameTapped"/>
+
+                                    <!--Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=GoToListItemsCommand}"/>-->
 
 
                                     <!--<SwipeGestureRecognizer CommandParameter="{Binding .}"

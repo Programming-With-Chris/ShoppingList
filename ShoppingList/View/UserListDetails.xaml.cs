@@ -22,7 +22,7 @@ public partial class UserListDetails : ContentPage
 
     }
 
-	public void OnCheckboxClicked(object sender, CheckedChangedEventArgs e)
+	private void OnCheckboxClicked(object sender, CheckedChangedEventArgs e)
 	{
 
 		CheckBox thisCheckbox = sender as CheckBox;
@@ -56,5 +56,15 @@ public partial class UserListDetails : ContentPage
 		var circularButton = sender as CircularButton;
 		await circularButton.BounceOnPressAsync();
 		_ulvm.UndoButtonPressed(); 
+	}
+	private async void FrameTapped(object sender, EventArgs e)
+	{
+
+		var frame = sender as Frame;
+		await frame.ScaleTo(1.1, 100, Easing.BounceIn);
+		await frame.ScaleTo(1.0, 75, Easing.BounceOut); 
+
+		var item = ((TappedEventArgs)e).Parameter as Item; 
+		_ulvm.GoToItemDetail(item); 
 	}
 }

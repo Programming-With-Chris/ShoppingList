@@ -15,7 +15,7 @@ public partial class StoreFinder : ContentPage
 	}
 
 
-	public void OnSearchButtonPressed(object sender, EventArgs e)
+	private void OnSearchButtonPressed(object sender, EventArgs e)
 	{
 		var zipCode = ((SearchBar)sender).Text;
 		 _sfvm.DoSearchQuery(zipCode); 
