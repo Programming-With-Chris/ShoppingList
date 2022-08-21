@@ -89,7 +89,7 @@
                                         x:Name="Nautical">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="Nautical"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -102,7 +102,8 @@
                                         x:Name="Neon">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer 
+                                              Tapped="ThemeButtonPressed"
                                               CommandParameter="Neon"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -115,7 +116,7 @@
                                         x:Name="Striking">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="Striking"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -128,7 +129,7 @@
                                         x:Name="Muted">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="Muted"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -141,7 +142,7 @@
                                         x:Name="Pretty">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="Pretty"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -166,7 +167,7 @@
                                         x:Name="Royalty">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="Royalty"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -179,7 +180,7 @@
                                         x:Name="DeepRed">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="DeepRed"/>
                     </control:CircularButton.GestureRecognizers>
                     
@@ -192,7 +193,7 @@
                                         x:Name="Depression">
 
                     <control:CircularButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdatePrimaryColorPressedCommand}"
+                        <TapGestureRecognizer Tapped="ThemeButtonPressed"
                                               CommandParameter="Depression"/>
                     </control:CircularButton.GestureRecognizers>
                     

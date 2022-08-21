@@ -71,10 +71,6 @@ public class CircularButton : GraphicsView
 	static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
 	{
 		var control = (CircularButton)bindable;
-		var thisDrawable = control.Drawable as CircularButtonDrawable;
-
-		//thisDrawable.SetInvisible = !(bool)newValue;
-		//control.Invalidate(); 
 
 		var newValueAsBool = (bool)newValue;
 
