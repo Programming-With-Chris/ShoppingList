@@ -79,7 +79,7 @@
                         HorizontalOptions="Start"
 			            >
                 <controls:CircularButton.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding CancelCommand}"/>
+                    <TapGestureRecognizer Tapped="CancelButtonPressed"/>
                 </controls:CircularButton.GestureRecognizers>
             </controls:CircularButton>
 
@@ -98,7 +98,7 @@
                         HorizontalOptions="End"
 			            >
                 <controls:CircularButton.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UserListCompletedCommand}"/>
+                    <TapGestureRecognizer Tapped="NewItemButtonPressed"/>
                 </controls:CircularButton.GestureRecognizers>
             </controls:CircularButton>
     </Grid>

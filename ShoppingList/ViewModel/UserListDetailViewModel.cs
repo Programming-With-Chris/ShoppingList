@@ -17,6 +17,9 @@ public partial class UserListDetailViewModel : BaseViewModel
         _krogerAPIService = krogerAPIService;
         undoItemBuffer = new Stack<Item>();
 
+        HasUndo = false;
+
+        OnPropertyChanged(nameof(HasUndo)); 
         undoTimer = new System.Timers.Timer(5000);
         undoTimer.Elapsed += new ElapsedEventHandler(UndoTimerTick); 
     }
@@ -51,7 +54,7 @@ public partial class UserListDetailViewModel : BaseViewModel
     public bool isRefreshing;
 
     [ObservableProperty]
-    public bool hasUndo;
+    public bool hasUndo = false;
 
 
     [RelayCommand]

@@ -154,7 +154,7 @@
                         IsVisible="{Binding HasUndo}"
 			            >
                 <controls:CircularButton.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UndoButtonPressedCommand}"/>
+                    <TapGestureRecognizer Tapped="UndoButtonPressed"/>
                 </controls:CircularButton.GestureRecognizers>
             </controls:CircularButton>
         </Grid>

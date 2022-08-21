@@ -31,5 +31,20 @@ public partial class UserListDataInput : ContentPage
 		var checkbox = sender as CheckBox;
 		_uldiv.PrepopulateList = checkbox.IsChecked; 
 	}
+
+	private async void NewItemButtonPressed(object sender, EventArgs e)
+	{
+		var circularButton = sender as CircularButton;
+		await circularButton.BounceOnPressAsync();
+		_uldiv.OnUserListCompleted(); 
+
+    }
+	private async void CancelButtonPressed(object sender, EventArgs e)
+	{
+		var circularButton = sender as CircularButton;
+		await circularButton.BounceOnPressAsync();
+		_uldiv.OnCancel(); 
+
+    }
 }
 

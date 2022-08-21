@@ -91,7 +91,7 @@
                         HorizontalOptions="End"
 			            >
                 <GraphicsView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding CreateUserListCommand}"/>
+                    <TapGestureRecognizer Tapped="NewListButtonPressed"/>
 
                 </GraphicsView.GestureRecognizers>
             </controls:CircularButton>

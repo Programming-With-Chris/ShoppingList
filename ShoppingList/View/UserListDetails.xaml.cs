@@ -12,13 +12,13 @@ public partial class UserListDetails : ContentPage
 {
 	UserListDetailViewModel _ulvm;
 
-	bool _firstTime = true; 
-
 	public UserListDetails(UserListDetailViewModel userListDetailViewModel)
 	{
 		InitializeComponent();
 		BindingContext = userListDetailViewModel;
+
 		_ulvm = userListDetailViewModel;
+		_ulvm.HasUndo = false; 
 
     }
 
@@ -42,15 +42,19 @@ public partial class UserListDetails : ContentPage
 
 	}
 
-	public void NewItemButtonPressed(object sender, EventArgs e)
+	private async void NewItemButtonPressed(object sender, EventArgs e)
 	{
 
 		var circularButton = sender as CircularButton;
-		//need to grab the drawable, add a method in the drawable to animate a scale, and then call it here
-
+		await circularButton.BounceOnPressAsync();
 		_ulvm.NewItemDialog(); 
-
-
 	}
 
+	private async void UndoButtonPressed(object sender, EventArgs e)
+	{
+
+		var circularButton = sender as CircularButton;
+		await circularButton.BounceOnPressAsync();
+		_ulvm.UndoButtonPressed(); 
+	}
 }

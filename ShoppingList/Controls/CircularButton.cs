@@ -11,36 +11,36 @@ public class CircularButton : GraphicsView
 	/// </summary>
 	public Color ButtonColor
 	{
-        get => (Color)GetValue(ButtonColorProperty);
-        set => SetValue(ButtonColorProperty, value);
-    }
+		get => (Color)GetValue(ButtonColorProperty);
+		set => SetValue(ButtonColorProperty, value);
+	}
 
 	/// <summary>
 	/// A string containing the Image name (just the file name, not the directory)
 	/// <br/> Expects the file to be in Resources/Images/
 	/// </summary>
 	public string Image
-	{ 
-        get => (string)GetValue(ImageProperty);
-        set => SetValue(ImageProperty, value);
-    
-    }
+	{
+		get => (string)GetValue(ImageProperty);
+		set => SetValue(ImageProperty, value);
+
+	}
 
 	public new bool IsVisible
-	{ 
-        get => (bool)GetValue(IsVisibleProperty);
-        set => SetValue(IsVisibleProperty, value);
-    }
+	{
+		get => (bool)GetValue(IsVisibleProperty);
+		set => SetValue(IsVisibleProperty, value);
+	}
 
 	public static BindableProperty ButtonColorProperty = BindableProperty.Create(
 		nameof(ButtonColor), typeof(Color), typeof(CircularButton), propertyChanged: OnButtonColorChanged);
 
 	public BindableProperty ImageProperty = BindableProperty.Create(
-		nameof(Image), typeof(string), typeof(CircularButton), propertyChanged: OnImageChanged); 
+		nameof(Image), typeof(string), typeof(CircularButton), propertyChanged: OnImageChanged);
 
-	public new BindableProperty IsVisibleProperty = BindableProperty.Create(
+	public static new BindableProperty IsVisibleProperty = BindableProperty.Create(
 		nameof(IsVisible), typeof(bool), typeof(CircularButton),
-		propertyChanged: OnIsVisibleChanged); 
+		propertyChanged: OnIsVisibleChanged);
 
 	public CircularButton()
 	{
@@ -51,38 +51,49 @@ public class CircularButton : GraphicsView
 
 	static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
 	{
-        var control = (CircularButton)bindable;
-        var buttonColor = control.ButtonColor;
+		var control = (CircularButton)bindable;
+		var buttonColor = control.ButtonColor;
 		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButtonDrawable;
 		thisDrawable.ButtonColor = buttonColor;
-        control.Invalidate();
-    }
+		control.Invalidate();
+	}
 
-	static void OnImageChanged(BindableObject bindable, object oldValue, object newValue) 
-    {
+	static void OnImageChanged(BindableObject bindable, object oldValue, object newValue)
+	{
 		var control = (CircularButton)bindable;
 		var image = control.Image;
 		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButtonDrawable;
 		thisDrawable.Image = image;
-		control.Invalidate(); 
-    
-    }
+		control.Invalidate();
 
-	static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue) 
-    {
+	}
+
+	static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
+	{
 		var control = (CircularButton)bindable;
+		var thisDrawable = control.Drawable as CircularButtonDrawable;
 
 		//thisDrawable.SetInvisible = !(bool)newValue;
 		//control.Invalidate(); 
-		var newValueAsBool = (bool)newValue; 
+
+		var newValueAsBool = (bool)newValue;
 
 		if (newValueAsBool == true)
 		{
-			control.FadeTo(1, 2000); 
-		} else 
+			control.FadeTo(1, 500);
+		} else
 		{
-			control.FadeTo(0, 4000); 
+			control.FadeTo(0, 500);
 		}
 
-    }
+	}
+
+	public async Task<bool> BounceOnPressAsync()
+	{
+		await this.ScaleTo(1.2, 100, Easing.BounceIn);
+
+		return await this.ScaleTo(1.0, 100, Easing.BounceOut);
+	}
+
+
 }
