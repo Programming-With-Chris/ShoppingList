@@ -20,14 +20,15 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems"
                 >
+        <ShellContent Title="My Archived Lists" 
+                      Route="ArchivedListView"
+                      ContentTemplate="{DataTemplate views:ArchivedListView}"/>
+
         <ShellContent Title="Settings" 
                       Route="SettingsView"
                       ContentTemplate="{DataTemplate views:SettingsView}"/>
         <!-- Had to remove Icon, it was causing issues on IOS, Settings page wouldn't route-->
 
-        <ShellContent Title="Your Archived Lists" 
-                      Route="ArchivedListView"
-                      ContentTemplate="{DataTemplate views:ArchivedListView}"/>
     </FlyoutItem>
 
 </Shell>

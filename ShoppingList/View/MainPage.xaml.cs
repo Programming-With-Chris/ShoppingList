@@ -13,12 +13,17 @@ public partial class MainPage : ContentPage
 		_ulvm = ulViewModel;
 		_ulvm.GetUserLists(); 
 
+		// If the user just has 1 list, just go to that detail page, saving them a click
+		if (_ulvm.UserLists.Count == 1)
+			_ulvm.GoToListItems(_ulvm.UserLists[0]);
+
 	}
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
 		_ulvm.GetUserLists();
+
     }
 
     private async void NewListButtonPressed(object sender, EventArgs e)
