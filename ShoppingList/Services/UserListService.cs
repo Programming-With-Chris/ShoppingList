@@ -17,7 +17,17 @@ public class UserListService
 
     public List<UserList> GetUserLists()
     {
-        var returnLists = _db.GetAllQuery<UserList>(); 
+        var returnLists = _db.GetAllQuery<UserList>();
+
+        returnLists = returnLists.Where(x => x.ArchiveDate is null).ToList<UserList>(); 
+        return returnLists; 
+    }
+
+    public List<UserList> GetArchivedUserLists()
+    {
+        var returnLists = _db.GetAllQuery<UserList>();
+
+        returnLists = returnLists.Where(x => x.ArchiveDate is not null).ToList<UserList>(); 
         return returnLists; 
     }
 
@@ -41,15 +51,30 @@ public class UserListService
     {
         Guard.IsNotNull(newlist, nameof(newlist));
 
+        newlist.CreationDate = DateTime.Now; 
+
         return _db.Insert(newlist); 
 
     }
 
-    public void DeleteUserList(UserList newlist)
+    public void ArchiveUserList(UserList delList)
     {
-        Guard.IsNotNull(newlist, nameof(newlist));
+        Guard.IsNotNull(delList, nameof(delList));
 
-        _db.Delete(newlist);
+        delList.ArchiveDate = DateTime.Now;
+
+        _db.Update<UserList>(delList); 
+
+    }
+
+    public void UnarchiveUserList(UserList userList)
+    {
+        Guard.IsNotNull(userList);
+
+        userList.ArchiveDate = null;
+
+        _db.Update<UserList>(userList); 
+    
     }
 
     public UserList GetLastUserListOfType(UserList newList)

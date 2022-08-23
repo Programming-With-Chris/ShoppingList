@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ShoppingList.Model"
+             xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             x:DataType="viewmodel:ArchivedListViewModel"
+             Title="{Binding Title}"
+             x:Name="CurrentPage"
+             BackgroundColor="{DynamicResource Secondary}"
+             x:Class="ShoppingList.ArchivedListView">
+
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto">
+
+        <CollectionView Grid.ColumnSpan="2"
+                        ItemsSource="{Binding UserLists}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate >
+                <DataTemplate x:DataType="model:UserList">
+                    <Grid Padding="10">
+                            <Frame  BackgroundColor="{DynamicResource Tertiary}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer   CommandParameter="{Binding .}"
+                                                            Tapped="FrameTapped"/>
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}"
+                                       FontSize="Medium"
+                                       TextColor="{DynamicResource Accent}"/>
+                                    <Label Text="{Binding Type}"
+                                       FontSize="Micro"
+                                       TextColor="{DynamicResource Accent}"
+                                       Margin="25,0,0,0"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

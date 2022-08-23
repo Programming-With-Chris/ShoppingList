@@ -25,6 +25,9 @@
                       ContentTemplate="{DataTemplate views:SettingsView}"/>
         <!-- Had to remove Icon, it was causing issues on IOS, Settings page wouldn't route-->
 
+        <ShellContent Title="Your Archived Lists" 
+                      Route="ArchivedListView"
+                      ContentTemplate="{DataTemplate views:ArchivedListView}"/>
     </FlyoutItem>
 
 </Shell>

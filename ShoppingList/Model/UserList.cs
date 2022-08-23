@@ -44,6 +44,12 @@ public class UserList : ObservableObject
     [Column("type")]
     public ListType Type { get; set; }
 
+    [Column("creation_dt")]
+    public DateTime CreationDate { get; set; }
+
+    [Column("archive_dt")]
+    public DateTime? ArchiveDate { get; set; }
+
     public UserList()
     {
         Items = new(); 

@@ -15,7 +15,13 @@ public partial class MainPage : ContentPage
 
 	}
 
-	private async void NewListButtonPressed(object sender, EventArgs e)
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		_ulvm.GetUserLists();
+    }
+
+    private async void NewListButtonPressed(object sender, EventArgs e)
 	{
 
 		var circularButton = sender as CircularButton;

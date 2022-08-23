@@ -115,7 +115,7 @@ public partial class UserListViewModel : BaseViewModel
     [RelayCommand]
     public void DeleteItem(UserList ul)
     {
-        _uls.DeleteUserList(ul);
+        _uls.ArchiveUserList(ul);
 
         UserLists.Remove(ul); 
 
