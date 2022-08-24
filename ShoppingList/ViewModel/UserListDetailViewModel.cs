@@ -1,4 +1,5 @@
 ﻿using System.Timers;
+using System.Diagnostics;
 
 namespace ShoppingList.ViewModels;
 
@@ -124,40 +125,85 @@ public partial class UserListDetailViewModel : BaseViewModel
     public async void OnItemEntryCompleted(string itemName)
     {
 
-        Item newItem = new()
+
+        try { 
+	
+			var apiConfig = await _krogerAPIService.GetStartupConfigAsync();
+
+			var done = await _krogerAPIService.SetAuthTokensAsync(apiConfig);
+
+			var result = await _krogerAPIService.GetProductLocationDataAsync(itemName, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+
+			ItemLocationData ild = result.Item1;
+			Item item = result.Item2;
+
+
+            item.ParentId = UserList.Id;
+
+            var newItem = new Item(item, ild); 
+
+			newItem = _itemService.CreateItem(newItem); 
+			newItem.LocationData.ParentId = newItem.Id;
+			UserList.Items.Add(newItem);
+
+			ListSorter.SortUserListItems(userList);
+
+			UserListNotifers();
+	
+	
+	    } catch(FeatureNotEnabledException e) //this is probably a misuse of this exception type, but oh well, it kinda fits lol
         {
-            Name = itemName
-        };
+            var promptedZipNotSetYet = Preferences.Get("FirstTimePromptForZip", true); 
+	
+            if (promptedZipNotSetYet)
+            {   
+		        var goToSettings = await Shell.Current.DisplayAlert("Error!",
+			    $"Unable To Get Kroger Data, You Need To Set Your Kroger Location In The Settings. Go There Now?", "Ok", "Cancel");
 
-        var apiConfig = await _krogerAPIService.GetStartupConfigAsync();
+		        if (goToSettings)
+		        {
+			        await Shell.Current.GoToAsync($"{nameof(SettingsView)}"); 
+			    } else {
 
-        var done = await _krogerAPIService.SetAuthTokensAsync(apiConfig);
+                    Item newItem = new Item()
+                    {
+                        Name = itemName,
+                        ParentId = UserList.Id,
+                        LocationData = new ItemLocationData()
+                    }; 
 
-        //Will do this in background thread later
-        var result = await _krogerAPIService.GetProductLocationDataAsync(newItem.Name, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
+			        newItem = _itemService.CreateItem(newItem); 
+			        newItem.LocationData.ParentId = newItem.Id;
+			        UserList.Items.Add(newItem);
 
-        ItemLocationData ild = result.Item1;
-        Item item = result.Item2;
+			        ListSorter.SortUserListItems(userList);
 
-        newItem.LocationData = ild;
-        newItem.Description = item.Description;
-        newItem.Category = item.Category;
-        newItem.EstimatedPrice = item.EstimatedPrice;
+			        UserListNotifers();
 
-        newItem.Aisle = ild.Description;
-        newItem.ParentId = UserList.Id;
-        
-        newItem = _itemService.CreateItem(newItem);
+			    }
+	        } else
+            {
+                Item newItem = new Item()
+                {
+                    Name = itemName,
+                    ParentId = UserList.Id,
+                    LocationData = new ItemLocationData()
+                };
 
-        newItem.LocationData.ParentId = newItem.Id;
-        UserList.Items.Add(newItem);
+                newItem = _itemService.CreateItem(newItem);
+                newItem.LocationData.ParentId = newItem.Id;
+                UserList.Items.Add(newItem);
 
-        ListSorter.SortUserListItems(userList);
+                ListSorter.SortUserListItems(userList);
+
+                UserListNotifers();
+
+            }
+
+            Preferences.Set("FirstTimePromptForZip", false); 
 
 
-        //UserList = UserList;
-        UserListNotifers();
-
+         }
     }
 
     [RelayCommand]

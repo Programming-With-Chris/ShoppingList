@@ -62,6 +62,7 @@ public class KrogerAPIService
 
         Guard.IsNotNullOrEmpty(zip, nameof(zip));
         Guard.IsNotNull(apiConfig, nameof(apiConfig));
+        // add code to check that we got a zip (and not, idk, say, some type of script attack lol)
 
         Dictionary<string, string> closeKrogerNames = new Dictionary<string, string>(); 
 
@@ -107,7 +108,8 @@ public class KrogerAPIService
         Guard.IsNotNull(apiConfig, nameof(apiConfig));
 
         if (Int32.Parse(locationId) == 0)
-            throw new ArgumentException($"Location ID: {locationId} is zero and not valid (Is one not set and it went with the default?)"); 
+            throw new FeatureNotEnabledException($"Location ID: {locationId} is zero and not valid (Is one not set and it went with the default?)"); 
+	
 
 
         string productQuery = $"?filter.locationId={locationId}&filter.term={term}&filter.fulfillment=ais&filter.limit=50";

@@ -35,6 +35,7 @@ public class ListSorter
         List<Item> aisleList = new();
         List<Item> dairyList = new();
         List<Item> frozenList = new(); 
+        List<Item> unsortedList = new(); 
 
 
         var sortedItems = new List<Item>(); 
@@ -43,40 +44,49 @@ public class ListSorter
 
         foreach(var item in list)
         {
-            switch (item.Aisle.ToUpper())
-            {
-                case "MEAT":
-                    meatList.Add(item);
-                    wasSorted = true; 
-                    break;
-                case "SEAFOOD":
-                    meatList.Add(item);
-                    wasSorted = true;
-                    break;
-                case "DAIRY":
-                    dairyList.Add(item);
-                    wasSorted = true; 
-                    break;
-                case "PRODUCE":
-                    produceList.Add(item);
-                    wasSorted = true;
-                    break; 
-            }
-
-            if (!wasSorted)
-            {
-                if (item.Category.ToUpper().Contains("FROZEN") && FrozenFoodLast && !StartAtBackOfStore)
+            if (item.Aisle is not null &&
+		        item.Category is not null) 
+	        { 
+                switch (item.Aisle.ToUpper())
                 {
-                    frozenList.Add(item);
-                } else
-                {
-                    aisleList.Add(item);
+                    case "MEAT":
+                        meatList.Add(item);
+                        wasSorted = true; 
+                        break;
+                    case "SEAFOOD":
+                        meatList.Add(item);
+                        wasSorted = true;
+                        break;
+                    case "DAIRY":
+                        dairyList.Add(item);
+                        wasSorted = true; 
+                        break;
+                    case "PRODUCE":
+                        produceList.Add(item);
+                        wasSorted = true;
+                        break; 
                 }
-            }
 
-            wasSorted = false; 
+                if (!wasSorted)
+                {
+                    if (item.Category.ToUpper().Contains("FROZEN") && FrozenFoodLast && !StartAtBackOfStore)
+                    {
+                        frozenList.Add(item);
+                    } else
+                    {
+                        aisleList.Add(item);
+                    }
+                }
+
+                wasSorted = false; 
+	    
+	        } else
+            {
+                unsortedList.Add(item);
+	        }
         }
 
+        // need a way to be defensive in the case where the item doesn't have loc data or a bay num, etc
         meatList = meatList.OrderByDescending(x => Int32.Parse(x.LocationData.BayNumber)).ToList(); 
         dairyList = dairyList.OrderByDescending(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
         produceList = produceList.OrderBy(x => Int32.Parse(x.LocationData.BayNumber)).ToList();
@@ -90,7 +100,8 @@ public class ListSorter
         sortedItems.AddRange(aisleList);
         sortedItems.AddRange(dairyList);
         sortedItems.AddRange(meatList);
-        sortedItems.AddRange(frozenList); 
+        sortedItems.AddRange(frozenList);
+        sortedItems.AddRange(unsortedList);
 
 
         if(StartAtBackOfStore)
