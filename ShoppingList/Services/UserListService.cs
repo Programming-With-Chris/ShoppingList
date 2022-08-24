@@ -82,16 +82,9 @@ public class UserListService
         Guard.IsNotNull(newList, nameof(newList));
 
         var allUserLists = _db.GetAllQuery<UserList>();
-        UserList lastListOfThatType = new();
-        lastListOfThatType.Id = 0; 
 
-        foreach(var ul in allUserLists)
-        {
-            if (ul.Type == newList.Type && ul.Id > lastListOfThatType.Id && ul.Id != newList.Id)
-            {
-                lastListOfThatType = ul; 
-            }
-        }
+        var listsOfType = allUserLists.FindAll(x => (x.Type == newList.Type) && x.Id != newList.Id).ToList(); 
+        var lastListOfThatType = listsOfType.OrderByDescending(x => x.CreationDate).ToList()[0]; 
 
         return lastListOfThatType; 
 
