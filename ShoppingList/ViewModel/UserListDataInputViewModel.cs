@@ -58,6 +58,7 @@ public partial class UserListDataInputViewModel : BaseViewModel
             
             foreach(var item in lastListOfThatType.Items)
             {
+                item.IsCompleted = false; 
                 userList.Items.Add(item);
                 item.ParentId = userList.Id; 
                 _itemService.CreateItem(item); 

@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 *.DS_Store
+*krogerapiconfig.json
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -362,6 +364,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Resources/Raw/krogerapiconfig.json
 /ShoppingList/Resources/Raw/krogerapiconfig.json
-/ShoppingList/Resources/Raw/krogerapiconfig-test.json
-/ShoppingList/Controls/CircularButton.cs
