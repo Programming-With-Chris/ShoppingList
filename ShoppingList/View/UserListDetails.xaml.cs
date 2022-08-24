@@ -22,7 +22,15 @@ public partial class UserListDetails : ContentPage
 
     }
 
-	private void OnCheckboxClicked(object sender, CheckedChangedEventArgs e)
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		var undoButton = this.FindByName("UndoButton") as CircularButton; 
+		undoButton.FadeTo(0, 500);
+
+    }
+
+    private void OnCheckboxClicked(object sender, CheckedChangedEventArgs e)
 	{
 
 		CheckBox thisCheckbox = sender as CheckBox;
