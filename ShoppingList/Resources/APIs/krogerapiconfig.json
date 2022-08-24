@@ -1,6 +1,0 @@
-{
-  "ClientId": "shoppinglistbuddy-prod-a62f2a49c096edda094c6646e8fe16023424942672257304802",
-  "ClientSecret": "qsX3hImoIt77GDhqJP12bznpqxSfu8BPgSvwSJZY",
-  "RedirectUri": "https://dev.programmingwithchris/shoppinglist",
-  "KrogerUrl": "https://api.kroger.com/v1/"
-}
