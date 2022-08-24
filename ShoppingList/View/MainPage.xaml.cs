@@ -1,11 +1,13 @@
 ﻿using ShoppingList.ViewModels;
 using ShoppingList.Controls;
+using SkiaSharp.Extended.UI.Controls;
 
 namespace ShoppingList;
 
 public partial class MainPage : ContentPage
 {
-	UserListViewModel _ulvm;
+    readonly UserListViewModel _ulvm;
+
 	public MainPage(UserListViewModel ulViewModel)
 	{
 		InitializeComponent();
@@ -24,6 +26,7 @@ public partial class MainPage : ContentPage
         base.OnAppearing();
 		_ulvm.GetUserLists();
 
+		var cartLottie = this.FindByName("CartLottie") as SKLottieView;
     }
 
     private async void NewListButtonPressed(object sender, EventArgs e)

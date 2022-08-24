@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
+             xmlns:skiasharp="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:DataType="viewmodel:ArchivedListViewModel"
              Title="{Binding Title}"
              x:Name="CurrentPage"
@@ -38,6 +39,22 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <skiasharp:SKLottieView x:Name="TrashCanLottie"
+	                            WidthRequest="300"
+				                HeightRequest="300"
+                                Grid.Row="0"
+                                RepeatCount="0"
+                                RepeatMode="Restart"
+                                Opacity=".5"
+                                ZIndex="-1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                VerticalOptions="End"
+                                HorizontalOptions="Center"
+				                Source="89531-trashcan.json"
+				                BackgroundColor="Transparent">
+        </skiasharp:SKLottieView>
 
     </Grid>
 

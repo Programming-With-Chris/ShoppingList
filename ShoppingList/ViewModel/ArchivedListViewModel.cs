@@ -73,7 +73,7 @@ public partial class ArchivedListViewModel : BaseViewModel
         if (IsBusy)
             return; 
 
-        bool shouldRestore =   await Shell.Current.DisplayAlert("Restore List?", "Would You Like To Restore This List",
+        bool shouldRestore =   await Shell.Current.DisplayAlert("Restore List?", "Would You Like To Restore This List?",
 	                                                            "Yes", "Cancel");
 
         if (shouldRestore)
