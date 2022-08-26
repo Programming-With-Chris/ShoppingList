@@ -366,3 +366,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Resources/Raw/krogerapiconfig.json
 /ShoppingList/Resources/Raw/krogerapiconfig.json
+/ShoppingList/Resources/Raw/krogerapiconfig-test.json

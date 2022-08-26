@@ -52,7 +52,7 @@
                         </SwipeView.RightItems>
                             <Frame Grid.ColumnSpan="3"
                                Padding="5"
-                               Margin="10,0,0,10"
+                               Margin="10,0,10,05"
                                x:Name="ItemFrame"
                                BackgroundColor="{DynamicResource Tertiary}"
                                BindingContext="{Binding .}">

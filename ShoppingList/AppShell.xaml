@@ -9,6 +9,7 @@
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{DynamicResource Secondary}"
     Shell.TitleColor="{DynamicResource Accent}"
+    Shell.ForegroundColor="{DynamicResource Accent}"
     >
 
     <ShellContent
