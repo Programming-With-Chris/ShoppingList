@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using ShoppingList.Handlers;
 using IImage = Microsoft.Maui.Graphics.IImage;
 
 namespace ShoppingList.Controls;
@@ -33,28 +32,35 @@ public class CircularButton : GraphicsView
 	}
 
 	public static BindableProperty ButtonColorProperty = BindableProperty.Create(
-		nameof(ButtonColor), typeof(Color), typeof(CircularButton), propertyChanged: OnButtonColorChanged);
+		nameof(ButtonColor), typeof(Color), typeof(CircularButton)); 
+		//propertyChanged: OnButtonColorChanged);
 
-	public static BindableProperty ImageProperty = BindableProperty.Create(
-		nameof(Image), typeof(string), typeof(CircularButton), propertyChanged: OnImageChanged);
+		public static BindableProperty ImageProperty = BindableProperty.Create(
+			nameof(Image), typeof(string), typeof(CircularButton));
+		//propertyChanged: OnImageChanged);
 
-	public static new BindableProperty IsVisibleProperty = BindableProperty.Create(
+	public new static BindableProperty IsVisibleProperty = BindableProperty.Create(
 		nameof(IsVisible), typeof(bool), typeof(CircularButton),
-		propertyChanged: OnIsVisibleChanged);
+		defaultValue: false); 
+		//propertyChanged: OnIsVisibleChanged);
 
 	public CircularButton()
 	{
+		Handler = new CircularButtonHandler(); 
 		var drawable = new CircularButtonDrawable();
 		Drawable = drawable;
 	}
 
 
+	// Converted this logic over to the circular button handler
+	///<seealso cref = "CircularButtonHandler" />
 	static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
 	{
 		var control = (CircularButton)bindable;
 		var buttonColor = control.ButtonColor;
-		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButtonDrawable;
-		thisDrawable.ButtonColor = buttonColor;
+		if (control.Drawable is CircularButtonDrawable thisDrawable)
+			thisDrawable.ButtonColor = buttonColor;
+		
 		control.Invalidate();
 	}
 
@@ -62,12 +68,14 @@ public class CircularButton : GraphicsView
 	{
 		var control = (CircularButton)bindable;
 		var image = control.Image;
-		var thisDrawable = control.Drawable as ShoppingList.Drawable.CircularButtonDrawable;
-		thisDrawable.Image = image;
+		if (control.Drawable is CircularButtonDrawable thisDrawable)
+			thisDrawable.Image = image;
 		control.Invalidate();
 
 	}
 
+	// Converted this logic over to the circular button handler
+	///<seealso cref = "CircularButtonHandler" />
 	static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
 	{
 		var control = (CircularButton)bindable;

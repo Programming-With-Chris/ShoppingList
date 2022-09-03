@@ -1,5 +1,6 @@
 ﻿using System.Timers;
 using System.Diagnostics;
+using ShoppingList.View;
 
 namespace ShoppingList.ViewModels;
 
@@ -99,6 +100,8 @@ public partial class UserListDetailViewModel : BaseViewModel
         _itemService.UpdateItem(item);
 
         UserList.Items = ListSorter.SortUserListItems(userList);
+        
+        
 
         //UserListNotifers();
 
@@ -165,7 +168,7 @@ public partial class UserListDetailViewModel : BaseViewModel
 			        await Shell.Current.GoToAsync($"{nameof(SettingsView)}"); 
 			    } else {
 
-                    Item newItem = new Item()
+                    var newItem = new Item()
                     {
                         Name = itemName,
                         ParentId = UserList.Id,
@@ -183,7 +186,7 @@ public partial class UserListDetailViewModel : BaseViewModel
 			    }
 	        } else
             {
-                Item newItem = new Item()
+                var newItem = new Item()
                 {
                     Name = itemName,
                     ParentId = UserList.Id,
@@ -203,7 +206,7 @@ public partial class UserListDetailViewModel : BaseViewModel
             Preferences.Set("FirstTimePromptForZip", false); 
 
 
-         }
+        }
     }
 
     [RelayCommand]

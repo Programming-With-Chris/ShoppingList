@@ -1,6 +1,4 @@
-﻿using ShoppingList.ViewModels;
-
-namespace ShoppingList;
+﻿namespace ShoppingList.View;
 
 public partial class UserListDataInput : ContentPage
 {

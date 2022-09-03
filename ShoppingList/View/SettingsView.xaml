@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:control="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:SettingsViewModel"
-             x:Class="ShoppingList.SettingsView"
+             x:Class="ShoppingList.View.SettingsView"
              BackgroundColor="{DynamicResource Secondary}"
              Shell.PresentationMode="Animated"
              >
@@ -97,6 +97,7 @@
                 <control:CircularButton ButtonColor="{StaticResource NeonPrimary}"
                                         WidthRequest="30"
                                         HeightRequest="30"
+                                        IsVisible="True"
                                         Margin="25,0,0,25"
                                         BackgroundColor="Transparent"
                                         x:Name="Neon">
@@ -111,6 +112,7 @@
                 <control:CircularButton ButtonColor="{StaticResource StrikingPrimary}"
                                         WidthRequest="30"
                                         HeightRequest="30"
+                                        IsVisible="True"
                                         Margin="25,0,0,25"
                                         BackgroundColor="Transparent"
                                         x:Name="Striking">
@@ -124,6 +126,7 @@
                 <control:CircularButton ButtonColor="{StaticResource MutedPrimary}"
                                         WidthRequest="30"
                                         HeightRequest="30"
+                                        IsVisible="True"
                                         Margin="25,0,0,25"
                                         BackgroundColor="Transparent"
                                         x:Name="Muted">
@@ -137,6 +140,7 @@
                 <control:CircularButton ButtonColor="{StaticResource PrettyPrimary}"
                                         WidthRequest="30"
                                         HeightRequest="30"
+                                        IsVisible="True"
                                         Margin="25,0,0,25"
                                         BackgroundColor="Transparent"
                                         x:Name="Pretty">
@@ -175,6 +179,7 @@
                 <control:CircularButton ButtonColor="{StaticResource DeepRedPrimary}"
                                         WidthRequest="30"
                                         HeightRequest="30"
+                                        IsVisible="True"
                                         Margin="25,0,0,25"
                                         BackgroundColor="Transparent"
                                         x:Name="DeepRed">
@@ -188,6 +193,7 @@
                 <control:CircularButton ButtonColor="{StaticResource DepressionPrimary}"
                                         WidthRequest="30"
                                         HeightRequest="30"
+                                        IsVisible="True"
                                         Margin="25,0,0,25"
                                         BackgroundColor="Transparent"
                                         x:Name="Depression">

@@ -1,7 +1,4 @@
-﻿using ShoppingList.ViewModels;
-using ShoppingList.Controls;
-
-namespace ShoppingList;
+﻿namespace ShoppingList.View;
 
 public partial class ArchivedListView : ContentPage
 {

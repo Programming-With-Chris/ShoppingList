@@ -1,6 +1,7 @@
 ﻿using ShoppingList.Model.Api;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using ShoppingList.View;
 
 namespace ShoppingList.ViewModels;
 

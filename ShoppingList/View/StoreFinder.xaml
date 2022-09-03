@@ -4,7 +4,7 @@
              xmlns:model="clr-namespace:ShoppingList.Model"
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              x:DataType="viewmodel:StoreFinderViewModel"
-             x:Class="ShoppingList.StoreFinder"
+             x:Class="ShoppingList.View.StoreFinder"
              BackgroundColor="{DynamicResource Secondary}"
              Shell.PresentationMode="ModalAnimated"
              >

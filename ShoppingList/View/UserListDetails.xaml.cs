@@ -1,12 +1,6 @@
 ﻿//using Microsoft.Maui.Graphics.Platform;
-using System.Reflection;
-using ShoppingList.ViewModels;
-using IImage = Microsoft.Maui.Graphics.IImage;
-using SkiaSharp.Extended.UI.Controls;
-using SkiaSharp.Views.Maui.Controls;
-using ShoppingList.Controls;
 
-namespace ShoppingList;
+namespace ShoppingList.View;
 
 public partial class UserListDetails : ContentPage
 {
@@ -26,7 +20,7 @@ public partial class UserListDetails : ContentPage
     {
         base.OnAppearing();
 		var undoButton = this.FindByName("UndoButton") as CircularButton; 
-		undoButton.FadeTo(0, 500);
+		undoButton?.FadeTo(0, 500);
 
     }
 
@@ -54,7 +48,7 @@ public partial class UserListDetails : ContentPage
 	{
 
 		var circularButton = sender as CircularButton;
-		await circularButton.BounceOnPressAsync();
+		await circularButton?.BounceOnPressAsync();
 		_ulvm.NewItemDialog(); 
 	}
 

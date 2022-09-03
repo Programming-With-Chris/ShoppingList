@@ -5,10 +5,9 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:controls="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:UserListDetailViewModel"
-             x:Class="ShoppingList.UserListDetails"
+             x:Class="ShoppingList.View.UserListDetails"
              BackgroundColor="{DynamicResource Secondary}"
-             Title="{Binding Title}"
-             >
+             Title="{Binding Title}">
 
 
     <Shell.BackButtonBehavior>
@@ -129,6 +128,7 @@
                         Image="plus_sign.png"
                         VerticalOptions="End"
                         HorizontalOptions="End"
+                        IsVisible="True"
 			            >
                 <controls:CircularButton.GestureRecognizers>
                     <TapGestureRecognizer Tapped="NewItemButtonPressed"/>

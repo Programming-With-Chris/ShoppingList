@@ -1,8 +1,6 @@
-﻿using ShoppingList.ViewModels;
-using ShoppingList.Controls;
-using SkiaSharp.Extended.UI.Controls;
+﻿using SkiaSharp.Extended.UI.Controls;
 
-namespace ShoppingList;
+namespace ShoppingList.View;
 
 public partial class MainPage : ContentPage
 {

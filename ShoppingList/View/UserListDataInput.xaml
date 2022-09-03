@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:ShoppingList.ViewModels"
              xmlns:controls="clr-namespace:ShoppingList.Controls"
              x:DataType="viewmodel:UserListDataInputViewModel"
-             x:Class="ShoppingList.UserListDataInput"
+             x:Class="ShoppingList.View.UserListDataInput"
              BackgroundColor="{DynamicResource Secondary}"
              Shell.PresentationMode="Animated"
              >

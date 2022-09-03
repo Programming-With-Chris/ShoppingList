@@ -16,13 +16,9 @@ public class DatabaseHandler
     /// </summary>
     public DatabaseHandler()
     {
-//#if ios
         _pathToDb = Path.Combine (
         Environment.GetFolderPath (Environment.SpecialFolder.Personal),
         "database.db3");
-//#else
-        //_pathToDb = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "shoppinglist_sqlite.db");
-//#endif
 
         _db = new SQLiteConnection(_pathToDb);
         _db.CreateTable<Item>();

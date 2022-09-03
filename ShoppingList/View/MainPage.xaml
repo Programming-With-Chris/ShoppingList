@@ -9,7 +9,7 @@
              Title="{Binding Title}"
              x:Name="CurrentPage"
              BackgroundColor="{DynamicResource Secondary}"
-             x:Class="ShoppingList.MainPage">
+             x:Class="ShoppingList.View.MainPage">
 
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
@@ -91,6 +91,7 @@
                         Image="plus_sign.png"
                         VerticalOptions="End"
                         HorizontalOptions="End"
+                        IsVisible="True"
 			            >
                 <GraphicsView.GestureRecognizers>
                     <TapGestureRecognizer Tapped="NewListButtonPressed"/>

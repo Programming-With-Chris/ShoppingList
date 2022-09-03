@@ -1,4 +1,5 @@
-﻿using ShoppingList.ViewModels;
+﻿using ShoppingList.View;
+using ShoppingList.ViewModels;
 using SkiaSharp.Views.Maui.Controls.Hosting; 
 
 namespace ShoppingList;

@@ -8,7 +8,7 @@
              Title="{Binding Title}"
              x:Name="CurrentPage"
              BackgroundColor="{DynamicResource Secondary}"
-             x:Class="ShoppingList.ArchivedListView">
+             x:Class="ShoppingList.View.ArchivedListView">
 
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
